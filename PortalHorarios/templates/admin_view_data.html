@@ -6,9 +6,15 @@
 {% block content %}
 <div class="card">
     <div class="card-header">
-        {% if add_url %}
-            <a href="{{ add_url }}" class="button-primary">Adicionar Novo</a>
+        {# Botão Adicionar Novo condicional por data_key e papel do usuário #}
+        {% if data_key == 'turmas' and session.user_role in ['Full', 'Supervisor'] %}
+            <a href="{{ url_for('turmas_add') }}" class="button-primary">Adicionar Nova Turma</a>
+        {% elif data_key == 'disciplinas' and session.user_role in ['Full', 'Supervisor'] %}
+            <a href="{{ url_for('disciplinas_add') }}" class="button-primary">Adicionar Nova Disciplina</a>
+        {% elif data_key == 'professores' and session.user_role in ['Full', 'Supervisor'] %}
+            <a href="{{ url_for('professores_add') }}" class="button-primary">Adicionar Novo Professor</a>
         {% endif %}
+
 
         <div class="search-container">
             <input type="search" id="searchInput" class="search-input" placeholder="Buscar na tabela...">
@@ -22,7 +28,8 @@
                     {% for header in headers %}
                         <th>{{ header }}</th>
                     {% endfor %}
-                    {% if edit_url %}
+                    {# Cabeçalho da Coluna de Ações condicional #}
+                    {% if data_key in ['turmas', 'disciplinas', 'professores'] and session.user_role in ['Full', 'Supervisor'] %}
                         <th>Ações</th>
                     {% endif %}
                 </tr>
@@ -33,18 +40,19 @@
                         {% for cell in row.data %}
                             <td>{{ cell }}</td>
                         {% endfor %}
-                        {% if edit_url %}
-                        <td>
-                            <a href="{{ url_for(edit_url, item_id=row.id) }}" class="button-edit">Editar</a>
-                            <form method="post" action="{{ url_for(delete_url, item_id=row.id) }}" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este item?');">
-                                <button type="submit" class="button-delete">Excluir</button>
-                            </form>
-                        </td>
+                        {# Botões de Editar/Excluir condicionais #}
+                        {% if data_key in ['turmas', 'disciplinas', 'professores'] and session.user_role in ['Full', 'Supervisor'] %}
+                            <td>
+                                <a href="{{ url_for(data_key + '_edit', item_id=row.id) }}" class="button-edit">Editar</a>
+                                <form method="post" action="{{ url_for(data_key + '_delete', item_id=row.id) }}" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este item? Esta ação também removerá referências na matriz curricular.');">
+                                    <button type="submit" class="button-delete">Excluir</button>
+                                </form>
+                            </td>
                         {% endif %}
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="{{ headers|length + (1 if edit_url else 0) }}">Nenhum dado para exibir.</td>
+                        <td colspan="{{ headers|length + (1 if data_key in ['turmas', 'disciplinas', 'professores'] and session.user_role in ['Full', 'Supervisor'] else 0) }}">Nenhum dado para exibir.</td>
                     </tr>
                 {% endfor %}
             </tbody>

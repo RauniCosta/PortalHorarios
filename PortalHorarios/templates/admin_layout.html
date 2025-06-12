@@ -4,94 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Portal de Administração{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='admin_style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { padding-top: 20px; padding-bottom: 20px; background-color: #f8f9fa; }
+        .flash-messages { list-style: none; padding: 0; margin-top: 1rem; margin-bottom: 1rem; }
+        .flash-messages li { padding: 0.75rem 1.25rem; margin-bottom: 1rem; border: 1px solid transparent; border-radius: 0.25rem; }
+        .flash-messages .error { color: #721c24; background-color: #f8d7da; border-color: #f5c6cb; }
+        .flash-messages .success { color: #155724; background-color: #d4edda; border-color: #c3e6cb; }
+        .flash-messages .warning { color: #856404; background-color: #fff3cd; border-color: #ffeeba; }
+        .flash-messages .info { color: #0c5460; background-color: #d1ecf1; border-color: #bee5eb; }
+        .navbar { margin-bottom: 20px; }
+        .card { margin-bottom: 20px; }
+    </style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h2>Admin Horários</h2>
-            <button id="closeMenuBtn" class="menu-btn close-btn">&times;</button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('admin_dashboard') }}">Painel Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    {% if session.user_id %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_dashboard') }}">Início</a></li>
+                        
+                        {% if session.user_role in ['Full', 'Supervisor', 'User'] %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownVisualizar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Visualizar Dados
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownVisualizar">
+                                    <a class="dropdown-item" href="{{ url_for('admin_view_data', data_key='turmas') }}">Turmas</a>
+                                    <a class="dropdown-item" href="{{ url_for('admin_view_data', data_key='disciplinas') }}">Disciplinas</a>
+                                    <a class="dropdown-item" href="{{ url_for('admin_view_data', data_key='professores') }}">Professores</a>
+                                    <a class="dropdown-item" href="{{ url_for('admin_view_matriz') }}">Matriz Curricular</a>
+                                </div>
+                            </li>
+                        {% endif %}
+
+                        {% if session.user_role in ['Full', 'Supervisor', 'User'] %}
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_salas') }}">Gerenciar Salas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_alocacao') }}">Alocar Horários</a></li>
+                        {% endif %}
+                        {% if session.user_role == 'Full' %}
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_users_list') }}">Gerenciar Usuários</a></li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav">
+                    {% if session.user_id %}
+                        <li class="nav-item">
+                            <span class="navbar-text mr-3">
+                                Logado como: {{ session.username }} ({{ session.user_role }})
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-light" href="{{ url_for('admin_logout') }}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="btn btn-outline-light" href="{{ url_for('admin_login') }}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-        <nav>
-            <ul>
-                
-                <li><a href="{{ url_for('admin_alocacao') }}">Alocação de Horários</a></li>
-                <li><a href="{{ url_for('admin_view_matriz') }}">Matriz Curricular</a></li>
-                <li><a href="{{ url_for('admin_view_data', data_key='turmas') }}">Turmas</a></li>
-                <li><a href="{{ url_for('admin_view_data', data_key='disciplinas') }}">Disciplinas</a></li>
-                <li><a href="{{ url_for('admin_view_data', data_key='professores') }}">Professores</a></li>
-                <li><a href="{{ url_for('admin_salas') }}">Salas</a></li>
-                <hr>
-                <li><a href="{{ url_for('admin_dashboard') }}">Dashboard & Importar</a></li>
-                <hr>
-                <li><a href="{{ url_for('index') }}" target="_blank">Ver Painel Público</a></li>
+    </nav>
 
-            </ul>
-        </nav>
-    </div>
-
-    <div class="main-content">
-        <header class="main-header-content">
-             <button id="openMenuBtn" class="menu-btn open-btn">&#9776;</button>
-            <h1>{% block page_title %}{% endblock %}</h1>
-        </header>
-        
+    <div class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
+                <ul class="flash-messages">
                 {% for category, message in messages %}
-                    <div class="flash-message {{ category }}">{{ message }}</div>
+                    <li class="{{ category }}">{{ message }}</li>
                 {% endfor %}
+                </ul>
             {% endif %}
         {% endwith %}
 
-        <main>
-            {% block content %}{% endblock %}
-        </main>
+        {% block content %}
+        {% endblock %}
     </div>
 
-    <script>
-    // Lógica para o menu responsivo
-    document.addEventListener('DOMContentLoaded', () => {
-        const sidebar = document.querySelector('.sidebar');
-        const openBtn = document.getElementById('openMenuBtn');
-        const closeBtn = document.getElementById('closeMenuBtn');
-
-        if (openBtn) {
-            openBtn.addEventListener('click', () => {
-                sidebar.classList.add('open');
-            });
-        }
-
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                sidebar.classList.remove('open');
-            });
-        }
-    });
-
-    // Lógica para a busca na tabela
-    document.addEventListener('DOMContentLoaded', () => {
-        const searchInput = document.getElementById('searchInput');
-        const dataTable = document.getElementById('dataTable');
-
-        if (searchInput && dataTable) {
-            searchInput.addEventListener('keyup', () => {
-                const searchTerm = searchInput.value.toLowerCase();
-                const rows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-                for (let row of rows) {
-                    const rowText = row.textContent.toLowerCase();
-                    if (rowText.includes(searchTerm)) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                }
-            });
-        }
-    });
-    </script>
-    {% block scripts %}{% endblock %}
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

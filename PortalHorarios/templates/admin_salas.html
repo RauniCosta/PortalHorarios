@@ -6,7 +6,9 @@
 {% block content %}
 <div class="card">
     <div class="card-header">
+        {% if session.user_role in ['Full', 'Supervisor', 'User'] %}
         <a href="{{ url_for('salas_add') }}" class="button-primary">Adicionar Nova Sala</a>
+        {% endif %}
 
         <div class="search-container">
             <input type="search" id="searchInput" class="search-input" placeholder="Buscar salas...">
@@ -19,7 +21,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome da Sala</th>
+                    {% if session.user_role in ['Full', 'Supervisor', 'User'] %}
                     <th>Ações</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -27,16 +31,18 @@
                     <tr>
                         <td>{{ sala.id }}</td>
                         <td>{{ sala.nome }}</td>
+                        {% if session.user_role in ['Full', 'Supervisor', 'User'] %}
                         <td>
                             <a href="{{ url_for('salas_edit', item_id=sala.id) }}" class="button-edit">Editar</a>
-                            <form method="post" action="{{ url_for('salas_delete', item_id=sala.id) }}" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta sala?');">
+                            <form method="post" action="{{ url_for('salas_delete', item_id=sala.id) }}" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta sala? Todas as alocações desta sala serão removidas.');">
                                 <button type="submit" class="button-delete">Excluir</button>
                             </form>
                         </td>
+                        {% endif %}
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="3">Nenhuma sala cadastrada.</td>
+                        <td colspan="{% if session.user_role in ['Full', 'Supervisor', 'User'] %}3{% else %}2{% endif %}">Nenhuma sala cadastrada.</td>
                     </tr>
                 {% endfor %}
             </tbody>

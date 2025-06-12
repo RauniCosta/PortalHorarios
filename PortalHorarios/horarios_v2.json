@@ -6431,5 +6431,31 @@
             "id": 30,
             "nome": "ETN4"
         }
+    ],
+    "admin_users": [
+        {
+            "id": 1,
+            "username": "admin",
+            "password_hash": "scrypt:32768:8:1$zBhrT0d185kdG0HW$c48766166bf22c23e8ce105883165967f196faa8d5d678f7f65c5949098a466a283fececcd89f02769cac447c1abe882b0d8fa8f4b8871d54e775e00e70e4983",
+            "role": "Full"
+        },
+        {
+            "id": 2,
+            "username": "supervisor",
+            "password_hash": "scrypt:32768:8:1$SsTvR3hM5GOsj6u4$06241373f56aec41e3ed8f35f3dc217e54b64963c55f4808e4b471f0cd46e7e9b2cb6b9a75df55db7999d842a590fbabd61e3b53515d7f8715ffcd65b9e78ab9",
+            "role": "Supervisor"
+        },
+        {
+            "id": 3,
+            "username": "user",
+            "password_hash": "scrypt:32768:8:1$VFHeagfyUnhPWyoV$a0f6bb84e3042dc50249464934b2425b376a5975a099f41b003b963bcebd6cd59647e97bf0fe5dada1e4c7ed36f53fc67408e7cb2fcbed5ecd24b7505e4b7077",
+            "role": "User"
+        },
+        {
+            "id": 4,
+            "username": "Rauni",
+            "password_hash": "scrypt:32768:8:1$CxIX9w3EUSwZLLwT$530a208baa38ae050ac0f90b7b85a49cd6387ec8d4d16979fdad390f17d72bf542491e8e3141c0b499f4f02b9538143b96a73a82bbd14e3d44745f528391cff9",
+            "role": "Full"
+        }
     ]
 }

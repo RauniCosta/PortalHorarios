@@ -1,0 +1,45 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h4>{{ title }}</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ form_action }}">
+            <div class="form-group">
+                <label for="username">Nome de Usuário:</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{ user_data.username or '' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" class="form-control" id="password" name="password" {% if not user_data.id %}required{% endif %}>
+                {% if user_data.id %}
+                <small class="form-text text-muted">Deixe em branco para não alterar a senha atual.</small>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirm">Confirmar Senha:</label>
+                <input type="password" class="form-control" id="password_confirm" name="password_confirm" {% if not user_data.id %}required{% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Papel (Role):</label>
+                <select class="form-control" id="role" name="role" required>
+                    {% for r in roles %}
+                        <option value="{{ r }}" {% if user_data.role == r %}selected{% endif %}>{{ r }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{{ url_for('admin_users_list') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
