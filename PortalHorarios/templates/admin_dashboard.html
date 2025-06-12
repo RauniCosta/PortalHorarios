@@ -1,0 +1,17 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Dashboard - Admin Horários{% endblock %}
+{% block page_title %}Dashboard e Importação{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Importar Novo Quadro de Aulas</h2>
+    <p>Selecione um arquivo CSV com ponto e vírgula (;) como delimitador para substituir todos os dados existentes (turmas, professores, disciplinas e matriz curricular).</p>
+    <p><strong>Colunas necessárias:</strong> Turma, Turma Apelido, Período, Componente, Qtde Aulas, Origem, Professor Ministrando.</p>
+    
+    <form action="{{ url_for('importar_quadro_aulas_csv') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="csv_file" accept=".csv" required>
+        <button type="submit">Importar Arquivo</button>
+    </form>
+</div>
+{% endblock %}

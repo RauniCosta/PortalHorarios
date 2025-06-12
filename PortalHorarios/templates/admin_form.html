@@ -1,0 +1,26 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <form method="post" action="{{ form_action }}">
+        {% for field in fields %}
+        <div class="form-group">
+            <label for="{{ field.name }}">{{ field.label }}:</label>
+            <input type="{{ field.type|default('text') }}" 
+                   id="{{ field.name }}" 
+                   name="{{ field.name }}" 
+                   value="{{ item[field.name] if item else '' }}" 
+                   required>
+        </div>
+        {% endfor %}
+
+        <div class="form-actions">
+            <button type="submit" class="button-primary">Salvar</button>
+            <a href="{{ cancel_url }}" class="button-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

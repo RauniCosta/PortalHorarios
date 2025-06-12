@@ -1,0 +1,41 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <form method="post" action="{{ form_action }}">
+        <div class="form-group">
+            <label for="nome_completo">Nome Completo:</label>
+            <input type="text" id="nome_completo" name="nome_completo" value="{{ item.nome_completo if item else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="apelido">Apelido:</label>
+            <input type="text" id="apelido" name="apelido" value="{{ item.apelido if item else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="periodo">Período (1: Manhã, 2: Tarde, 3: Noite, 4: Integral):</label>
+            <input type="number" id="periodo" name="periodo" value="{{ item.periodo if item else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
+                {% for cat in categorias %}
+                    <option value="{{ cat }}" {% if item and item.categoria == cat %}selected{% endif %}>
+                        {{ cat }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="button-primary">Salvar</button>
+            <a href="{{ cancel_url }}" class="button-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

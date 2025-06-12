@@ -1,0 +1,246 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Alocação de Horários{% endblock %}
+{% block page_title %}Alocação de Horários{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="form-group">
+        <label for="turma_select">Selecione uma Turma para gerenciar:</label>
+        <select id="turma_select">
+            <option value="">-- Selecione --</option>
+            {% for turma in turmas %}
+                <option value="{{ turma.apelido }}">{{ turma.nome_completo }} ({{ turma.apelido }})</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+<div id="scheduler_content" class="hidden">
+    <div class="grid-container-3-cols"> <div class="card" id="matriz_panel">
+            <h3>Aulas a Alocar</h3>
+            
+            <div class="search-container-small">
+                <input type="search" id="matrizSearchInput" placeholder="Buscar por disciplina ou professor...">
+            </div>
+            
+            <div id="matriz_list"></div>
+        </div>
+        <div class="card" id="salas_panel">
+            <h3>Salas Disponíveis</h3>
+            <p><small>Clique em um horário na grade.</small></p>
+            <div id="salas_list"></div>
+        </div>
+        <div class="card" id="horario_panel">
+            <h3 id="horario_title">Horário da Turma</h3>
+            <div id="horario_grid" class="table-container"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const turmaSelect = document.getElementById('turma_select');
+    const schedulerContent = document.getElementById('scheduler_content');
+    const matrizList = document.getElementById('matriz_list');
+    const salasList = document.getElementById('salas_list');
+    const horarioGrid = document.getElementById('horario_grid');
+    const horarioTitle = document.getElementById('horario_title');
+    const matrizSearchInput = document.getElementById('matrizSearchInput'); // Pega o novo campo de busca
+
+    let matrizDaTurma = [];
+    let horariosAlocados = {};
+
+    // --- NOVA LÓGICA PARA O CAMPO DE BUSCA ---
+    matrizSearchInput.addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase();
+        const aulas = matrizList.getElementsByClassName('matriz-item');
+        for (let aula of aulas) {
+            const aulaText = aula.textContent.toLowerCase();
+            if (aulaText.includes(searchTerm)) {
+                aula.style.display = '';
+            } else {
+                aula.style.display = 'none';
+            }
+        }
+    });
+
+    turmaSelect.addEventListener('change', function() {
+        const turmaApelido = this.value;
+        matrizSearchInput.value = ''; // Limpa a busca ao trocar de turma
+        if (!turmaApelido) {
+            schedulerContent.classList.add('hidden');
+            return;
+        }
+        horarioTitle.innerText = `Horário da Turma: ${turmaApelido}`;
+        schedulerContent.classList.remove('hidden');
+        carregarDadosDaTurma(turmaApelido);
+    });
+
+    // Função para carregar dados da turma
+
+    function carregarDadosDaTurma(turmaApelido) {
+        fetch(`/admin/api/dados_alocacao/${turmaApelido}`)
+            .then(response => response.json())
+            .then(data => {
+                matrizDaTurma = data.matriz_turma;
+                horariosAlocados = data.horarios_alocados || {};
+                renderizarMatriz();
+                renderizarGrade(data.horarios_grade);
+                salasList.innerHTML = '<p><small>2. Clique em um horário na grade para ver as salas.</small></p>';
+            });
+    }
+
+    function renderizarMatriz() {
+        matrizList.innerHTML = '';
+        matrizDaTurma.forEach(item => {
+            const restante = item.aulas_necessarias - item.alocadas;
+            if (restante <= 0) return;
+            const div = document.createElement('div');
+            div.className = 'matriz-item';
+            div.dataset.idMatriz = item.id_matriz;
+            let infoText = `<span>(${restante} de ${item.aulas_necessarias} restantes)</span>`;
+            if (item.tipo_bloco !== 'Normal') infoText = `<span class="bloco-tag">Bloco: ${item.tipo_bloco}</span>`;
+            div.innerHTML = `<strong>${item.disciplina}</strong><small>${item.professor}</small>${infoText}`;
+            div.addEventListener('click', () => {
+                document.querySelector('.matriz-item.active')?.classList.remove('active');
+                div.classList.add('active');
+            });
+            matrizList.appendChild(div);
+        });
+    }
+
+    function renderizarSalas(salas) {
+        salasList.innerHTML = '';
+        if (salas.length === 0) {
+            salasList.innerHTML = '<p><small>Nenhuma sala livre neste horário.</small></p>';
+            return;
+        }
+        salasList.innerHTML = '<p><small>3. Clique na sala para alocar.</small></p>';
+        salas.forEach(sala => {
+            const div = document.createElement('div');
+            div.className = 'sala-item';
+            div.innerText = sala;
+            div.addEventListener('click', () => alocarAula(sala));
+            salasList.appendChild(div);
+        });
+    }
+
+function renderizarGrade(horarios) {
+        horarioGrid.innerHTML = '';
+        if (!horarios || Object.keys(horarios).length === 0) {
+            horarioGrid.innerText = "Grade de horários não definida para este período/categoria.";
+            return;
+        }
+        const grade = document.createElement('table');
+        const thead = document.createElement('thead');
+        const tbody = document.createElement('tbody');
+        const dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+        
+        let headerRow = '<tr><th>Horário</th>';
+        dias.forEach(dia => headerRow += `<th>${dia}</th>`);
+        thead.innerHTML = headerRow + '</tr>';
+
+        Object.entries(horarios).forEach(([horario, apelido]) => {
+            let rowHTML = `<tr><th>${apelido}<br><small>${horario}</small></th>`;
+            dias.forEach(dia => {
+                const diaKey = dia.toLowerCase() + '-feira';
+                const celulaId = `${diaKey}|${horario}`;
+                
+                // Agora aulasAlocadas é uma LISTA
+                const aulasAlocadas = horariosAlocados[diaKey]?.[horario] || [];
+
+                if (apelido === 'INTERVALO' || apelido === 'Almoço') {
+                    rowHTML += '<td class="intervalo-cell">' + apelido + '</td>';
+                } else {
+                    // Célula é sempre clicável para adicionar mais aulas (se houver espaço)
+                    let cellContent = '';
+                    if (aulasAlocadas.length > 0) {
+                        // Monta o conteúdo para cada aula na lista
+                        aulasAlocadas.forEach(aula => {
+                            cellContent += `
+                                <div class="aula-bloco">
+                                    <strong>${aula.disciplina}</strong>
+                                    <small>${aula.professor}</small>
+                                    <span class="sala-tag">${aula.sala}</span>
+                                    <button class="remover-btn" data-id-matriz="${aula.id_matriz}" title="Remover aula">&times;</button>
+                                </div>
+                            `;
+                        });
+                    }
+                    // Adiciona a classe 'alocada' se já tiver algo, ou 'livre' se vazia
+                    const cellClass = aulasAlocadas.length > 0 ? 'horario-cell alocada' : 'horario-cell livre';
+                    rowHTML += `<td class="${cellClass}" data-id="${celulaId}" data-apelido-horario="${apelido}">${cellContent}</td>`;
+                }
+            });
+            tbody.innerHTML += rowHTML + '</tr>';
+        });
+
+        grade.append(thead, tbody);
+        horarioGrid.appendChild(grade);
+        adicionarEventosGrade();
+    }
+
+    function adicionarEventosGrade() {
+        // Clicar em qualquer célula que não seja intervalo
+        document.querySelectorAll('.horario-cell').forEach(cell => {
+            if (cell.classList.contains('intervalo-cell')) return;
+            cell.addEventListener('click', () => {
+                document.querySelector('.horario-cell.active')?.classList.remove('active');
+                cell.classList.add('active');
+                const [dia, horario] = cell.dataset.id.split('|');
+                fetch("{{ url_for('available_rooms') }}", {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ dia, horario })
+                })
+                .then(res => res.json())
+                .then(data => renderizarSalas(data.available_rooms));
+            });
+        });
+        
+        // Evento de clique para os botões de remover
+        document.querySelectorAll('.remover-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                removerAula(e.target.closest('.horario-cell'), e.target.dataset.idMatriz);
+            });
+        });
+    }
+
+    function alocarAula(sala) {
+        const celulaAtiva = document.querySelector('.horario-cell.active');
+        const itemMatrizAtivo = document.querySelector('.matriz-item.active');
+        if (!celulaAtiva || !itemMatrizAtivo) {
+            alert("Por favor, selecione uma aula na lista da esquerda e um horário na grade.");
+            return;
+        }
+        const [dia, horario] = celulaAtiva.dataset.id.split('|');
+        const turmaApelido = turmaSelect.value;
+        const idMatriz = itemMatrizAtivo.dataset.idMatriz;
+        fetch("{{ url_for('admin_api_alocar') }}", {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ turma_apelido: turmaApelido, dia, horario, id_matriz: idMatriz, sala: sala })
+        }).then(res => res.json()).then(data => {
+            if (data.status === 'success') { carregarDadosDaTurma(turmaApelido); } 
+            else { alert(`Erro: ${data.message}`); }
+        });
+    }
+
+     function removerAula(celula, idMatriz) {
+        if (!confirm("Tem certeza que deseja remover esta aula?")) return;
+        const [dia, horario] = celula.dataset.id.split('|');
+        const turmaApelido = turmaSelect.value;
+        fetch("{{ url_for('admin_api_remover') }}", {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ turma_apelido: turmaApelido, dia, horario, id_matriz: idMatriz })
+        }).then(res => res.json()).then(data => {
+            if (data.status === 'success') { carregarDadosDaTurma(turmaApelido); } 
+            else { alert(`Erro: ${data.message}`); }
+        });
+    }
+    
+});
+</script>
+{% endblock %}

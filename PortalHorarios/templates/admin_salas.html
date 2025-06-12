@@ -1,0 +1,46 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Gerenciar Salas{% endblock %}
+{% block page_title %}Gerenciar Salas{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <a href="{{ url_for('salas_add') }}" class="button-primary">Adicionar Nova Sala</a>
+
+        <div class="search-container">
+            <input type="search" id="searchInput" class="search-input" placeholder="Buscar salas...">
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome da Sala</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sala in salas %}
+                    <tr>
+                        <td>{{ sala.id }}</td>
+                        <td>{{ sala.nome }}</td>
+                        <td>
+                            <a href="{{ url_for('salas_edit', item_id=sala.id) }}" class="button-edit">Editar</a>
+                            <form method="post" action="{{ url_for('salas_delete', item_id=sala.id) }}" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta sala?');">
+                                <button type="submit" class="button-delete">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">Nenhuma sala cadastrada.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

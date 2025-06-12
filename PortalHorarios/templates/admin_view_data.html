@@ -1,0 +1,54 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}{{ title }} - Admin Horários{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        {% if add_url %}
+            <a href="{{ add_url }}" class="button-primary">Adicionar Novo</a>
+        {% endif %}
+
+        <div class="search-container">
+            <input type="search" id="searchInput" class="search-input" placeholder="Buscar na tabela...">
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    {% for header in headers %}
+                        <th>{{ header }}</th>
+                    {% endfor %}
+                    {% if edit_url %}
+                        <th>Ações</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        {% for cell in row.data %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                        {% if edit_url %}
+                        <td>
+                            <a href="{{ url_for(edit_url, item_id=row.id) }}" class="button-edit">Editar</a>
+                            <form method="post" action="{{ url_for(delete_url, item_id=row.id) }}" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este item?');">
+                                <button type="submit" class="button-delete">Excluir</button>
+                            </form>
+                        </td>
+                        {% endif %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="{{ headers|length + (1 if edit_url else 0) }}">Nenhum dado para exibir.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Relatório de Importação{% endblock %}
+{% block page_title %}Relatório de Importação de CSV{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h3>Resumo da Operação</h3>
+    <p><strong>Registros Processados com Sucesso:</strong> {{ summary.processed }}</p>
+    <p><strong>Linhas Ignoradas (com dados inválidos):</strong> {{ summary.skipped }}</p>
+    <a href="{{ url_for('admin_dashboard') }}" class="button-secondary">Voltar para o Dashboard</a>
+</div>
+
+{% if skipped_rows %}
+<div class="card">
+    <h3>Linhas Ignoradas</h3>
+    <p>As seguintes linhas do seu arquivo CSV não foram importadas. Verifique a coluna "Motivo da Falha" para corrigir os dados.</p>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Linha no CSV</th>
+                    <th>Turma Apelido</th>
+                    <th>Componente</th>
+                    <th>Professor</th>
+                    <th>Motivo da Falha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in skipped_rows %}
+                    <tr>
+                        <td>{{ row.line_number }}</td>
+                        <td>{{ row.data['Turma Apelido'] }}</td>
+                        <td>{{ row.data['Componente'] }}</td>
+                        <td>{{ row.data['Professor Ministrando'] }}</td>
+                        <td style="color: #e74c3c;">{{ row.reason }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

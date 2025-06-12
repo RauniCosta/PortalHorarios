@@ -1,0 +1,148 @@
+/* --- ESTILOS GERAIS E RESET --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2; /* Cinza claro do guia de estilo */
+    color: #333333; /* Cinza escuro para texto */
+}
+
+/* --- CABEÇALHO PADRÃO CPS --- */
+.main-header {
+    background-color: #b91d3c; /* Vermelho institucional CPS */
+    color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-logo {
+    height: 40px;
+    margin-right: 20px;
+}
+
+#main-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* --- CONTAINER PRINCIPAL --- */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#current-day-period {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #b91d3c;
+    margin: 10px 0 5px 0;
+}
+
+#current-time {
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #555555;
+    margin-bottom: 20px;
+}
+
+/* --- ESTILOS DA TABELA DE HORÁRIOS --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    table-layout: fixed;
+}
+
+th, td {
+    border: 1px solid #cccccc; /* Cinza para bordas */
+    padding: 12px 8px;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+th {
+    background-color: #b91d3c; /* Vermelho institucional CPS */
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+/* Estilo para linhas zebradas para melhor legibilidade */
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+tr:hover {
+    background-color: #e9e9e9;
+}
+
+/* Coluna de Turma com destaque */
+th.turma-header {
+    background-color: #8c162e; /* Tom de vermelho mais escuro */
+}
+
+td.turma-cell {
+    font-weight: 700;
+    background-color: #f2f2f2;
+    font-size: 1.1em;
+}
+
+/* Célula de Intervalo */
+th.intervalo-header, td.intervalo-cell {
+    background-color: #dddddd;
+    font-weight: 500;
+    color: #333333;
+    font-size: 0.8em;
+}
+
+/* Bloco de informações dentro da célula */
+.aula-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    min-height: 50px;
+}
+
+.sala {
+    font-weight: 700;
+    font-size: 1.4em;
+    color: #b91d3c; /* Destaque em vermelho */
+}
+
+.disciplina {
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.professor {
+    font-size: 0.85em;
+    color: #555555;
+}
+
+.no-aula {
+    color: #b0b0b0;
+}
+
+/* Mensagens de erro ou sem dados */
+.error-message, .no-data-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #fef0f0;
+    border: 1px solid #fcc;
+    color: #b91d3c;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: 500;
+}

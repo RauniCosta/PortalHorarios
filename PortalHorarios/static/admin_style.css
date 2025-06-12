@@ -1,0 +1,138 @@
+/* ==========================================================================
+   GUIA DE ESTILO GERAL (BASEADO NO CPS)
+   ========================================================================== */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f0f2f5; /* Cinza de fundo do guia de estilo */
+    color: #333333;
+    display: flex;
+}
+
+/* --- BARRA LATERAL (SIDEBAR) --- */
+.sidebar {
+    width: 250px;
+    background-color: #333333;
+    color: #ffffff;
+    height: 100vh;
+    position: fixed;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+.sidebar-header {
+    background-color: #000000;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidebar-header h2 { margin: 0; font-size: 1.2em; font-weight: 500; }
+.sidebar nav { flex-grow: 1; overflow-y: auto; }
+.sidebar nav ul { list-style: none; padding: 0; margin: 10px 0; }
+.sidebar nav li a {
+    display: block;
+    padding: 15px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.2s, border-left 0.2s;
+    border-left: 4px solid transparent;
+}
+.sidebar nav li a:hover { background-color: #444444; border-left: 4px solid #b91d3c; }
+.sidebar nav hr { border: none; border-top: 1px solid #444444; margin: 10px 20px; }
+
+/* --- CONTEÚDO PRINCIPAL --- */
+.main-content { margin-left: 250px; flex-grow: 1; padding: 20px; }
+.main-header-content { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+.main-header-content h1 { color: #b91d3c; margin: 0; font-weight: 700; }
+.card { background-color: #ffffff; border-radius: 4px; padding: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; }
+
+/* --- COMPONENTES GERAIS (BOTÕES, FORMULÁRIOS, TABELAS) --- */
+.card-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid #eee; flex-wrap: wrap; gap: 10px; }
+.search-input { padding: 10px 15px; border: 1px solid #cccccc; border-radius: 4px; width: 280px; font-size: 0.95em; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: #555; }
+.form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #cccccc; border-radius: 4px; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: 1em; }
+.form-actions { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
+
+.button-primary, .button-secondary, .button-edit, .button-delete { display: inline-block; padding: 10px 15px; border-radius: 4px; text-decoration: none; color: white; border: none; cursor: pointer; font-size: 0.9em; font-weight: 500; margin-right: 10px; transition: background-color 0.2s, box-shadow 0.2s; }
+.button-primary { background-color: #b91d3c; }
+.button-primary:hover { background-color: #8c162e; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+.button-secondary { background-color: #7f8c8d; }
+.button-secondary:hover { background-color: #6c7a7b; }
+.button-edit { background-color: #f39c12; padding: 5px 10px; font-size: 0.8em; }
+.button-edit:hover { background-color: #d35400; }
+.button-delete { background-color: #333333; padding: 5px 10px; font-size: 0.8em; }
+.button-delete:hover { background-color: #c0392b; }
+
+.flash-message { padding: 15px; border-radius: 4px; margin-bottom: 20px; color: white; }
+.flash-message.success { background-color: #27ae60; }
+.flash-message.error { background-color: #c0392b; }
+.flash-message.warning { background-color: #f39c12; }
+
+.table-container { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border-bottom: 1px solid #e0e0e0; padding: 12px; text-align: left; }
+th { background-color: #f9f9f9; font-weight: 700; color: #333333; font-size: 0.8em; }
+tbody tr:nth-child(even) { background-color: #fdfdfd; }
+tbody tr:hover { background-color: #f0f2f5; }
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS PARA A PÁGINA DE ALOCAÇÃO (COMBINAÇÃO DOS DOIS MUNDOS)
+   ========================================================================== */
+.grid-container-3-cols { display: grid; grid-template-columns: 300px 220px 1fr; gap: 20px; align-items: start; }
+.search-container-small { margin: 10px 0; }
+.search-container-small input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+
+#matriz_list, #salas_list { display: flex; flex-direction: column; gap: 8px; max-height: 60vh; overflow-y: auto; padding-right: 5px; }
+#salas_list p, #matriz_list p { margin:0; }
+
+.matriz-item, .sala-item { border: 1px solid #ddd; border-left: 4px solid #ddd; border-radius: 5px; padding: 10px; cursor: pointer; transition: background-color 0.2s, box-shadow 0.2s; background-color: #f9f9f9; }
+.matriz-item:hover, .sala-item:hover { background-color: #e9ecef; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.matriz-item.active, .sala-item.active { border-left: 4px solid #3498db; background-color: #dff9fb; font-weight: bold; }
+
+.matriz-item strong { display: block; font-size: 1em; color: #333; }
+.matriz-item small { display: block; font-size: 0.85em; color: #555; }
+.matriz-item span { display: block; font-size: 0.8em; color: #b91d3c; font-weight: bold; margin-top: 5px; }
+.bloco-tag { color: #2980b9 !important; }
+
+.sala-item { text-align: center; }
+
+/* Estilos da Grade de Horários Interativa */
+#horario_grid th { text-align: center; }
+.horario-cell { height: 70px; vertical-align: top; padding: 5px; }
+.horario-cell.livre { background-color: #fff; cursor: pointer; transition: background-color 0.2s; }
+.horario-cell.livre:hover { background-color: #f0fff0; } /* Verde claro no hover */
+.horario-cell.active { background-color: #a7f5d2 !important; border: 2px solid #27ae60; } /* Verde forte para ativo */
+.horario-cell.alocada { background-color: #f7f7f7; text-align: left; vertical-align: top; }
+.intervalo-cell { background-color: #f0f2f5; text-align: center; font-weight: bold; color: #7f8c8d; font-size: 0.8em; vertical-align: middle; }
+
+/* Estilo de cada aula alocada dentro de uma célula */
+.aula-bloco { position: relative; border: 1px solid #e0e0e0; background-color: #ffffff; border-radius: 4px; padding: 5px; margin-bottom: 5px; padding-right: 25px; }
+.aula-bloco:last-child { margin-bottom: 0; }
+.aula-bloco strong { font-size: 0.85em; display: block; }
+.aula-bloco small { font-size: 0.75em; color: #555; display: block; }
+.sala-tag { position: absolute; top: 4px; right: 4px; background-color: #3498db; color: white; padding: 2px 5px; border-radius: 3px; font-size: 0.7em; }
+.remover-btn { position: absolute; bottom: 2px; left: 2px; background: #e74c3c; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; line-height: 18px; text-align: center; cursor: pointer; opacity: 0.5; transition: opacity 0.2s; font-family: monospace; }
+.aula-bloco:hover .remover-btn { opacity: 1; }
+
+/* ==========================================================================
+   MENU RESPONSIVO (HAMBÚRGUER)
+   ========================================================================== */
+.menu-btn { display: none; }
+.sidebar-header .close-btn { font-size: 28px; background: none; border: none; color: #ffffff; cursor: pointer; }
+
+@media (max-width: 992px) {
+    .grid-container-3-cols { grid-template-columns: 280px 1fr; } /* Duas colunas em tablets */
+    #salas_panel { display: none; } /* Oculta o painel de salas para simplificar */
+}
+
+@media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .main-content { margin-left: 0; }
+    .menu-btn.open-btn { display: block; background: none; border: none; font-size: 24px; cursor: pointer; color: #333; }
+    .grid-container-3-cols { grid-template-columns: 1fr; } /* Uma coluna em celulares */
+    .card-header { flex-direction: column; align-items: stretch; }
+}

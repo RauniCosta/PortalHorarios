@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portal de Administração{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_style.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Admin Horários</h2>
+            <button id="closeMenuBtn" class="menu-btn close-btn">&times;</button>
+        </div>
+        <nav>
+            <ul>
+                
+                <li><a href="{{ url_for('admin_alocacao') }}">Alocação de Horários</a></li>
+                <li><a href="{{ url_for('admin_view_matriz') }}">Matriz Curricular</a></li>
+                <li><a href="{{ url_for('admin_view_data', data_key='turmas') }}">Turmas</a></li>
+                <li><a href="{{ url_for('admin_view_data', data_key='disciplinas') }}">Disciplinas</a></li>
+                <li><a href="{{ url_for('admin_view_data', data_key='professores') }}">Professores</a></li>
+                <li><a href="{{ url_for('admin_salas') }}">Salas</a></li>
+                <hr>
+                <li><a href="{{ url_for('admin_dashboard') }}">Dashboard & Importar</a></li>
+                <hr>
+                <li><a href="{{ url_for('index') }}" target="_blank">Ver Painel Público</a></li>
+
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <header class="main-header-content">
+             <button id="openMenuBtn" class="menu-btn open-btn">&#9776;</button>
+            <h1>{% block page_title %}{% endblock %}</h1>
+        </header>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <script>
+    // Lógica para o menu responsivo
+    document.addEventListener('DOMContentLoaded', () => {
+        const sidebar = document.querySelector('.sidebar');
+        const openBtn = document.getElementById('openMenuBtn');
+        const closeBtn = document.getElementById('closeMenuBtn');
+
+        if (openBtn) {
+            openBtn.addEventListener('click', () => {
+                sidebar.classList.add('open');
+            });
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+            });
+        }
+    });
+
+    // Lógica para a busca na tabela
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('searchInput');
+        const dataTable = document.getElementById('dataTable');
+
+        if (searchInput && dataTable) {
+            searchInput.addEventListener('keyup', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                const rows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+                for (let row of rows) {
+                    const rowText = row.textContent.toLowerCase();
+                    if (rowText.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            });
+        }
+    });
+    </script>
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Horários - CPS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='images/logo_cps.png') }}" alt="Logo Centro Paula Souza" class="header-logo">
+            <h1 id="main-title">Painel de Horários</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 id="current-day-period"></h2>
+        <h3 id="current-time"></h3>
+        <div id="horario-table-container"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainTitle = document.getElementById('main-title');
+            const tableContainer = document.getElementById('horario-table-container');
+            const currentTimeDisplay = document.getElementById('current-time');
+            const currentDayPeriodDisplay = document.getElementById('current-day-period');
+
+            const GRADE_HORARIOS_FIXOS_POR_CATEGORIA = JSON.parse('{{ grade_horarios_fixos_por_categoria | tojson | safe }}');
+            
+            let dadosGlobais = {};
+            let todasAsTurmas = [];
+            let horariosAlocados = {};
+            
+            const PERIODOS_PARA_EXIBIR = ["Manhã", "Tarde", "Noturno"];
+            let currentPeriodIndex = 0;
+            const TURMAS_POR_PAGINA = 8;
+            let currentPagePorPeriodo = { "Manhã": 0, "Tarde": 0, "Noturno": 0 };
+
+            let currentDay = '';
+            const DIAS_DA_SEMANA_MAP = { 0: 'domingo', 1: 'segunda-feira', 2: 'terça-feira', 3: 'quarta-feira', 4: 'quinta-feira', 5: 'sexta-feira', 6: 'sábado' };
+
+            async function fetchHorarios() {
+                try {
+                    const response = await fetch('/api/horarios');
+                    if (!response.ok) throw new Error(`Erro HTTP! status: ${response.status}`);
+                    
+                    dadosGlobais = await response.json();
+                    todasAsTurmas = dadosGlobais.turmas || [];
+                    horariosAlocados = dadosGlobais.horarios_alocados || {};
+                    
+                    startAutoUpdate();
+                } catch (error) {
+                    console.error("Não foi possível carregar os horários:", error);
+                    tableContainer.innerHTML = '<p class="error-message">Não foi possível carregar os horários.</p>';
+                }
+            }
+
+            function updateCurrentTimeAndDay() {
+                const now = new Date();
+                currentDay = DIAS_DA_SEMANA_MAP[now.getDay()];
+                currentTimeDisplay.textContent = `${now.toLocaleDateString('pt-BR')} ${now.toLocaleTimeString('pt-BR')}`;
+                
+                const periodoAtual = PERIODOS_PARA_EXIBIR[currentPeriodIndex];
+                mainTitle.textContent = `Painel de Horários | Período ${periodoAtual}`;
+                currentDayPeriodDisplay.textContent = `${(currentDay.charAt(0).toUpperCase() + currentDay.slice(1)).replace('-', ' ')}`;
+            }
+
+            function renderTable() {
+                updateCurrentTimeAndDay();
+                const periodoAtual = PERIODOS_PARA_EXIBIR[currentPeriodIndex];
+                
+                // Filtra turmas para o período atual
+                const turmasDoPeriodo = todasAsTurmas.filter(t => t.periodo.toLowerCase() === periodoAtual.toLowerCase());
+
+                // Inferir categoria (ex: Ensino Médio ou Técnico) para buscar a grade de horários
+                // Simplificação: Assume que todas as turmas de um período usam a mesma grade.
+                // Uma lógica mais complexa poderia verificar a categoria de cada turma.
+                const categoriaInferida = turmasDoPeriodo.length > 0 ? (turmasDoPeriodo[0].nome_completo.includes("EM") ? "Ensino Médio" : "Curso Técnico") : "Ensino Médio";
+                const horariosDoPeriodoCompleto = GRADE_HORARIOS_FIXOS_POR_CATEGORIA[categoriaInferida]?.[periodoAtual];
+
+                if (!horariosDoPeriodoCompleto || Object.keys(horariosDoPeriodoCompleto).length === 0) {
+                    tableContainer.innerHTML = `<p class="no-data-message">Nenhum horário definido para ${periodoAtual}.</p>`;
+                    return;
+                }
+                if (turmasDoPeriodo.length === 0) {
+                    tableContainer.innerHTML = `<p class="no-data-message">Nenhuma turma cadastrada para o período da ${periodoAtual}.</p>`;
+                    return;
+                }
+
+                const currentPage = currentPagePorPeriodo[periodoAtual];
+                const startIndex = currentPage * TURMAS_POR_PAGINA;
+                const turmasVisiveis = turmasDoPeriodo.slice(startIndex, startIndex + TURMAS_POR_PAGINA);
+                
+                let tableHTML = '<table><thead><tr><th class="turma-header">Turma</th>';
+                const horariosColunas = Object.keys(horariosDoPeriodoCompleto);
+                horariosColunas.forEach(h => tableHTML += `<th>${h.replace(' - ', '<br>')}${horariosDoPeriodoCompleto[h] === 'INTERVALO' ? '<br>INTERVALO' : ''}</th>`);
+                tableHTML += '</tr></thead><tbody>';
+
+                turmasVisiveis.forEach(turma => {
+                    tableHTML += `<tr><td class="turma-cell">${turma.apelido}</td>`;
+                    horariosColunas.forEach(horario_chave => {
+                        if (horariosDoPeriodoCompleto[horario_chave] === "INTERVALO") {
+                            tableHTML += `<td class="intervalo-cell"></td>`;
+                        } else {
+                            // Procura pela aula alocada para esta turma, dia e horário
+                            const aula_info = horariosAlocados[turma.apelido]?.[currentDay]?.[horario_chave];
+                            tableHTML += '<td>';
+                            if (aula_info) {
+                                tableHTML += `<div class="aula-info"><span class="sala">${aula_info.sala || ''}</span><span class="disciplina">${aula_info.disciplina}</span><span class="professor">${aula_info.professor}</span></div>`;
+                            }
+                            tableHTML += '</td>';
+                        }
+                    });
+                    tableHTML += '</tr>';
+                });
+                tableHTML += '</tbody></table>';
+                tableContainer.innerHTML = tableHTML;
+            }
+
+            function autoAdvanceCycle() {
+                let periodoAtual = PERIODOS_PARA_EXIBIR[currentPeriodIndex];
+                const turmasDoPeriodo = todasAsTurmas.filter(t => t.periodo.toLowerCase() === periodoAtual.toLowerCase());
+                const totalPages = Math.ceil(turmasDoPeriodo.length / TURMAS_POR_PAGINA);
+
+                currentPagePorPeriodo[periodoAtual]++;
+                if (currentPagePorPeriodo[periodoAtual] >= totalPages) {
+                    currentPagePorPeriodo[periodoAtual] = 0;
+                    currentPeriodIndex = (currentPeriodIndex + 1) % PERIODOS_PARA_EXIBIR.length;
+                }
+                renderTable();
+            }
+
+            function startAutoUpdate() {
+                renderTable();
+                setInterval(autoAdvanceCycle, 15 * 1000);
+                setInterval(updateCurrentTimeAndDay, 1000);
+            }
+            
+            fetchHorarios();
+        });
+    </script>
+</body>
+</html>

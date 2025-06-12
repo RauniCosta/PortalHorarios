@@ -1,0 +1,6435 @@
+{
+    "turmas": [
+        {
+            "id": 1,
+            "nome_completo": "1º ADMINISTRAÇÃO INTEGRADO AO ENSINO MÉDIO-AMS",
+            "apelido": "1º ADM AMS",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 2,
+            "nome_completo": "2º ADMINISTRAÇÃO INTEGRADO AO ENSINO MÉDIO-AMS",
+            "apelido": "2º ADM AMS",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 3,
+            "nome_completo": "1º RECURSOS HUMANOS INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "1º RH NI",
+            "periodo": "3",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 4,
+            "nome_completo": "1º DESENVOLVIMENTO DE SISTEMAS INTEGRADO AO ENSINO MÉDIO-PI",
+            "apelido": "1º DS PI",
+            "periodo": "4",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 5,
+            "nome_completo": "3º DESENVOLVIMENTO DE SISTEMAS INTEGRADO AO ENSINO MÉDIO-PI",
+            "apelido": "3º DS PI",
+            "periodo": "4",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 6,
+            "nome_completo": "1º ENS. MÉD CIÊNCIAS HUM. E SOCIAIS APLICADAS",
+            "apelido": "1º CHSA",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 7,
+            "nome_completo": "1º CONTABILIDADE INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "1º CONT NI",
+            "periodo": "2",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 8,
+            "nome_completo": "2º CONTABILIDADE INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "2º CONT NI",
+            "periodo": "2",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 9,
+            "nome_completo": "2º ELETRÔNICA INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "2º ETN NI",
+            "periodo": "2",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 10,
+            "nome_completo": "1º MECATRÔNICA INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "1º MECT NI",
+            "periodo": "2",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 11,
+            "nome_completo": "2º MECATRÔNICA INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "2º MECT NI",
+            "periodo": "2",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 12,
+            "nome_completo": "3º MECATRÔNICA INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "3º MECT NI",
+            "periodo": "2",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 13,
+            "nome_completo": "1º ADMINISTRAÇÃO INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "1º ADM NI",
+            "periodo": "3",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 14,
+            "nome_completo": "1º ADMINISTRAÇÃO INTEGRADO AO ENSINO MÉDIO-PI",
+            "apelido": "1º ADM PI",
+            "periodo": "4",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 15,
+            "nome_completo": "2º ADMINISTRAÇÃO INTEGRADO AO ENSINO MÉDIO-PI",
+            "apelido": "2º ADM PI",
+            "periodo": "4",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 16,
+            "nome_completo": "2º DESENVOLVIMENTO DE SISTEMAS INTEGRADO AO ENSINO MÉDIO-PI",
+            "apelido": "2º DS PI",
+            "periodo": "4",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 17,
+            "nome_completo": "1º ELETROTÉCNICA",
+            "apelido": "1º ETT",
+            "periodo": "3",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 18,
+            "nome_completo": "2º MARKETING INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "2º MKT NI",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 19,
+            "nome_completo": "3º ENFERMAGEM",
+            "apelido": "3º ENF",
+            "periodo": "1",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 20,
+            "nome_completo": "3º CONTABILIDADE INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "3º CONT NI",
+            "periodo": "2",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 21,
+            "nome_completo": "1º MARKETING INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "1º MKT NI",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 22,
+            "nome_completo": "3º ADMINISTRAÇÃO INTEGRADO AO ENSINO MÉDIO-PI",
+            "apelido": "3º ADM PI",
+            "periodo": "4",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 23,
+            "nome_completo": "2º ENS. MÉD CIÊNCIAS HUM. E SOCIAIS APLICADAS",
+            "apelido": "2º CHSA",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 24,
+            "nome_completo": "3º ADMINISTRAÇÃO",
+            "apelido": "3º ADM",
+            "periodo": "3",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 25,
+            "nome_completo": "1º CONTABILIDADE",
+            "apelido": "1º CONT",
+            "periodo": "3",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 26,
+            "nome_completo": "2º CONTABILIDADE",
+            "apelido": "2º CONT",
+            "periodo": "3",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 27,
+            "nome_completo": "3º ENS. MÉD CIÊNCIAS HUM. E SOCIAIS APLICADAS",
+            "apelido": "3º CHSA",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 28,
+            "nome_completo": "3º MARKETING INTEGRADO AO ENSINO MÉDIO",
+            "apelido": "3º MKT NI",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 29,
+            "nome_completo": "3º ADMINISTRAÇÃO INTEGRADO AO ENSINO MÉDIO - PARCERIA SEE",
+            "apelido": "3º ADM JMA",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 30,
+            "nome_completo": "3º VENDAS INTEGRADO AO ENSINO MÉDIO - PARCERIA SEE",
+            "apelido": "3º VEN JMA",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 31,
+            "nome_completo": "ESPECIALIZAÇÃO EM URGÊNCIA E EMERGÊNCIA - APH",
+            "apelido": "1º ESP UE",
+            "periodo": "4",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 32,
+            "nome_completo": "1º ENFERMAGEM",
+            "apelido": "1º ENF",
+            "periodo": "1",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 33,
+            "nome_completo": "4º ENFERMAGEM",
+            "apelido": "4º ENF",
+            "periodo": "1",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 34,
+            "nome_completo": "2º ELETROTÉCNICA",
+            "apelido": "2º ETT",
+            "periodo": "3",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 35,
+            "nome_completo": "3º ELETROTÉCNICA",
+            "apelido": "3º ETT",
+            "periodo": "3",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 36,
+            "nome_completo": "3º ELETROELETRÔNICA",
+            "apelido": "3º ELETN",
+            "periodo": "3",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 37,
+            "nome_completo": "3º ADMINISTRAÇÃO INTEGRADO AO ENSINO MÉDIO - PARCERIA SEE",
+            "apelido": "3º ADM MCJ",
+            "periodo": "1",
+            "categoria": "Ensino Médio"
+        },
+        {
+            "id": 38,
+            "nome_completo": "3º MECÂNICA",
+            "apelido": "3º MEC",
+            "periodo": "3",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 39,
+            "nome_completo": "2º RECURSOS HUMANOS",
+            "apelido": "2º RH",
+            "periodo": "3",
+            "categoria": "Curso Técnico"
+        },
+        {
+            "id": 40,
+            "nome_completo": "1º ELETROELETRÔNICA",
+            "apelido": "1º ELETN",
+            "periodo": "3",
+            "categoria": "Curso Técnico"
+        }
+    ],
+    "professores": [
+        {
+            "id": 1,
+            "nome": "ADERVALDO GUILHERME SIQUEIRA"
+        },
+        {
+            "id": 2,
+            "nome": "ALEKSANDER TOMAZ DE SOUZA"
+        },
+        {
+            "id": 3,
+            "nome": "ANA PAULA DO CARMO"
+        },
+        {
+            "id": 4,
+            "nome": "ANDERSON LUÍS VENANCIO"
+        },
+        {
+            "id": 5,
+            "nome": "ANDRE GUARALDO JUNIOR"
+        },
+        {
+            "id": 6,
+            "nome": "ANDRE LUIS DOS SANTOS"
+        },
+        {
+            "id": 7,
+            "nome": "ANDREA CRISTINA DE LIMA MARQUES"
+        },
+        {
+            "id": 8,
+            "nome": "ANTONIO HENRIQUE VITOLANO"
+        },
+        {
+            "id": 9,
+            "nome": "APARECIDA HELENA COSTA"
+        },
+        {
+            "id": 10,
+            "nome": "ARMANDO FERREIRA"
+        },
+        {
+            "id": 11,
+            "nome": "BRUNA GIACOMELLI"
+        },
+        {
+            "id": 12,
+            "nome": "CARINA DE SOUZA MACHADO"
+        },
+        {
+            "id": 13,
+            "nome": "CELIA MARIA BARCELOS MIRAS"
+        },
+        {
+            "id": 14,
+            "nome": "Claro Docente"
+        },
+        {
+            "id": 15,
+            "nome": "DANIELE MILENY OLIVEIRA SOUSA"
+        },
+        {
+            "id": 16,
+            "nome": "DEBORA BIASOLI PIOLA"
+        },
+        {
+            "id": 17,
+            "nome": "EDINAN PANICE MOUSSA"
+        },
+        {
+            "id": 18,
+            "nome": "EDNA APARECIDA RODRIGUES DA SILVA"
+        },
+        {
+            "id": 19,
+            "nome": "EDUARDO SUSSUMO SMOZONO"
+        },
+        {
+            "id": 20,
+            "nome": "ELAINE CRISTINA TEIXEIRA DE CASTRO"
+        },
+        {
+            "id": 21,
+            "nome": "ELIANA APARECIDA FERNANDES"
+        },
+        {
+            "id": 22,
+            "nome": "ÉLIDA MARIA APARECIDA ARAUJO COSTA"
+        },
+        {
+            "id": 23,
+            "nome": "ELISETE BEGO BARSANULFO CARAMORI"
+        },
+        {
+            "id": 24,
+            "nome": "EVANDRO ALOÍSIO GUILHERME"
+        },
+        {
+            "id": 25,
+            "nome": "EZEQUIEL MENDONCA"
+        },
+        {
+            "id": 26,
+            "nome": "FELIPE CINTRA CLEMENTINO"
+        },
+        {
+            "id": 27,
+            "nome": "FERNANDO CARLOS JOAQUIM"
+        },
+        {
+            "id": 28,
+            "nome": "FILIPE RODRIGUES COSTA"
+        },
+        {
+            "id": 29,
+            "nome": "FRANCER GONÇALVES DA SILVA"
+        },
+        {
+            "id": 30,
+            "nome": "GERALDO RAMOS DE LELIS"
+        },
+        {
+            "id": 31,
+            "nome": "GUILHERME LIMA DE ARAUJO"
+        },
+        {
+            "id": 32,
+            "nome": "GUSTAVO SANTOS MIRANDA"
+        },
+        {
+            "id": 33,
+            "nome": "HELENA VILELA ROSA FADEL TAVARES"
+        },
+        {
+            "id": 34,
+            "nome": "HERBET FERREIRA DO ESPIRITO SANTO"
+        },
+        {
+            "id": 35,
+            "nome": "IDA ELISABETE TRIDICO"
+        },
+        {
+            "id": 36,
+            "nome": "IGOR DE ASSIS BORGES"
+        },
+        {
+            "id": 37,
+            "nome": "ISAC DIONE CINTRA FERREIRA"
+        },
+        {
+            "id": 38,
+            "nome": "ISIS FELICE DA SILVA LIMA"
+        },
+        {
+            "id": 39,
+            "nome": "ITALO FARIA DEMACQ"
+        },
+        {
+            "id": 40,
+            "nome": "JOSE NEWTON BOMFIM"
+        },
+        {
+            "id": 41,
+            "nome": "JULIANA APARECIDA DA SILVA"
+        },
+        {
+            "id": 42,
+            "nome": "JULIANA PEREIRA DE SOUSA"
+        },
+        {
+            "id": 43,
+            "nome": "JULIANO VIEIRA DE PAULA"
+        },
+        {
+            "id": 44,
+            "nome": "JURANDIR CURCI JUNIOR"
+        },
+        {
+            "id": 45,
+            "nome": "KAMYLA BARBOSA"
+        },
+        {
+            "id": 46,
+            "nome": "KELBI CAROLINE MARQUES"
+        },
+        {
+            "id": 47,
+            "nome": "LARISSA RODRIGUES SILVEIRA REZENDE"
+        },
+        {
+            "id": 48,
+            "nome": "LUCIANO ALVES GIMENEZ"
+        },
+        {
+            "id": 49,
+            "nome": "LUCIENE RIBEIRO"
+        },
+        {
+            "id": 50,
+            "nome": "LUIZ MOZART CARREIRA"
+        },
+        {
+            "id": 51,
+            "nome": "MARCELO DE MORAIS MONTANAR"
+        },
+        {
+            "id": 52,
+            "nome": "MARCELO VALERIANO DA SILVA"
+        },
+        {
+            "id": 53,
+            "nome": "MARCIA CRISTINA TOSI CORREA RODRIGUES"
+        },
+        {
+            "id": 54,
+            "nome": "MARCO ANTONIO FLAVIO"
+        },
+        {
+            "id": 55,
+            "nome": "MARIA FERNANDA MERLINO DOMENES BACHUR"
+        },
+        {
+            "id": 56,
+            "nome": "MARIA FILOMENA CINTRA RIBEIRO SANDOVAL"
+        },
+        {
+            "id": 57,
+            "nome": "MARIA MEDIANEIRA NOUER ACHUTTI MONTEIRO"
+        },
+        {
+            "id": 58,
+            "nome": "MARISA MAURICIA DE SOUZA"
+        },
+        {
+            "id": 59,
+            "nome": "MATEUS ROSSATO SILVA"
+        },
+        {
+            "id": 60,
+            "nome": "MICHELLE BORGES BORASCHI QUEIROZ"
+        },
+        {
+            "id": 61,
+            "nome": "NATHALIA DA SILVA MARQUES"
+        },
+        {
+            "id": 62,
+            "nome": "NILMA APARECIDA DA SILVA"
+        },
+        {
+            "id": 63,
+            "nome": "PAULO HENRIQUE FLAVIO"
+        },
+        {
+            "id": 64,
+            "nome": "RAFAEL ROSA VILHENA DE ANDRADE"
+        },
+        {
+            "id": 65,
+            "nome": "RAQUEL RAMOS PEDROSO"
+        },
+        {
+            "id": 66,
+            "nome": "RAUNI SERGIO COSTA"
+        },
+        {
+            "id": 67,
+            "nome": "REGINA APARECIDA CABRAL"
+        },
+        {
+            "id": 68,
+            "nome": "ROBERTO MARCONI CORREA"
+        },
+        {
+            "id": 69,
+            "nome": "RODRIGO CESAR FERNANDES"
+        },
+        {
+            "id": 70,
+            "nome": "RODRIGO RISSATI URIAS"
+        },
+        {
+            "id": 71,
+            "nome": "RUI BARCELLOS RODRIGUES"
+        },
+        {
+            "id": 72,
+            "nome": "SANDRA LUCIA DE ANDRADE"
+        },
+        {
+            "id": 73,
+            "nome": "SEBASTIAO VILELA ROSA FADEL TAVARES"
+        },
+        {
+            "id": 74,
+            "nome": "SILVIO DONIZETE DE FREITAS"
+        },
+        {
+            "id": 75,
+            "nome": "TANIA MARIA VERZOLA MARQUES"
+        },
+        {
+            "id": 76,
+            "nome": "TARSIO RODRIGUES SILVEIRA"
+        },
+        {
+            "id": 77,
+            "nome": "TATIANE DE JESUS MARTINS MENDES"
+        },
+        {
+            "id": 78,
+            "nome": "VANESSA CINTRA ALVES BARBOSA"
+        },
+        {
+            "id": 79,
+            "nome": "VERA LUCIA PINTO"
+        },
+        {
+            "id": 80,
+            "nome": "VERA REGINA VILHENA COUTINHO DOS REIS"
+        },
+        {
+            "id": 81,
+            "nome": "VINICIUS DA SILVA ARGENTI"
+        },
+        {
+            "id": 82,
+            "nome": "WADY ELIAS NETO"
+        },
+        {
+            "id": 83,
+            "nome": "WELLINGTON CARVALHO DE DEUS"
+        },
+        {
+            "id": 84,
+            "nome": "WILLIAM FERNANDO FERRETO"
+        }
+    ],
+    "disciplinas": [
+        {
+            "id": 1,
+            "componente": "Geografia",
+            "sigla": "GEO"
+        },
+        {
+            "id": 2,
+            "componente": "Análise e Projeto de Sistemas",
+            "sigla": "ANÁ"
+        },
+        {
+            "id": 3,
+            "componente": "Programação de Aplicativos Mobile II",
+            "sigla": "PRO"
+        },
+        {
+            "id": 4,
+            "componente": "Qualidade e Teste de Software",
+            "sigla": "QUA"
+        },
+        {
+            "id": 5,
+            "componente": "Química",
+            "sigla": "QUÍ"
+        },
+        {
+            "id": 6,
+            "componente": "Física",
+            "sigla": "FÍS"
+        },
+        {
+            "id": 7,
+            "componente": "História",
+            "sigla": "HIS"
+        },
+        {
+            "id": 8,
+            "componente": "Desenho Informatizado em Eletrotécnica",
+            "sigla": "DES"
+        },
+        {
+            "id": 9,
+            "componente": "Matemática",
+            "sigla": "MAT"
+        },
+        {
+            "id": 10,
+            "componente": "Desenho Auxiliado por Computador",
+            "sigla": "DES"
+        },
+        {
+            "id": 11,
+            "componente": "Eletrônica Digital",
+            "sigla": "ELE"
+        },
+        {
+            "id": 12,
+            "componente": "Aplicativos Informatizados na Enfermagem / Aplicativos Informatizados",
+            "sigla": "APL"
+        },
+        {
+            "id": 13,
+            "componente": "Aplicativos Informatizados",
+            "sigla": "APL"
+        },
+        {
+            "id": 14,
+            "componente": "Aplicativos Informatizadosem Marketing",
+            "sigla": "APL"
+        },
+        {
+            "id": 15,
+            "componente": "Informática Aplicada ao Marketing",
+            "sigla": "INF"
+        },
+        {
+            "id": 16,
+            "componente": "Aplicativos Informatizados (para a Habilitação Mecatrônica)",
+            "sigla": "APL"
+        },
+        {
+            "id": 17,
+            "componente": "Tecnologia da Informação em Administração",
+            "sigla": "TEC"
+        },
+        {
+            "id": 18,
+            "componente": "Programação Web I",
+            "sigla": "PRO"
+        },
+        {
+            "id": 19,
+            "componente": "Programação Web II",
+            "sigla": "PRO"
+        },
+        {
+            "id": 20,
+            "componente": "Programação Web III",
+            "sigla": "PRO"
+        },
+        {
+            "id": 21,
+            "componente": "Filosofia",
+            "sigla": "FIL"
+        },
+        {
+            "id": 22,
+            "componente": "Estudos Avançados em Ciências Humanas e Sociais Aplicadas",
+            "sigla": "EST"
+        },
+        {
+            "id": 23,
+            "componente": "Sociologia",
+            "sigla": "SOC"
+        },
+        {
+            "id": 24,
+            "componente": "Desenvolvimento do TCC em Administração",
+            "sigla": "DES"
+        },
+        {
+            "id": 25,
+            "componente": "Sistema Tributário e Fiscal",
+            "sigla": "SIS"
+        },
+        {
+            "id": 26,
+            "componente": "Contabilidade Tributária",
+            "sigla": "CON"
+        },
+        {
+            "id": 27,
+            "componente": "Demonstrações Financeiras",
+            "sigla": "DEM"
+        },
+        {
+            "id": 28,
+            "componente": "Operações de Contabilidade Comercial",
+            "sigla": "OPE"
+        },
+        {
+            "id": 29,
+            "componente": "Projeto Integrador I",
+            "sigla": "PRO"
+        },
+        {
+            "id": 30,
+            "componente": "Projeto Integrador II",
+            "sigla": "PRO"
+        },
+        {
+            "id": 31,
+            "componente": "Estudos de Cenário Econômico e Contábil",
+            "sigla": "EST"
+        },
+        {
+            "id": 32,
+            "componente": "Planejamento e Desenvolvimento do TCC em Contabilidade",
+            "sigla": "PLA"
+        },
+        {
+            "id": 33,
+            "componente": "Planejamento Tributário e Fiscal",
+            "sigla": "PLA"
+        },
+        {
+            "id": 34,
+            "componente": "Legislação Empresarial",
+            "sigla": "LEG"
+        },
+        {
+            "id": 35,
+            "componente": "Estudos de Economia, Mercado e de Comércio Internacional",
+            "sigla": "EST"
+        },
+        {
+            "id": 36,
+            "componente": "Matemática Financeira e Estatística",
+            "sigla": "MAT"
+        },
+        {
+            "id": 37,
+            "componente": "Planejamento e Organização de Rotinas de Departamento Pessoal",
+            "sigla": "PLA"
+        },
+        {
+            "id": 38,
+            "componente": "Estudos Avançados em Matemática e suas Tecnologias (MTec-PI)",
+            "sigla": "EST"
+        },
+        {
+            "id": 39,
+            "componente": "Planejamento e Desenvolvimento do TCC em Administração",
+            "sigla": "PLA"
+        },
+        {
+            "id": 40,
+            "componente": "Administração Financeira e Orçamentária",
+            "sigla": "ADM"
+        },
+        {
+            "id": 41,
+            "componente": "Legislação Trabalhista e Previdenciária",
+            "sigla": "LEG"
+        },
+        {
+            "id": 42,
+            "componente": "Gestão Financeira e Contabilidade",
+            "sigla": "GES"
+        },
+        {
+            "id": 43,
+            "componente": "Projeto Integrador I (para a Habilitação Marketing)",
+            "sigla": "PRO"
+        },
+        {
+            "id": 44,
+            "componente": "Projeto Integrador II (para a Habilitação Marketing)",
+            "sigla": "PRO"
+        },
+        {
+            "id": 45,
+            "componente": "Custos, Processos e Operações Contábeis",
+            "sigla": "CUS"
+        },
+        {
+            "id": 46,
+            "componente": "Administração da Produção e Serviços",
+            "sigla": "ADM"
+        },
+        {
+            "id": 47,
+            "componente": "Matemática Básica e Gestão de Investimentos em Vendas",
+            "sigla": "MAT"
+        },
+        {
+            "id": 48,
+            "componente": "Estágio Supervisionado em Agravos a Saúde",
+            "sigla": "EST"
+        },
+        {
+            "id": 49,
+            "componente": "Estágio Supervisionado em Agravos Traumáticos",
+            "sigla": "EST"
+        },
+        {
+            "id": 50,
+            "componente": "Estudos Avançados em Ciências da Natureza e suas Tecnologias (MTec-PI)",
+            "sigla": "EST"
+        },
+        {
+            "id": 51,
+            "componente": "Proteção e Prevenção em Enfermagem",
+            "sigla": "PRO"
+        },
+        {
+            "id": 52,
+            "componente": "Saúde Coletiva I",
+            "sigla": "SAÚ"
+        },
+        {
+            "id": 53,
+            "componente": "Enfermagem em Saúde Mental",
+            "sigla": "ENF"
+        },
+        {
+            "id": 54,
+            "componente": "Vigilância em Saúde (para a Habilitação em Enfermagem)",
+            "sigla": "VIG"
+        },
+        {
+            "id": 55,
+            "componente": "Ações de Enfermagem de Vigilância em Saúde",
+            "sigla": "AÇÕ"
+        },
+        {
+            "id": 56,
+            "componente": "Ações de Saúde e Segurança Ocupacional",
+            "sigla": "AÇÕ"
+        },
+        {
+            "id": 57,
+            "componente": "Assistência de Enfermagem em Saúde Mental",
+            "sigla": "ASS"
+        },
+        {
+            "id": 58,
+            "componente": "Assistência de Enfermagem em Urgência e Emergência",
+            "sigla": "ASS"
+        },
+        {
+            "id": 59,
+            "componente": "Assistência de Enfermagem em UTI e Unidades Especializadas",
+            "sigla": "ASS"
+        },
+        {
+            "id": 60,
+            "componente": "Práticas de Empreendedorismo – Empreendedorismo para o Mundo (para o itinerário Ciências Humanas e Sociais Aplicadas)",
+            "sigla": "PRÁ"
+        },
+        {
+            "id": 61,
+            "componente": "Estudos de Demonstrações Financeiras",
+            "sigla": "EST"
+        },
+        {
+            "id": 62,
+            "componente": "Recrutamento e Seleção de Pessoal",
+            "sigla": "REC"
+        },
+        {
+            "id": 63,
+            "componente": "Instalações Elétricas I",
+            "sigla": "INS"
+        },
+        {
+            "id": 64,
+            "componente": "Máquinas Elétricas II",
+            "sigla": "MÁQ"
+        },
+        {
+            "id": 65,
+            "componente": "Desenvolvimento do TCC em Eletrotécnica",
+            "sigla": "DES"
+        },
+        {
+            "id": 66,
+            "componente": "Circuitos Elétricos, Eletrônicos e Analógicos",
+            "sigla": "CIR"
+        },
+        {
+            "id": 67,
+            "componente": "Língua Espanhola",
+            "sigla": "LÍN"
+        },
+        {
+            "id": 68,
+            "componente": "Língua Portuguesa",
+            "sigla": "LÍN"
+        },
+        {
+            "id": 69,
+            "componente": "Desenvolvimento do TCC em Eletroeletrônica",
+            "sigla": "DES"
+        },
+        {
+            "id": 70,
+            "componente": "Segurança no Trabalho com Eletricidade",
+            "sigla": "SEG"
+        },
+        {
+            "id": 71,
+            "componente": "Instalações Elétricas II",
+            "sigla": "INS"
+        },
+        {
+            "id": 72,
+            "componente": "Projeto Multidisciplinar em Administração (para a Habilitação Administração - SEE)",
+            "sigla": "PRO"
+        },
+        {
+            "id": 73,
+            "componente": "Projeto Multidisciplinar em Vendas",
+            "sigla": "PRO"
+        },
+        {
+            "id": 74,
+            "componente": "Custos Contábeis",
+            "sigla": "CUS"
+        },
+        {
+            "id": 75,
+            "componente": "Sistema(s) de Informações Contábeis",
+            "sigla": "SIS"
+        },
+        {
+            "id": 76,
+            "componente": "Marketing Estratégico",
+            "sigla": "MAR"
+        },
+        {
+            "id": 77,
+            "componente": "Pesquisa de Mercado e Comportamento do Consumidor",
+            "sigla": "PES"
+        },
+        {
+            "id": 78,
+            "componente": "Controle e Automação",
+            "sigla": "CON"
+        },
+        {
+            "id": 79,
+            "componente": "Laboratório de Mediação e Intervenção Sociocultural (para o itinerário Ciências Humanas e Sociais Aplicadas)",
+            "sigla": "LAB"
+        },
+        {
+            "id": 80,
+            "componente": "Arte(s)",
+            "sigla": "ART"
+        },
+        {
+            "id": 81,
+            "componente": "Laboratório de Investigação Científica (MTec-PI)",
+            "sigla": "LAB"
+        },
+        {
+            "id": 82,
+            "componente": "Laboratório de Processos Criativos (MTec-PI)",
+            "sigla": "LAB"
+        },
+        {
+            "id": 83,
+            "componente": "Microcontroladores",
+            "sigla": "MIC"
+        },
+        {
+            "id": 84,
+            "componente": "Circuitos Elétricos I",
+            "sigla": "CIR"
+        },
+        {
+            "id": 85,
+            "componente": "Circuitos Elétricos II",
+            "sigla": "CIR"
+        },
+        {
+            "id": 86,
+            "componente": "Comandos Elétricos",
+            "sigla": "COM"
+        },
+        {
+            "id": 87,
+            "componente": "Circuitos Elétricos III",
+            "sigla": "CIR"
+        },
+        {
+            "id": 88,
+            "componente": "Sistemas Embarcados II (para a Habilitação Eletrônica)",
+            "sigla": "SIS"
+        },
+        {
+            "id": 89,
+            "componente": "Linguagens de Programação e Microcontroladores para Mecatrônica",
+            "sigla": "LIN"
+        },
+        {
+            "id": 90,
+            "componente": "Design Digital",
+            "sigla": "DES"
+        },
+        {
+            "id": 91,
+            "componente": "Técnicas de Programação e Algoritmos",
+            "sigla": "TÉC"
+        },
+        {
+            "id": 92,
+            "componente": "Programação de Aplicativos Mobile I",
+            "sigla": "PRO"
+        },
+        {
+            "id": 93,
+            "componente": "Planejamento e Desenvolvimento do TCC em Desenvolvimento de Sistemas",
+            "sigla": "PLA"
+        },
+        {
+            "id": 94,
+            "componente": "Fundamentos de Enfermagem",
+            "sigla": "FUN"
+        },
+        {
+            "id": 95,
+            "componente": "Assistência de Enfermagem em Urgências e Emergências Clínicas",
+            "sigla": "ASS"
+        },
+        {
+            "id": 96,
+            "componente": "Sistemas Estrutural e Organizacional das Unidades de Urgência e Emergência",
+            "sigla": "SIS"
+        },
+        {
+            "id": 97,
+            "componente": "Desenvolvimento do TCC em Mecânica",
+            "sigla": "DES"
+        },
+        {
+            "id": 98,
+            "componente": "Tecnologia em Soldagem",
+            "sigla": "TEC"
+        },
+        {
+            "id": 99,
+            "componente": "Hidráulica e Pneumática (para a Habilitação Mecatrônica)",
+            "sigla": "HID"
+        },
+        {
+            "id": 100,
+            "componente": "Segurança Ambiental e do Trabalho",
+            "sigla": "SEG"
+        },
+        {
+            "id": 101,
+            "componente": "Mecanismos Mecatrônicos",
+            "sigla": "MEC"
+        },
+        {
+            "id": 102,
+            "componente": "Resistência e Ensaios dos Materiais",
+            "sigla": "RES"
+        },
+        {
+            "id": 103,
+            "componente": "Tecnologia da(de) Manufatura e Controle Dimensional",
+            "sigla": "TEC"
+        },
+        {
+            "id": 104,
+            "componente": "Organização Industrial e Tecnologia da Manutenção",
+            "sigla": "ORG"
+        },
+        {
+            "id": 105,
+            "componente": "Planejamento e Desenvolvimento do TCC em Mecatrônica",
+            "sigla": "PLA"
+        },
+        {
+            "id": 106,
+            "componente": "Inglês Instrumental",
+            "sigla": "ING"
+        },
+        {
+            "id": 107,
+            "componente": "Linguagem, Trabalho e Tecnologia",
+            "sigla": "LIN"
+        },
+        {
+            "id": 108,
+            "componente": "Ética e Cidadania Organizacional",
+            "sigla": "ÉTI"
+        },
+        {
+            "id": 109,
+            "componente": "Planejamento do TCC em Recursos Humanos",
+            "sigla": "PLA"
+        },
+        {
+            "id": 110,
+            "componente": "Gestão de Operações",
+            "sigla": "GES"
+        },
+        {
+            "id": 111,
+            "componente": "Língua Inglesa",
+            "sigla": "LÍN"
+        },
+        {
+            "id": 112,
+            "componente": "Automação Industrial II",
+            "sigla": "AUT"
+        },
+        {
+            "id": 113,
+            "componente": "Biologia",
+            "sigla": "BIO"
+        },
+        {
+            "id": 114,
+            "componente": "Eletrônica Analógica I",
+            "sigla": "ELE"
+        },
+        {
+            "id": 115,
+            "componente": "Máquinas Elétricas I",
+            "sigla": "MÁQ"
+        },
+        {
+            "id": 116,
+            "componente": "Dispositivos Semicondutores I",
+            "sigla": "DIS"
+        },
+        {
+            "id": 117,
+            "componente": "Microeletrônica",
+            "sigla": "MIC"
+        },
+        {
+            "id": 118,
+            "componente": "Automação Industrial III",
+            "sigla": "AUT"
+        },
+        {
+            "id": 119,
+            "componente": "Gestão Industrial",
+            "sigla": "GES"
+        },
+        {
+            "id": 120,
+            "componente": "Processos de Fabricação III",
+            "sigla": "PRO"
+        },
+        {
+            "id": 121,
+            "componente": "Tecnologia em CNC",
+            "sigla": "TEC"
+        },
+        {
+            "id": 122,
+            "componente": "Tecnologia em(de) Manutenção",
+            "sigla": "TEC"
+        },
+        {
+            "id": 123,
+            "componente": "Máquinas, Comandos e Controladores Lógicos Programáveis",
+            "sigla": "MÁQ"
+        },
+        {
+            "id": 124,
+            "componente": "Máquinas com Controle Numérico",
+            "sigla": "MÁQ"
+        },
+        {
+            "id": 125,
+            "componente": "Robótica e Manufatura Flexível",
+            "sigla": "ROB"
+        },
+        {
+            "id": 126,
+            "componente": "Sistemas Supervisórios e Controle de Processos",
+            "sigla": "SIS"
+        },
+        {
+            "id": 127,
+            "componente": "Estudos de Comércio Internacional",
+            "sigla": "EST"
+        },
+        {
+            "id": 128,
+            "componente": "Tecnologia da Informação Aplicada a Administração",
+            "sigla": "TEC"
+        },
+        {
+            "id": 129,
+            "componente": "Cenário Econômico e Contábil",
+            "sigla": "CEN"
+        },
+        {
+            "id": 130,
+            "componente": "Modelos de Gestão",
+            "sigla": "MOD"
+        },
+        {
+            "id": 131,
+            "componente": "Banco de Dados I",
+            "sigla": "BAN"
+        },
+        {
+            "id": 132,
+            "componente": "Fundamentos da Informática",
+            "sigla": "FUN"
+        },
+        {
+            "id": 133,
+            "componente": "Banco de Dados II",
+            "sigla": "BAN"
+        },
+        {
+            "id": 134,
+            "componente": "Internet, Protocolos e Segurança de Sistemas da Informação",
+            "sigla": "INT"
+        },
+        {
+            "id": 135,
+            "componente": "Comunicação Corporativa",
+            "sigla": "COM"
+        },
+        {
+            "id": 136,
+            "componente": "Laboratório de Pesquisa - Criação - Ação (para o itinerário Linguagens, Ciências Humanas e Sociais)",
+            "sigla": "LAB"
+        },
+        {
+            "id": 137,
+            "componente": "Legislação de Mercado",
+            "sigla": "LEG"
+        },
+        {
+            "id": 138,
+            "componente": "Marketing de Relacionamento",
+            "sigla": "MAR"
+        },
+        {
+            "id": 139,
+            "componente": "Marketing Institucional",
+            "sigla": "MAR"
+        },
+        {
+            "id": 140,
+            "componente": "Planejamento e Desenvolvimento do TCC em Marketing",
+            "sigla": "PLA"
+        },
+        {
+            "id": 141,
+            "componente": "Plano de Marketing",
+            "sigla": "PLA"
+        },
+        {
+            "id": 142,
+            "componente": "Desenvolvimento das Ações de Marketing e dos Processos Comerciais",
+            "sigla": "DES"
+        },
+        {
+            "id": 143,
+            "componente": "Práticas de Empreendedorismo (MTec-PI)",
+            "sigla": "PRÁ"
+        },
+        {
+            "id": 144,
+            "componente": "Planejamento e Organização de Rotinas Administrativas",
+            "sigla": "PLA"
+        },
+        {
+            "id": 145,
+            "componente": "Desenvolvimento de Sistemas",
+            "sigla": "DES"
+        },
+        {
+            "id": 146,
+            "componente": "Cargos, Carreira e Remuneração",
+            "sigla": "CAR"
+        },
+        {
+            "id": 147,
+            "componente": "Desenvolvimento do TCC em Enfermagem",
+            "sigla": "DES"
+        },
+        {
+            "id": 148,
+            "componente": "Ações e Procedimentos em Urgências e Emergências Traumáticas",
+            "sigla": "AÇÕ"
+        },
+        {
+            "id": 149,
+            "componente": "Organização Empresarial e Contábil",
+            "sigla": "ORG"
+        },
+        {
+            "id": 150,
+            "componente": "Aplicativos Informatizadosem Eletroeletrônica",
+            "sigla": "APL"
+        },
+        {
+            "id": 151,
+            "componente": "Práticas de Empreendedorismo – Comunidade Empreendedora (para o itinerário Ciências Humanas e Sociais Aplicadas)",
+            "sigla": "PRÁ"
+        },
+        {
+            "id": 152,
+            "componente": "Inovação e Desenvolvimento de Negócios",
+            "sigla": "INO"
+        },
+        {
+            "id": 153,
+            "componente": "Planejamento de Vendas",
+            "sigla": "PLA"
+        },
+        {
+            "id": 154,
+            "componente": "Tecnologias Aplicadas a Vendas",
+            "sigla": "TEC"
+        },
+        {
+            "id": 155,
+            "componente": "Eletricidade Básica",
+            "sigla": "ELE"
+        },
+        {
+            "id": 156,
+            "componente": "Assistência de Enfermagem as Vítimas de Traumas",
+            "sigla": "ASS"
+        },
+        {
+            "id": 157,
+            "componente": "Sistemas Embarcados",
+            "sigla": "SIS"
+        },
+        {
+            "id": 158,
+            "componente": "Assistência à Saúde da Mulher e da Criança I",
+            "sigla": "ASS"
+        },
+        {
+            "id": 159,
+            "componente": "Enfermagem em Centro Cirúrgico",
+            "sigla": "ENF"
+        },
+        {
+            "id": 160,
+            "componente": "Semiotécnica em Enfermagem",
+            "sigla": "SEM"
+        },
+        {
+            "id": 161,
+            "componente": "Enfermagem em UTI e Unidades Especializadas",
+            "sigla": "ENF"
+        },
+        {
+            "id": 162,
+            "componente": "Planejamento do TCC em Enfermagem",
+            "sigla": "PLA"
+        },
+        {
+            "id": 163,
+            "componente": "Enfermagem em Oncologia",
+            "sigla": "ENF"
+        },
+        {
+            "id": 164,
+            "componente": "Relações Humanas no Trabalho",
+            "sigla": "REL"
+        },
+        {
+            "id": 165,
+            "componente": "Ações de Farmacologia em Atendimentos de Urgência e Emergência",
+            "sigla": "AÇÕ"
+        },
+        {
+            "id": 166,
+            "componente": "Eletrônica Analógica",
+            "sigla": "ELE"
+        },
+        {
+            "id": 167,
+            "componente": "Eficiência Energética",
+            "sigla": "EFI"
+        },
+        {
+            "id": 168,
+            "componente": "Ética e Cidadania Organizacional (para a Habilitação Marketing)",
+            "sigla": "ÉTI"
+        },
+        {
+            "id": 169,
+            "componente": "Estudos da Administração Pública",
+            "sigla": "EST"
+        },
+        {
+            "id": 170,
+            "componente": "Processos Logísticos Empresariais",
+            "sigla": "PRO"
+        },
+        {
+            "id": 171,
+            "componente": "Relações Jurídicas do Trabalho",
+            "sigla": "REL"
+        },
+        {
+            "id": 172,
+            "componente": "Rotinas de Departamento Pessoal",
+            "sigla": "ROT"
+        },
+        {
+            "id": 173,
+            "componente": "Processo Comercial, Métodos de Prospecção e Qualificação",
+            "sigla": "PRO"
+        },
+        {
+            "id": 174,
+            "componente": "Desenho Técnico para Eletroeletrônica",
+            "sigla": "DES"
+        },
+        {
+            "id": 175,
+            "componente": "Instalações Elétricas III",
+            "sigla": "INS"
+        },
+        {
+            "id": 176,
+            "componente": "Planejamento do TCC em Eletrotécnica",
+            "sigla": "PLA"
+        },
+        {
+            "id": 177,
+            "componente": "Projetos de Sistemas Eletrônicos",
+            "sigla": "PRO"
+        },
+        {
+            "id": 178,
+            "componente": "Sistemas Digitais",
+            "sigla": "SIS"
+        },
+        {
+            "id": 179,
+            "componente": "Sistemas de Acionamento Eletrônico",
+            "sigla": "SIS"
+        },
+        {
+            "id": 180,
+            "componente": "Enfermagem em Clínica Médica e Cirúrgica I",
+            "sigla": "ENF"
+        },
+        {
+            "id": 181,
+            "componente": "Enfermagem em Urgência e Emergência",
+            "sigla": "ENF"
+        },
+        {
+            "id": 182,
+            "componente": "Gestão em Saúde Ocupacional / Gestão em Saúde",
+            "sigla": "GES"
+        },
+        {
+            "id": 183,
+            "componente": "Saúde e Segurança Ocupacional",
+            "sigla": "SAÚ"
+        },
+        {
+            "id": 184,
+            "componente": "Enfermagem Domiciliária",
+            "sigla": "ENF"
+        },
+        {
+            "id": 185,
+            "componente": "Educação Física",
+            "sigla": "EDU"
+        },
+        {
+            "id": 186,
+            "componente": "Estruturas Básicas da Contabilidade",
+            "sigla": "EST"
+        },
+        {
+            "id": 187,
+            "componente": "Organização Empresarial e Contábil II",
+            "sigla": "ORG"
+        },
+        {
+            "id": 188,
+            "componente": "Organização Empresarial e Contábil I",
+            "sigla": "ORG"
+        },
+        {
+            "id": 189,
+            "componente": "Administração de Recursos Humanos",
+            "sigla": "ADM"
+        },
+        {
+            "id": 190,
+            "componente": "Desenvolvimento de Modelos de Negócios",
+            "sigla": "DES"
+        },
+        {
+            "id": 191,
+            "componente": "Laboratório de Mediação e Intervenção Sociocultural (MTec-PI)",
+            "sigla": "LAB"
+        },
+        {
+            "id": 192,
+            "componente": "Estudos Avançados em Ciências Humanas e Sociais Aplicadas (MTec-PI)",
+            "sigla": "EST"
+        },
+        {
+            "id": 193,
+            "componente": "Introdução ao Marketing e Comunicação Integrada",
+            "sigla": "INT"
+        },
+        {
+            "id": 194,
+            "componente": "Estratégias de Marketing e Modelos de Negócios",
+            "sigla": "EST"
+        },
+        {
+            "id": 195,
+            "componente": "Promoção de Vendas e Merchandising",
+            "sigla": "PRO"
+        },
+        {
+            "id": 196,
+            "componente": "Administração Financeira Aplicada ao Marketing",
+            "sigla": "ADM"
+        },
+        {
+            "id": 197,
+            "componente": "Canais de Distribuição",
+            "sigla": "CAN"
+        },
+        {
+            "id": 198,
+            "componente": "Marketing Digital e E-Commerce",
+            "sigla": "MAR"
+        },
+        {
+            "id": 199,
+            "componente": "Máquinas de Corrente Alternada",
+            "sigla": "MÁQ"
+        },
+        {
+            "id": 200,
+            "componente": "Técnicas de Manutenção",
+            "sigla": "TÉC"
+        },
+        {
+            "id": 201,
+            "componente": "Geração, Transmissão e Distribuição de Energia / Geração, Transmissão e Distribuição de Energia Elétrica",
+            "sigla": "GER"
+        },
+        {
+            "id": 202,
+            "componente": "Técnicas de Manutenção Elétrica",
+            "sigla": "TÉC"
+        },
+        {
+            "id": 203,
+            "componente": "Laboratório de Processos Criativos (para o itinerário Ciências Humanas e Sociais Aplicadas)",
+            "sigla": "LAB"
+        }
+    ],
+    "matriz_curricular": [
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 1,
+            "id_professor": 1,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 1,
+            "id_professor": 1,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 1,
+            "id_professor": 1,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 2,
+            "id_professor": 2,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 3,
+            "id_professor": 2,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 4,
+            "id_professor": 2,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 4,
+            "id_professor": 2,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 5,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 6,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 5,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 5,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 5,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 5,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 5,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 6,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 5,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 5,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 6,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 5,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 6,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 6,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 6,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 6,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 5,
+            "id_professor": 3,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 7,
+            "id_professor": 4,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 7,
+            "id_professor": 4,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 7,
+            "id_professor": 4,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 7,
+            "id_professor": 4,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 1,
+            "id_professor": 4,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 7,
+            "id_professor": 4,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 7,
+            "id_professor": 4,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 8,
+            "id_professor": 5,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 8,
+            "id_professor": 5,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 9,
+            "id_professor": 5,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 9,
+            "id_professor": 5,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 9,
+            "id_professor": 5,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 9,
+            "id_professor": 5,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 10,
+            "id_professor": 5,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 10,
+            "id_professor": 5,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 9,
+            "id_professor": 5,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 11,
+            "id_professor": 5,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 11,
+            "id_professor": 5,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 9,
+            "id_professor": 5,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 9,
+            "id_professor": 5,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 19,
+            "id_disciplina": 12,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 13,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 13,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 14,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 15,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 13,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 16,
+            "id_professor": 6,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 16,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 13,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 17,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 18,
+            "id_professor": 6,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 18,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 19,
+            "id_professor": 6,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 19,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 20,
+            "id_professor": 6,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 20,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 13,
+            "id_professor": 6,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 21,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 7,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 22,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 7,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 7,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 7,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 7,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 7,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 7,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 7,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 21,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 23,
+            "id_professor": 7,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 24,
+            "id_disciplina": 24,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 25,
+            "id_disciplina": 25,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 26,
+            "id_disciplina": 26,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 26,
+            "id_disciplina": 27,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 26,
+            "id_disciplina": 28,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 29,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 30,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 31,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 32,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 33,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 34,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 29,
+            "id_professor": 8,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 35,
+            "id_professor": 8,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 9,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 27,
+            "id_disciplina": 9,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 9,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 36,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 9,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 9,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 37,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 38,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 37,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 38,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 39,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 9,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 9,
+            "id_professor": 9,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 24,
+            "id_disciplina": 40,
+            "id_professor": 10,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 25,
+            "id_disciplina": 41,
+            "id_professor": 10,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 25,
+            "id_disciplina": 36,
+            "id_professor": 10,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 29,
+            "id_disciplina": 42,
+            "id_professor": 10,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 43,
+            "id_professor": 10,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 44,
+            "id_professor": 10,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 45,
+            "id_professor": 10,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 46,
+            "id_professor": 10,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 40,
+            "id_professor": 10,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 30,
+            "id_disciplina": 47,
+            "id_professor": 10,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 48,
+            "id_professor": 11,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 49,
+            "id_professor": 11,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 50,
+            "id_professor": 12,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 32,
+            "id_disciplina": 51,
+            "id_professor": 13,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 32,
+            "id_disciplina": 52,
+            "id_professor": 13,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 19,
+            "id_disciplina": 53,
+            "id_professor": 13,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 19,
+            "id_disciplina": 54,
+            "id_professor": 13,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 55,
+            "id_professor": 13,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 56,
+            "id_professor": 13,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 57,
+            "id_professor": 13,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 58,
+            "id_professor": 13,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 59,
+            "id_professor": 13,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 48,
+            "id_professor": 14,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 49,
+            "id_professor": 14,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 27,
+            "id_disciplina": 60,
+            "id_professor": 14,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 61,
+            "id_professor": 14,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 30,
+            "id_professor": 15,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 30,
+            "id_professor": 15,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 29,
+            "id_professor": 15,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 62,
+            "id_professor": 15,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 55,
+            "id_professor": 16,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 56,
+            "id_professor": 16,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 57,
+            "id_professor": 16,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 58,
+            "id_professor": 16,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 59,
+            "id_professor": 16,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 63,
+            "id_professor": 17,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 63,
+            "id_professor": 17,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 64,
+            "id_professor": 17,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 64,
+            "id_professor": 17,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 65,
+            "id_professor": 17,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 65,
+            "id_professor": 17,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 9,
+            "id_professor": 17,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 66,
+            "id_professor": 17,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 6,
+            "id_professor": 17,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 27,
+            "id_disciplina": 67,
+            "id_professor": 18,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 68,
+            "id_professor": 18,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 36,
+            "id_disciplina": 69,
+            "id_professor": 19,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 36,
+            "id_disciplina": 70,
+            "id_professor": 19,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 71,
+            "id_professor": 19,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 71,
+            "id_professor": 19,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 48,
+            "id_professor": 20,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 49,
+            "id_professor": 20,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 55,
+            "id_professor": 21,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 56,
+            "id_professor": 21,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 57,
+            "id_professor": 21,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 58,
+            "id_professor": 21,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 59,
+            "id_professor": 21,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 29,
+            "id_disciplina": 72,
+            "id_professor": 22,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 37,
+            "id_professor": 22,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 30,
+            "id_disciplina": 73,
+            "id_professor": 22,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 26,
+            "id_disciplina": 74,
+            "id_professor": 23,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 74,
+            "id_professor": 23,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 9,
+            "id_professor": 24,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 9,
+            "id_professor": 24,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 38,
+            "id_professor": 24,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 26,
+            "id_disciplina": 75,
+            "id_professor": 25,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 9,
+            "id_professor": 26,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 9,
+            "id_professor": 26,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 37,
+            "id_disciplina": 76,
+            "id_professor": 27,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 77,
+            "id_professor": 27,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 78,
+            "id_professor": 28,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 27,
+            "id_disciplina": 79,
+            "id_professor": 29,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 80,
+            "id_professor": 29,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 81,
+            "id_professor": 29,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 82,
+            "id_professor": 29,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 36,
+            "id_disciplina": 83,
+            "id_professor": 30,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 84,
+            "id_professor": 30,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 85,
+            "id_professor": 30,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 85,
+            "id_professor": 30,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 86,
+            "id_professor": 30,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 87,
+            "id_professor": 30,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 87,
+            "id_professor": 30,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 88,
+            "id_professor": 30,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 66,
+            "id_professor": 30,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 89,
+            "id_professor": 30,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 89,
+            "id_professor": 30,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 7,
+            "id_professor": 31,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 7,
+            "id_professor": 31,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 7,
+            "id_professor": 31,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 80,
+            "id_professor": 32,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 80,
+            "id_professor": 32,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 14,
+            "id_professor": 32,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 80,
+            "id_professor": 32,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 80,
+            "id_professor": 32,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 2,
+            "id_professor": 32,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 90,
+            "id_professor": 32,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 90,
+            "id_professor": 32,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 91,
+            "id_professor": 32,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 91,
+            "id_professor": 32,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 50,
+            "id_professor": 32,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 92,
+            "id_professor": 32,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 92,
+            "id_professor": 32,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 93,
+            "id_professor": 32,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 93,
+            "id_professor": 32,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 32,
+            "id_disciplina": 94,
+            "id_professor": 33,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 95,
+            "id_professor": 33,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 96,
+            "id_professor": 33,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 38,
+            "id_disciplina": 97,
+            "id_professor": 34,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 38,
+            "id_disciplina": 98,
+            "id_professor": 34,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 99,
+            "id_professor": 34,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 99,
+            "id_professor": 34,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 100,
+            "id_professor": 34,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 101,
+            "id_professor": 34,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 102,
+            "id_professor": 34,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 102,
+            "id_professor": 34,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 103,
+            "id_professor": 34,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 103,
+            "id_professor": 34,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 104,
+            "id_professor": 34,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 105,
+            "id_professor": 34,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 105,
+            "id_professor": 34,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 24,
+            "id_disciplina": 106,
+            "id_professor": 35,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 25,
+            "id_disciplina": 107,
+            "id_professor": 35,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 26,
+            "id_disciplina": 106,
+            "id_professor": 35,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 38,
+            "id_disciplina": 108,
+            "id_professor": 35,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 106,
+            "id_professor": 35,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 107,
+            "id_professor": 35,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 39,
+            "id_disciplina": 109,
+            "id_professor": 35,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 68,
+            "id_professor": 35,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 9,
+            "id_professor": 36,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 26,
+            "id_disciplina": 32,
+            "id_professor": 37,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 36,
+            "id_disciplina": 108,
+            "id_professor": 37,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 108,
+            "id_professor": 37,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 29,
+            "id_disciplina": 110,
+            "id_professor": 37,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 45,
+            "id_professor": 37,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 37,
+            "id_disciplina": 110,
+            "id_professor": 38,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 37,
+            "id_disciplina": 42,
+            "id_professor": 38,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 39,
+            "id_disciplina": 106,
+            "id_professor": 39,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 68,
+            "id_professor": 39,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 68,
+            "id_professor": 39,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 68,
+            "id_professor": 39,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 68,
+            "id_professor": 39,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 68,
+            "id_professor": 39,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 68,
+            "id_professor": 39,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 111,
+            "id_professor": 39,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 40,
+            "id_disciplina": 11,
+            "id_professor": 40,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 36,
+            "id_disciplina": 112,
+            "id_professor": 40,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 78,
+            "id_professor": 40,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 27,
+            "id_disciplina": 113,
+            "id_professor": 41,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 113,
+            "id_professor": 41,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 113,
+            "id_professor": 41,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 113,
+            "id_professor": 41,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 113,
+            "id_professor": 41,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 113,
+            "id_professor": 41,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 113,
+            "id_professor": 42,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 40,
+            "id_disciplina": 114,
+            "id_professor": 43,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 115,
+            "id_professor": 43,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 115,
+            "id_professor": 43,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 116,
+            "id_professor": 43,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 117,
+            "id_professor": 43,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 117,
+            "id_professor": 43,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 38,
+            "id_disciplina": 118,
+            "id_professor": 44,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 38,
+            "id_disciplina": 119,
+            "id_professor": 44,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 38,
+            "id_disciplina": 120,
+            "id_professor": 44,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 38,
+            "id_disciplina": 121,
+            "id_professor": 44,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 38,
+            "id_disciplina": 122,
+            "id_professor": 44,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 123,
+            "id_professor": 44,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 123,
+            "id_professor": 44,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 101,
+            "id_professor": 44,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 124,
+            "id_professor": 44,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 125,
+            "id_professor": 44,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 125,
+            "id_professor": 44,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 126,
+            "id_professor": 44,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 126,
+            "id_professor": 44,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 27,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 111,
+            "id_professor": 45,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 68,
+            "id_professor": 46,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 111,
+            "id_professor": 46,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 55,
+            "id_professor": 47,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 56,
+            "id_professor": 47,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 48,
+            "id_professor": 47,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 49,
+            "id_professor": 47,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 24,
+            "id_disciplina": 46,
+            "id_professor": 48,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 24,
+            "id_disciplina": 127,
+            "id_professor": 48,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 24,
+            "id_disciplina": 128,
+            "id_professor": 48,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 25,
+            "id_disciplina": 129,
+            "id_professor": 48,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 39,
+            "id_disciplina": 130,
+            "id_professor": 48,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 29,
+            "id_professor": 48,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 41,
+            "id_professor": 48,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 108,
+            "id_professor": 48,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 9,
+            "id_professor": 49,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 9,
+            "id_professor": 49,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 9,
+            "id_professor": 49,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 124,
+            "id_professor": 50,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 131,
+            "id_professor": 51,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 131,
+            "id_professor": 51,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 132,
+            "id_professor": 51,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 132,
+            "id_professor": 51,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 133,
+            "id_professor": 51,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 133,
+            "id_professor": 51,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 134,
+            "id_professor": 51,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 134,
+            "id_professor": 51,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 39,
+            "id_disciplina": 135,
+            "id_professor": 52,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 111,
+            "id_professor": 53,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 111,
+            "id_professor": 53,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 111,
+            "id_professor": 53,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 111,
+            "id_professor": 53,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 136,
+            "id_professor": 54,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 29,
+            "id_disciplina": 76,
+            "id_professor": 54,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 21,
+            "id_professor": 54,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 137,
+            "id_professor": 54,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 138,
+            "id_professor": 54,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 139,
+            "id_professor": 54,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 140,
+            "id_professor": 54,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 141,
+            "id_professor": 54,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 142,
+            "id_professor": 54,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 29,
+            "id_professor": 54,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 13,
+            "id_professor": 54,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 37,
+            "id_professor": 54,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 142,
+            "id_professor": 54,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 143,
+            "id_professor": 54,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 27,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 68,
+            "id_professor": 55,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 55,
+            "id_professor": 56,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 56,
+            "id_professor": 56,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 57,
+            "id_professor": 56,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 58,
+            "id_professor": 56,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 59,
+            "id_professor": 56,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 144,
+            "id_professor": 57,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 144,
+            "id_professor": 57,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 144,
+            "id_professor": 57,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 55,
+            "id_professor": 58,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 56,
+            "id_professor": 58,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 57,
+            "id_professor": 58,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 58,
+            "id_professor": 58,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 59,
+            "id_professor": 58,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 48,
+            "id_professor": 58,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 49,
+            "id_professor": 58,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 145,
+            "id_professor": 59,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 145,
+            "id_professor": 59,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 39,
+            "id_disciplina": 146,
+            "id_professor": 60,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 6,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 6,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 5,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 27,
+            "id_disciplina": 5,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 6,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 5,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 6,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 5,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 6,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 6,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 5,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 5,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 5,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 5,
+            "id_professor": 61,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 147,
+            "id_professor": 62,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 148,
+            "id_professor": 62,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 25,
+            "id_disciplina": 149,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 40,
+            "id_disciplina": 150,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 151,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 29,
+            "id_disciplina": 152,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 28,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 32,
+            "id_professor": 63,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 75,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 15,
+            "id_professor": 63,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 13,
+            "id_professor": 63,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 38,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 34,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 38,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 38,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 30,
+            "id_disciplina": 153,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 30,
+            "id_disciplina": 154,
+            "id_professor": 63,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 40,
+            "id_disciplina": 155,
+            "id_professor": 64,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 155,
+            "id_professor": 64,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 155,
+            "id_professor": 64,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 116,
+            "id_professor": 64,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 57,
+            "id_professor": 65,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 58,
+            "id_professor": 65,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 59,
+            "id_professor": 65,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 156,
+            "id_professor": 65,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 48,
+            "id_professor": 65,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 49,
+            "id_professor": 65,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 25,
+            "id_disciplina": 13,
+            "id_professor": 66,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 13,
+            "id_professor": 66,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 3,
+            "id_professor": 66,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 157,
+            "id_professor": 66,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 157,
+            "id_professor": 66,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 32,
+            "id_disciplina": 158,
+            "id_professor": 67,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 32,
+            "id_disciplina": 159,
+            "id_professor": 67,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 8,
+            "tipo_bloco": "Normal",
+            "id_turma": 32,
+            "id_disciplina": 160,
+            "id_professor": 67,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 19,
+            "id_disciplina": 161,
+            "id_professor": 67,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 19,
+            "id_disciplina": 162,
+            "id_professor": 67,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 147,
+            "id_professor": 67,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 163,
+            "id_professor": 67,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 164,
+            "id_professor": 67,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 165,
+            "id_professor": 67,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 166,
+            "id_professor": 68,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 166,
+            "id_professor": 68,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 167,
+            "id_professor": 68,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 167,
+            "id_professor": 68,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 25,
+            "id_disciplina": 108,
+            "id_professor": 69,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 36,
+            "id_disciplina": 106,
+            "id_professor": 69,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 168,
+            "id_professor": 69,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 169,
+            "id_professor": 69,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 108,
+            "id_professor": 69,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 108,
+            "id_professor": 69,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 24,
+            "id_disciplina": 169,
+            "id_professor": 70,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 24,
+            "id_disciplina": 170,
+            "id_professor": 70,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 25,
+            "id_disciplina": 13,
+            "id_professor": 70,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 39,
+            "id_disciplina": 171,
+            "id_professor": 70,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 172,
+            "id_professor": 70,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 30,
+            "id_disciplina": 173,
+            "id_professor": 70,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 40,
+            "id_disciplina": 174,
+            "id_professor": 71,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 40,
+            "id_disciplina": 63,
+            "id_professor": 71,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 36,
+            "id_disciplina": 175,
+            "id_professor": 71,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 86,
+            "id_professor": 71,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 34,
+            "id_disciplina": 176,
+            "id_professor": 71,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 177,
+            "id_professor": 71,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 177,
+            "id_professor": 71,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 178,
+            "id_professor": 71,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 178,
+            "id_professor": 71,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 88,
+            "id_professor": 71,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 179,
+            "id_professor": 71,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 179,
+            "id_professor": 71,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 50,
+            "id_professor": 71,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 32,
+            "id_disciplina": 180,
+            "id_professor": 72,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 6,
+            "tipo_bloco": "Normal",
+            "id_turma": 32,
+            "id_disciplina": 160,
+            "id_professor": 72,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 19,
+            "id_disciplina": 181,
+            "id_professor": 72,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 19,
+            "id_disciplina": 182,
+            "id_professor": 72,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 19,
+            "id_disciplina": 183,
+            "id_professor": 72,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 184,
+            "id_professor": 72,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 148,
+            "id_professor": 72,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 185,
+            "id_professor": 73,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 25,
+            "id_disciplina": 186,
+            "id_professor": 74,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 186,
+            "id_professor": 74,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 187,
+            "id_professor": 74,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 75,
+            "id_professor": 74,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 1,
+            "id_disciplina": 29,
+            "id_professor": 74,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 17,
+            "id_professor": 74,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 80,
+            "id_professor": 75,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 80,
+            "id_professor": 75,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 80,
+            "id_professor": 75,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 80,
+            "id_professor": 75,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 37,
+            "id_disciplina": 152,
+            "id_professor": 76,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 37,
+            "id_disciplina": 72,
+            "id_professor": 76,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 188,
+            "id_professor": 76,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 108,
+            "id_professor": 76,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 189,
+            "id_professor": 76,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 48,
+            "id_professor": 77,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 31,
+            "id_disciplina": 49,
+            "id_professor": 77,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 6,
+            "tipo_bloco": "Normal",
+            "id_turma": 27,
+            "id_disciplina": 22,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 21,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 23,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 21,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 2,
+            "id_disciplina": 30,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 21,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 142,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 21,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 190,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 191,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 23,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 192,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 39,
+            "id_professor": 78,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 81,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 191,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 82,
+            "id_professor": 78,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 6,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 6,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 22,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 11,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 192,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 15,
+            "id_disciplina": 192,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 16,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 5,
+            "id_disciplina": 1,
+            "id_professor": 79,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 55,
+            "id_professor": 80,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 56,
+            "id_professor": 80,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 57,
+            "id_professor": 80,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 58,
+            "id_professor": 80,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 33,
+            "id_disciplina": 59,
+            "id_professor": 80,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 7,
+            "id_disciplina": 13,
+            "id_professor": 81,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 23,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 193,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 21,
+            "id_disciplina": 43,
+            "id_professor": 81,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 194,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 44,
+            "id_professor": 81,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 18,
+            "id_disciplina": 195,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 196,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 197,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 198,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 3,
+            "tipo_bloco": "Normal",
+            "id_turma": 28,
+            "id_disciplina": 140,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "Normal",
+            "id_turma": 10,
+            "id_disciplina": 23,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 142,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 13,
+            "id_disciplina": 34,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 14,
+            "id_disciplina": 142,
+            "id_professor": 81,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 170,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 3,
+            "id_disciplina": 29,
+            "id_professor": 81,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 36,
+            "id_disciplina": 199,
+            "id_professor": 82,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 36,
+            "id_disciplina": 200,
+            "id_professor": 82,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 17,
+            "id_disciplina": 70,
+            "id_professor": 82,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "1º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 201,
+            "id_professor": 82,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 202,
+            "id_professor": 82,
+            "origem": "Divisão"
+        },
+        {
+            "aulas_necessarias": 1,
+            "tipo_bloco": "2º Bloco",
+            "id_turma": 35,
+            "id_disciplina": 202,
+            "id_professor": 82,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 27,
+            "id_disciplina": 6,
+            "id_professor": 83,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 8,
+            "id_disciplina": 6,
+            "id_professor": 83,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 9,
+            "id_disciplina": 6,
+            "id_professor": 83,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 6,
+            "id_professor": 83,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 5,
+            "tipo_bloco": "Normal",
+            "id_turma": 23,
+            "id_disciplina": 203,
+            "id_professor": 84,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 20,
+            "id_disciplina": 68,
+            "id_professor": 84,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 12,
+            "id_disciplina": 68,
+            "id_professor": 84,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 4,
+            "tipo_bloco": "Normal",
+            "id_turma": 22,
+            "id_disciplina": 68,
+            "id_professor": 84,
+            "origem": "Matriz"
+        },
+        {
+            "aulas_necessarias": 2,
+            "tipo_bloco": "Normal",
+            "id_turma": 4,
+            "id_disciplina": 143,
+            "id_professor": 84,
+            "origem": "Matriz"
+        }
+    ],
+    "horarios_alocados": {
+        "2º MKT NI": {
+            "segunda-feira": {
+                "07:10 - 08:00": [
+                    {
+                        "id_matriz": "18-44-10",
+                        "disciplina": "Projeto Integrador II (para a Habilitação Marketing)",
+                        "professor": "ARMANDO FERREIRA",
+                        "sala": "A10"
+                    },
+                    {
+                        "id_matriz": "18-44-81",
+                        "disciplina": "Projeto Integrador II (para a Habilitação Marketing)",
+                        "professor": "VINICIUS DA SILVA ARGENTI",
+                        "sala": "A03"
+                    }
+                ],
+                "08:00 - 08:50": [
+                    {
+                        "id_matriz": "18-44-10",
+                        "disciplina": "Projeto Integrador II (para a Habilitação Marketing)",
+                        "professor": "ARMANDO FERREIRA",
+                        "sala": "A10"
+                    },
+                    {
+                        "id_matriz": "18-44-81",
+                        "disciplina": "Projeto Integrador II (para a Habilitação Marketing)",
+                        "professor": "VINICIUS DA SILVA ARGENTI",
+                        "sala": "A03"
+                    }
+                ],
+                "08:50 - 09:40": [
+                    {
+                        "id_matriz": "18-111-45",
+                        "disciplina": "Língua Inglesa",
+                        "professor": "KAMYLA BARBOSA",
+                        "sala": "A07"
+                    }
+                ],
+                "10:00 - 10:50": [
+                    {
+                        "id_matriz": "18-9-5",
+                        "disciplina": "Matemática",
+                        "professor": "ANDRE GUARALDO JUNIOR",
+                        "sala": "A07"
+                    }
+                ],
+                "10:50 - 11:40": [
+                    {
+                        "id_matriz": "18-195-81",
+                        "disciplina": "Promoção de Vendas e Merchandising",
+                        "professor": "VINICIUS DA SILVA ARGENTI",
+                        "sala": "A10"
+                    }
+                ],
+                "11:40 - 12:30": [
+                    {
+                        "id_matriz": "18-195-81",
+                        "disciplina": "Promoção de Vendas e Merchandising",
+                        "professor": "VINICIUS DA SILVA ARGENTI",
+                        "sala": "A10"
+                    }
+                ]
+            }
+        },
+        "1º ADM AMS": {
+            "segunda-feira": {
+                "07:10 - 08:00": [
+                    {
+                        "id_matriz": "1-1-1",
+                        "disciplina": "Geografia",
+                        "professor": "ADERVALDO GUILHERME SIQUEIRA",
+                        "sala": "A06"
+                    }
+                ],
+                "08:00 - 08:50": [
+                    {
+                        "id_matriz": "1-1-1",
+                        "disciplina": "Geografia",
+                        "professor": "ADERVALDO GUILHERME SIQUEIRA",
+                        "sala": "A06"
+                    }
+                ],
+                "08:50 - 09:40": [
+                    {
+                        "id_matriz": "1-5-3",
+                        "disciplina": "Química",
+                        "professor": "ANA PAULA DO CARMO",
+                        "sala": "A06"
+                    }
+                ],
+                "10:00 - 10:50": [
+                    {
+                        "id_matriz": "1-5-3",
+                        "disciplina": "Química",
+                        "professor": "ANA PAULA DO CARMO",
+                        "sala": "A06"
+                    }
+                ],
+                "10:50 - 11:40": [
+                    {
+                        "id_matriz": "1-34-8",
+                        "disciplina": "Legislação Empresarial",
+                        "professor": "ANTONIO HENRIQUE VITOLANO",
+                        "sala": "A06"
+                    }
+                ],
+                "11:40 - 12:30": [
+                    {
+                        "id_matriz": "1-34-8",
+                        "disciplina": "Legislação Empresarial",
+                        "professor": "ANTONIO HENRIQUE VITOLANO",
+                        "sala": "A06"
+                    }
+                ]
+            },
+            "terça-feira": {
+                "07:10 - 08:00": [
+                    {
+                        "id_matriz": "1-142-54",
+                        "disciplina": "Desenvolvimento das Ações de Marketing e dos Processos Comerciais",
+                        "professor": "MARCO ANTONIO FLAVIO",
+                        "sala": "A09"
+                    }
+                ]
+            }
+        }
+    },
+    "salas": [
+        {
+            "id": 1,
+            "nome": "A03"
+        },
+        {
+            "id": 2,
+            "nome": "A06"
+        },
+        {
+            "id": 3,
+            "nome": "A07"
+        },
+        {
+            "id": 4,
+            "nome": "A08"
+        },
+        {
+            "id": 5,
+            "nome": "A09"
+        },
+        {
+            "id": 6,
+            "nome": "A10"
+        },
+        {
+            "id": 7,
+            "nome": "B01"
+        },
+        {
+            "id": 8,
+            "nome": "B02"
+        },
+        {
+            "id": 9,
+            "nome": "B03"
+        },
+        {
+            "id": 10,
+            "nome": "B04"
+        },
+        {
+            "id": 11,
+            "nome": "B05"
+        },
+        {
+            "id": 12,
+            "nome": "B06"
+        },
+        {
+            "id": 13,
+            "nome": "C01"
+        },
+        {
+            "id": 14,
+            "nome": "C02"
+        },
+        {
+            "id": 15,
+            "nome": "C03"
+        },
+        {
+            "id": 16,
+            "nome": "C04"
+        },
+        {
+            "id": 17,
+            "nome": "C05"
+        },
+        {
+            "id": 18,
+            "nome": "C06"
+        },
+        {
+            "id": 19,
+            "nome": "CNC"
+        },
+        {
+            "id": 20,
+            "nome": "OFICINA"
+        },
+        {
+            "id": 21,
+            "nome": "AUT I"
+        },
+        {
+            "id": 22,
+            "nome": "AUT II"
+        },
+        {
+            "id": 23,
+            "nome": "ETT"
+        },
+        {
+            "id": 24,
+            "nome": "COM"
+        },
+        {
+            "id": 25,
+            "nome": "TELE I"
+        },
+        {
+            "id": 26,
+            "nome": "TELE II"
+        },
+        {
+            "id": 27,
+            "nome": "ETN1"
+        },
+        {
+            "id": 28,
+            "nome": "ETN2"
+        },
+        {
+            "id": 29,
+            "nome": "ETN3"
+        },
+        {
+            "id": 30,
+            "nome": "ETN4"
+        }
+    ]
+}
