@@ -1,0 +1,251 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-home fa-fw"></i> Dashboard
+{% endblock %}
+
+{% block header_actions %}
+    {# Exemplo de como adicionar um botão de ação principal no cabeçalho no futuro #}
+    {# <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Algo</a> #}
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h2>Bem-vindo, {{ session.username }}!</h2>
+        <p style="color: var(--cor-texto-cinza);">Seu nível de acesso é <strong>{{ session.user_role }}</strong>. Utilize os atalhos abaixo ou o menu lateral para gerenciar o sistema de horários.</p>
+    </div>
+
+    <h3 style="margin-bottom: 1rem;">Atalhos Rápidos</h3>
+    <div class="dashboard-grid">
+        {% if session.user_role in ['Full', 'Supervisor', 'User'] %}
+            <a href="{{ url_for('admin_alocacao') }}" class="dashboard-card">
+                <i class="fas fa-calendar-check"></i>
+                <h4>Alocar Horários</h4>
+                <p>Interface manual para alocar aulas, professores e salas na grade.</p>
+            </a>
+            <a href="{{ url_for('admin_reposicao') }}" class="dashboard-card">
+                <i class="fas fa-calendar-plus"></i>
+                <h4>Reposição aos Sábados</h4>
+                <p>Gerencie aulas para sábados letivos com horários flexíveis.</p>
+            </a>
+            <a href="{{ url_for('admin_view_data', data_key='turmas') }}" class="dashboard-card">
+                <i class="fas fa-users"></i>
+                <h4>Gerenciar Turmas</h4>
+                <p>Adicione, edite ou remova as turmas e suas filiais.</p>
+            </a>
+            <a href="{{ url_for('admin_view_data', data_key='professores') }}" class="dashboard-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h4>Gerenciar Professores</h4>
+                <p>Edite professores e suas disponibilidades de horário.</p>
+            </a>
+            <a href="{{ url_for('admin_salas') }}" class="dashboard-card">
+                <i class="fas fa-igloo"></i>
+                <h4>Gerenciar Salas</h4>
+                <p>Adicione ou edite as salas e seus locais.</p>
+            </a>
+        {% endif %}
+
+        {% if session.user_role == 'Full' %}
+            <a href="{{ url_for('admin_users_list') }}" class="dashboard-card">
+                <i class="fas fa-user-shield"></i>
+                <h4>Gerenciar Usuários</h4>
+                <p>Adicione ou remova administradores do sistema.</p>
+            </a>
+        {% endif %}
+    </div>
+
+    {% if session.user_role in ['Full', 'Supervisor'] %}
+    <div class="card" style="margin-top: 2rem;">
+        <h3 style="margin-bottom: 1rem;"><i class="fas fa-cogs"></i> Motor de Geração de Horários</h3>
+        <p style="color: var(--cor-texto-cinza);">Utilize esta ferramenta para gerar uma nova sugestão de grade horária com base em todas as restrições cadastradas. O processo pode levar vários minutos.</p>
+        <div id="gerador-horarios-container" style="margin-top: 1rem;">
+            <button id="btn-iniciar-geracao" class="btn btn-primary">
+                <i class="fas fa-play-circle"></i> Iniciar Geração de Sugestão
+            </button>
+            <div id="gerador-status" style="margin-top: 1.5rem;">
+                </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if session.user_role == 'Full' %}
+    <div class="card" style="margin-top: 2rem;">
+        <h3 style="margin-bottom: 1rem;"><i class="fas fa-database"></i> Ferramentas de Dados</h3>
+        <div class="dashboard-grid">
+            <div class="import-card">
+                <h5 class="card-title"><i class="fas fa-file-csv"></i> Importar Matriz via CSV</h5>
+                <p>Substitui turmas, professores, disciplinas e matriz existentes.</p>
+                <form action="{{ url_for('importar_quadro_aulas_csv') }}" method="post" enctype="multipart/form-data" style="margin-top: 1rem;">
+                    <input type="file" name="csv_file" required>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;" onclick="return confirm('ATENÇÃO! Esta ação substituirá dados existentes. Deseja continuar?');">
+                        Importar
+                    </button>
+                </form>
+            </div>
+            <div class="import-card">
+                <h5 class="card-title"><i class="fas fa-eraser"></i> Limpar Alocações</h5>
+                <p>Remove <strong>todas</strong> as alocações de horários existentes. A matriz e os cadastros são mantidos.</p>
+                 <form action="{{ url_for('clear_allocations') }}" method="post" style="margin-top: 1rem;" onsubmit="return confirm('ATENÇÃO! Esta ação não pode ser desfeita. Deseja limpar TODAS as alocações?');">
+                    <button type="submit" class="btn btn-primary" style="background-color: var(--cor-erro);">Limpar Agora</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const btnIniciar = document.getElementById('btn-iniciar-geracao');
+        const statusDiv = document.getElementById('gerador-status');
+        let intervalId = null;
+
+        btnIniciar.addEventListener('click', function() {
+            if (confirm('Iniciar verificação e geração de sugestão de horário?')) {
+                // O fluxo agora começa com a validação
+                iniciarValidacao();
+            }
+        });
+
+        // PASSO A: Função que chama a validação primeiro
+        function iniciarValidacao() {
+            btnIniciar.disabled = true;
+            btnIniciar.innerHTML = '<i class="fas fa-check-circle"></i> Validando dados...';
+            statusDiv.innerHTML = '<p class="text-info">Executando pré-verificação de consistência dos dados...</p>';
+
+            fetch('{{ url_for("validar_dados_api") }}', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    // Se a validação passou, inicia a geração de verdade
+                    statusDiv.innerHTML = '<p class="text-success">Validação concluída com sucesso! Iniciando geração do horário...</p>';
+                    iniciarGeracao();
+                } else {
+                    // Se a validação falhou, mostra o relatório de erros
+                    mostrarRelatorioDeConflitos(data.conflitos);
+                }
+            })
+            .catch(err => {
+                console.error('Erro na validação:', err);
+                mostrarErro('Ocorreu um erro de comunicação ao validar os dados.');
+            });
+        }
+
+        // PASSO B: Inicia a geração (só é chamado se a validação passar)
+        function iniciarGeracao() {
+            btnIniciar.disabled = true;
+            btnIniciar.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando, por favor aguarde...';
+            statusDiv.innerHTML = '<p style="color: #007bff;">Iniciando processo no servidor...</p>';
+
+            fetch('{{ url_for("gerar_horario_automatico") }}', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro de rede: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.task_id) {
+                    statusDiv.innerHTML = `<p style="color: #17a2b8;">Tarefa <strong>${data.task_id}</strong> iniciada. Verificando status...</p>`;
+                    intervalId = setInterval(() => verificarStatus(data.task_id), 3000); // Verifica a cada 3 segundos
+                } else {
+                    mostrarErro(data.error || 'Não foi possível iniciar a tarefa de geração.');
+                }
+            })
+            .catch(err => {
+                console.error('Erro ao iniciar geração:', err);
+                mostrarErro('Ocorreu um erro de comunicação com o servidor.');
+            });
+        }
+        
+        function verificarStatus(taskId) {
+            fetch(`/admin/horarios/status/${taskId}`)
+            .then(response => response.json())
+            .then(data => {
+                switch(data.status) {
+                    case 'running':
+                        statusDiv.innerHTML = `<p style="color: #17a2b8;"><strong>Status:</strong> Em andamento... <i class="fas fa-spinner fa-spin"></i></p>`;
+                        break;
+                    case 'completed':
+                        clearInterval(intervalId);
+                        statusDiv.innerHTML = `
+                            <div style="border: 1px solid #28a745; padding: 15px; border-radius: 5px; background-color: #d4edda;">
+                                <h4 style="color: #155724;">Geração Concluída!</h4>
+                                <p>Uma nova sugestão de horário foi gerada com sucesso.</p>
+                                <a href="{{ url_for('listar_sugestoes') }}" class="button-primary" style="background-color: #28a745;">Ver Sugestões para Aprovação</a>
+                            </div>
+                        `;
+                        btnIniciar.disabled = false;
+                        btnIniciar.innerHTML = '<i class="fas fa-play-circle"></i> Iniciar Nova Geração';
+                        break;
+                    case 'failed':
+                        clearInterval(intervalId);
+                        mostrarErro(`A geração falhou. Motivo: ${data.result || 'Erro desconhecido.'}`);
+                        break;
+                    case 'not_found':
+                        clearInterval(intervalId);
+                        mostrarErro('A tarefa não foi encontrada no servidor. Tente novamente.');
+                        break;
+                }
+            })
+            .catch(err => {
+                console.error('Erro ao verificar status:', err);
+                statusDiv.innerHTML = `<p style="color: #ffc107;">Problema de comunicação ao verificar status. Tentando novamente...</p>`;
+            });
+        }
+// Função para exibir o relatório de erros de forma amigável
+        function mostrarRelatorioDeConflitos(conflitos) {
+            let htmlRelatorio = `
+                <div class="alert alert-danger">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Conflitos de Dados Encontrados!</h4>
+                    <p>A geração de horário não pode continuar porque os seguintes professores têm mais aulas atribuídas do que horários disponíveis. Por favor, corrija a disponibilidade ou a matriz curricular.</p>
+                </div>
+                <div class="table-container">
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Professor</th>
+                                <th class="text-center">Aulas Atribuídas</th>
+                                <th class="text-center">Horários Disponíveis</th>
+                                <th>Ação Recomendada</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            conflitos.forEach(conflito => {
+                htmlRelatorio += `
+                    <tr>
+                        <td>${conflito.nome}</td>
+                        <td class="text-center"><strong>${conflito.aulas_atribuidas}</strong></td>
+                        <td class="text-center"><strong>${conflito.horarios_disponiveis}</strong></td>
+                        <td>
+                            <a href="/admin/professores/disponibilidade/${conflito.id}" class="button-secondary" target="_blank">
+                                <i class="fas fa-edit"></i> Corrigir Disponibilidade
+                            </a>
+                        </td>
+                    </tr>
+                `;
+            });
+            htmlRelatorio += '</tbody></table></div>';
+            
+            statusDiv.innerHTML = htmlRelatorio;
+            btnIniciar.disabled = false;
+            btnIniciar.innerHTML = '<i class="fas fa-redo"></i> Validar Novamente';
+        }
+        
+        function mostrarErro(mensagem) {
+            statusDiv.innerHTML = `<div style="border: 1px solid #dc3545; padding: 15px; border-radius: 5px; background-color: #f8d7da;"><h4 style="color: #721c24;">Erro!</h4><p>${mensagem}</p></div>`;
+            btnIniciar.disabled = false;
+            btnIniciar.innerHTML = '<i class="fas fa-redo"></i> Tentar Novamente';
+        }
+    });
+    </script>
+
+{% endblock %}

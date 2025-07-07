@@ -1,0 +1,131 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Gerenciar {{ title }}{% endblock %}
+
+{% block page_title %}
+    {# Ícones dinâmicos baseados na chave de dados #}
+    {% if data_key == 'turmas' %}<i class="fas fa-users fa-fw"></i>
+    {% elif data_key == 'professores' %}<i class="fas fa-chalkboard-teacher fa-fw"></i>
+    {% elif data_key == 'disciplinas' %}<i class="fas fa-book fa-fw"></i>
+    {% elif data_key == 'matriz' %}<i class="fas fa-sitemap fa-fw"></i>
+    {% endif %}
+    Gerenciar {{ title }}
+{% endblock %}
+
+{% block header_actions %}
+    {# Adiciona o botão "Adicionar Novo" no cabeçalho, se aplicável #}
+    {% if data_key in ['turmas', 'professores', 'disciplinas'] and session.user_role in ['Full', 'Supervisor'] %}
+        <a href="{{ url_for(data_key + '_add') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Adicionar Novo
+        </a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    {% for header in headers %}
+                        <th>{{ header }}</th>
+                    {% endfor %}
+                    {% if data_key != 'matriz' and session.user_role in ['Full', 'Supervisor'] %}
+                        <th style="width: 250px;">Ações</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        {% for cell in row.data %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+
+                        {% if data_key != 'matriz' and session.user_role in ['Full', 'Supervisor'] %}
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{{ url_for(data_key + '_edit', item_id=row.id) }}" class="btn-action edit" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                {% if data_key == 'professores' %}
+                                    <a href="{{ url_for('professor_disponibilidade', prof_id=row.id) }}" class="btn-action availability" title="Disponibilidade">
+                                        <i class="fas fa-clock"></i>
+                                    </a>
+                                {% endif %}
+                                <form method="post" action="{{ url_for(data_key + '_delete', item_id=row.id) }}" onsubmit="return confirm('Tem certeza que deseja excluir este item? Esta ação é irreversível.');" style="display:inline;">
+                                    <button type="submit" class="btn-action delete" title="Excluir">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                        {% endif %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="100%" style="text-align: center; padding: 2rem;">
+                            Nenhum item encontrado.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{# ======================================================= #}
+{# |       ADICIONE O BLOCO DE CÓDIGO ABAIXO           | #}
+{# ======================================================= #}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const dataTable = document.getElementById('dataTable');
+        const tableRows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            for (let i = 0; i < tableRows.length; i++) {
+                const row = tableRows[i];
+                const rowText = row.textContent.toLowerCase();
+                
+                if (rowText.includes(searchTerm)) {
+                    row.style.display = ''; // Mostra a linha
+                } else {
+                    row.style.display = 'none'; // Esconde a linha
+                }
+            }
+        });
+    });
+</script>
+<style>
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+    }
+    .btn-action {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: white;
+    }
+    .btn-action.edit { background-color: var(--cor-aviso); }
+    .btn-action.edit:hover { background-color: #c88c1c; }
+    
+    .btn-action.availability { background-color: var(--cor-info); }
+    .btn-action.availability:hover { background-color: #1a6a8a; }
+
+    .btn-action.delete { background-color: var(--cor-erro); }
+    .btn-action.delete:hover { background-color: #b72b2b; }
+</style>
+{% endblock %}

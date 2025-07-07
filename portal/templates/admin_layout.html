@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Painel Administrativo{% endblock %} - Portal de Horários</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_style.css') }}">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>PortalHorários</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('admin_dashboard') }}" class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}">
+                <i class="fas fa-home fa-fw"></i>
+                <span>Dashboard</span>
+            </a>
+            <hr>
+            <a href="{{ url_for('admin_alocacao') }}" class="{% if request.endpoint == 'admin_alocacao' %}active{% endif %}">
+                <i class="fas fa-calendar-check fa-fw"></i>
+                <span>Alocar Horários</span>
+            </a>
+            <a href="{{ url_for('admin_reposicao') }}" class="{% if request.endpoint == 'admin_reposicao' %}active{% endif %}">
+                <i class="fas fa-calendar-plus fa-fw"></i>
+                <span>Reposições</span>
+            </a>
+            <hr>
+            <a href="{{ url_for('admin_view_data', data_key='turmas') }}" class="{% if request.endpoint == 'admin_view_data' and request.view_args.get('data_key') == 'turmas' %}active{% endif %}">
+                <i class="fas fa-users fa-fw"></i>
+                <span>Turmas</span>
+            </a>
+            <a href="{{ url_for('admin_view_data', data_key='professores') }}" class="{% if request.endpoint == 'admin_view_data' and request.view_args.get('data_key') == 'professores' %}active{% endif %}">
+                <i class="fas fa-chalkboard-teacher fa-fw"></i>
+                <span>Professores</span>
+            </a>
+            <a href="{{ url_for('admin_view_data', data_key='disciplinas') }}" class="{% if request.endpoint == 'admin_view_data' and request.view_args.get('data_key') == 'disciplinas' %}active{% endif %}">
+                <i class="fas fa-book fa-fw"></i>
+                <span>Disciplinas</span>
+            </a>
+             <a href="{{ url_for('admin_salas') }}" class="{% if request.endpoint == 'admin_salas' %}active{% endif %}">
+                <i class="fas fa-igloo fa-fw"></i>
+                <span>Salas</span>
+            </a>
+            <a href="{{ url_for('admin_view_matriz') }}" class="{% if request.endpoint == 'admin_view_matriz' %}active{% endif %}">
+                <i class="fas fa-sitemap fa-fw"></i>
+                <span>Matriz Curricular</span>
+            </a>
+            {% if session.user_role == 'Full' %}
+                <hr>
+                <a href="{{ url_for('admin_users_list') }}" class="{% if request.endpoint == 'admin_users_list' %}active{% endif %}">
+                    <i class="fas fa-user-shield fa-fw"></i>
+                    <span>Usuários</span>
+                </a>
+            {% endif %}
+        </nav>
+        <div class="sidebar-footer">
+            <a href="{{ url_for('admin_logout') }}">
+                <i class="fas fa-sign-out-alt fa-fw"></i>
+                <span>Sair ({{ session.username }})</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="main-wrapper" id="main-wrapper">
+        <header class="main-header">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                 <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                 </button>
+                 <h1>{% block page_title %}{% endblock %}</h1>
+            </div>
+            <div class="header-actions">
+                {% block header_actions %}{% endblock %}
+            </div>
+        </header>
+
+        <main class="page-content">
+             {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.getElementById('menu-toggle');
+            if (menuToggle) {
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    sidebar.classList.toggle('open');
+                });
+            }
+            document.addEventListener('click', (e) => {
+                if (sidebar && sidebar.classList.contains('open') && !sidebar.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            });
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

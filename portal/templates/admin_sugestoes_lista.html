@@ -1,0 +1,46 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Sugestões de Horários Pendentes{% endblock %}
+{% block page_title %}
+    <i class="fas fa-lightbulb"></i> Sugestões de Horários para Aprovação
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <p>Abaixo estão as grades de horário geradas pelo motor que estão aguardando sua revisão e aprovação. Ao aprovar uma sugestão, ela se tornará a grade de horários oficial do sistema.</p>
+
+    {% if sugestoes %}
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID da Tarefa</th>
+                    <th>Data de Criação</th>
+                    <th>Gerado Por</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sugestao in sugestoes|sort(attribute='criado_em', reverse=true) %}
+                <tr>
+                    <td><small>{{ sugestao.id }}</small></td>
+                    <td>{{ sugestao.criado_em|replace('T', ' ') }}</td>
+                    <td>{{ sugestao.gerado_por }}</td>
+                    <td>
+                        {# Este link renderiza a grade pública, mas com os dados da sugestão #}
+                        <a href="{{ url_for('visualizar_sugestao', task_id=sugestao.id) }}" target="_blank" class="button-secondary">Visualizar Grade</a>
+                        
+                        <form action="{{ url_for('aprovar_sugestao', task_id=sugestao.id) }}" method="post" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja aprovar esta sugestão? Ela substituirá a grade de horários atual.')">
+                            <button type="submit" class="button-primary">Aprovar e Publicar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            Não há nenhuma sugestão de horário pendente no momento.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

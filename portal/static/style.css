@@ -1,0 +1,279 @@
+/* --- ESTILOS GERAIS E FONTES --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333333;
+}
+
+/* --- CABEÇALHO PADRÃO CPS --- */
+.main-header {
+    background-color: #b91d3c; /* Vermelho institucional CPS */
+    color: #ffffff;
+    padding: 10px 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    /*justify-content: center; */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /*max-width: 1400px; */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    height: 45px;
+    margin-right: 20px;
+}
+
+#main-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 0;
+}
+
+.admin-login-link {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.admin-login-link:hover {
+    background-color: white;
+    color: #b91d3c;
+}
+
+.admin-login-link i {
+    margin-right: 8px;
+}
+
+/* --- CONTAINER PRINCIPAL --- */
+.container {
+    padding: 25px;
+    box-sizing: border-box;
+    /* max-width: 1400px; */
+    margin: 0 auto;
+}
+
+/* --- INÍCIO DAS ALTERAÇÕES DE LAYOUT E FONTE --- */
+.info-header {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+#current-day-period {
+    font-family: 'Roboto Slab', serif;
+    /* ANTES: font-size: 1.6em; */
+    /* DEPOIS: A fonte se ajustará entre 1.4rem e 2.2rem, baseada em 2.5% da largura da tela */
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem); 
+    font-weight: 700;
+    color: #b91d3c;
+    margin: 0 0 5px 0;
+}
+
+#current-time {
+    /* ANTES: font-size: 1.0em; */
+    /* DEPOIS: Técnica similar para a fonte menor */
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    color: #555555;
+    margin-bottom: 0;
+}
+
+
+/* --- FIM DAS ALTERAÇÕES DE LAYOUT E FONTE --- */
+
+/* --- TABELA DE HORÁRIOS --- */
+#horario-table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    table-layout: fixed;
+}
+
+th, td {
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+thead th {
+    font-family: 'Roboto', sans-serif;
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    padding: 15px 8px;
+}
+
+/* --- INÍCIO DA ALTERAÇÃO DE COR DA LINHA --- */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Tom de cinza um pouco mais escuro para melhor contraste */
+}
+/* --- FIM DA ALTERAÇÃO DE COR DA LINHA --- */
+
+
+td.turma-cell {
+    font-weight: 700;
+    background-color: #f0f2f5;
+    font-size: 1.1em;
+    padding: 8px;
+}
+
+td.intervalo-cell {
+    background-color: #e9ecef;
+}
+
+thead th .intervalo-label {
+    font-weight: normal;
+    font-size: 0.8em;
+    color: #ffc107;
+}
+
+thead th .horario-apelido {
+    font-weight: normal;
+    font-size: 0.8em;
+    color: #e0e0e0;
+}
+
+.aula-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    min-height: 80px;
+    border-bottom: 1px dashed #cccccc;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.aula-info:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.sala {
+    font-weight: 700;
+    font-size: 1.8em;
+    color: #b91d3c;
+    line-height: 1;
+}
+
+.sigla {
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.professor {
+    font-size: 0.85em;
+    color: #555555;
+}
+
+.aula-vaga {
+    font-style: italic;
+    color: #999999;
+    font-size: 0.9em;
+}
+
+/* MENSAGENS */
+.error-message, .no-data-message {
+    text-align: center;
+    padding: 25px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+/* --- RESPONSIVIDADE AVANÇADA PARA TABELAS --- */
+@media (max-width: 768px) {
+    /* Esconde o cabeçalho original da tabela */
+    table thead {
+        display: none;
+    }
+
+    /* Transforma a tabela, o corpo, as linhas e as células em blocos */
+    table, tbody, tr, td {
+        display: block;
+        width: 100%;
+    }
+
+    /* Cada linha se torna um "card" */
+    tr {
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between; /* Alinha o "título" e o "valor" */
+        align-items: center;
+        text-align: right; /* Alinha o conteúdo da célula à direita */
+        border: none;
+        border-bottom: 1px solid #f0f0f0;
+        padding-left: 50%; /* Espaço para o pseudo-elemento com o título */
+        position: relative;
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+    
+    /* Adiciona o texto do cabeçalho antes de cada célula */
+    td::before {
+        content: attr(data-label); /* Pega o título de um atributo que adicionaremos via JS */
+        position: absolute;
+        left: 15px;
+        width: calc(50% - 30px);
+        text-align: left;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* A célula da turma vira o "título" do card */
+    td.turma-cell {
+        background-color: #333;
+        color: white;
+        font-size: 1.2em;
+        padding-left: 15px;
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    td.turma-cell::before {
+        display: none; /* Não precisa de título para si mesma */
+    }
+
+    .aula-vaga {
+        width: 100%;
+        text-align: right;
+    }
+}

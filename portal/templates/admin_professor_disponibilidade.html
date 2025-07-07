@@ -1,0 +1,62 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Disponibilidade de {{ professor.nome }}{% endblock %}
+{% block page_title %}
+    <i class="fas fa-user-clock"></i> Disponibilidade de: <strong>{{ professor.nome }}</strong>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <p class="lead">
+        Defina o status de cada horário para o professor. Isso será usado pelo motor de geração automática de horários.
+        <br>
+        - <strong>Disponível:</strong> O professor pode ser alocado neste horário.
+        <br>
+        - <strong>Indisponível:</strong> Bloqueia o horário para qualquer alocação.
+        <br>
+        - <strong>Compromisso Externo:</strong> Indica um trabalho em outra instituição, forçando um intervalo de descanso após este bloco.
+    </p>
+    <hr>
+    <form method="post" action="{{ url_for('professor_disponibilidade', prof_id=professor.id) }}">
+        <div class="table-container">
+            <table class="table table-bordered text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Horário</th>
+                        {% for dia in dias %}
+                            <th>{{ dia.split('-')[0]|capitalize }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for horario in horarios %}
+                        <tr>
+                            <td>{{ horario }}</td>
+                            {% for dia in dias %}
+                                <td>
+                                    {# Lógica para obter o status atual ou o padrão 'disponivel' #}
+                                    {% set status_atual = professor.disponibilidade.get(dia, {}).get(horario, 'disponivel') %}
+                                    
+                                    {# O 'name' do select é a chave para o backend identificar o dia e o horário #}
+                                    <select name="{{ dia }}|{{ horario }}" class="form-control form-control-sm">
+                                        <option value="disponivel" {% if status_atual == 'disponivel' %}selected{% endif %}>Disponível</option>
+                                        <option value="indisponivel" {% if status_atual == 'indisponivel' %}selected{% endif %}>Indisponível</option>
+                                        <option value="externo" {% if status_atual == 'externo' %}selected{% endif %}>Compromisso Externo</option>
+                                    </select>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-actions mt-4">
+            <button type="submit" class="button-primary">
+                <i class="fas fa-save"></i> Salvar Disponibilidade
+            </button>
+            <a href="{{ url_for('admin_view_data', data_key='professores') }}" class="button-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

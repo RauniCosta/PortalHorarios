@@ -1,0 +1,30 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 800px; margin: auto;">
+    <form method="post" action="{{ form_action }}">
+        <div class="form-grid-2">
+            {% for field in fields %}
+            <div class="form-group">
+                <label for="{{ field.name }}">{{ field.label }}</label>
+                <input type="{{ field.type|default('text') }}" 
+                       id="{{ field.name }}" 
+                       name="{{ field.name }}" 
+                       value="{{ item[field.name] if item else '' }}" 
+                       required>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="form-actions" style="border-top: 1px solid var(--cor-borda); margin-top: 2rem; padding-top: 1.5rem;">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Salvar
+            </button>
+            <a href="{{ cancel_url }}" class="btn btn-secondary" style="background-color: #718096;">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
