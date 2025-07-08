@@ -3,69 +3,82 @@
 {% block title %}Gerenciar {{ title }}{% endblock %}
 
 {% block page_title %}
-    {# Ícones dinâmicos baseados na chave de dados #}
-    {% if data_key == 'turmas' %}<i class="fas fa-users fa-fw"></i>
-    {% elif data_key == 'professores' %}<i class="fas fa-chalkboard-teacher fa-fw"></i>
-    {% elif data_key == 'disciplinas' %}<i class="fas fa-book fa-fw"></i>
-    {% elif data_key == 'matriz' %}<i class="fas fa-sitemap fa-fw"></i>
+    {# Ícones dinâmicos baseados no tipo de dado, mantendo a lógica que já funciona #}
+    {% if data_type == 'turmas' %}<i class="fas fa-users fa-fw"></i>
+    {% elif data_type == 'professores' %}<i class="fas fa-chalkboard-teacher fa-fw"></i>
+    {% elif data_type == 'disciplinas' %}<i class="fas fa-book fa-fw"></i>
+    {% elif data_type == 'salas' %}<i class="fas fa-igloo fa-fw"></i>
+    {% elif data_type == 'users' %}<i class="fas fa-user-shield fa-fw"></i>
     {% endif %}
     Gerenciar {{ title }}
 {% endblock %}
 
 {% block header_actions %}
-    {# Adiciona o botão "Adicionar Novo" no cabeçalho, se aplicável #}
-    {% if data_key in ['turmas', 'professores', 'disciplinas'] and session.user_role in ['Full', 'Supervisor'] %}
-        <a href="{{ url_for(data_key + '_add') }}" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Adicionar Novo
-        </a>
+    {# CORREÇÃO FINAL: Bloco explícito que gera o link de "Adicionar" correto para cada entidade #}
+    {% if session.role in ['Full', 'Supervisor'] %}
+        {% if data_type == 'turmas' %}
+            <a href="{{ url_for('main.turma_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Nova Turma</a>
+        {% elif data_type == 'professores' %}
+            <a href="{{ url_for('main.professor_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Novo Professor</a>
+        {% elif data_type == 'disciplinas' %}
+            <a href="{{ url_for('main.disciplina_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Nova Disciplina</a>
+        {% elif data_type == 'salas' %}
+            <a href="{{ url_for('main.sala_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Nova Sala</a>
+        {% elif data_type == 'users' and session.role == 'Full' %}
+            <a href="{{ url_for('main.user_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Novo Usuário</a>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
 {% block content %}
 <div class="card">
     <div class="table-container">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
-                    {% for header in headers %}
-                        <th>{{ header }}</th>
-                    {% endfor %}
-                    {% if data_key != 'matriz' and session.user_role in ['Full', 'Supervisor'] %}
-                        <th style="width: 250px;">Ações</th>
-                    {% endif %}
+                    {# Cabeçalhos da tabela adaptados para cada tipo de dado #}
+                    <th>ID</th>
+                    <th>Nome</th>
+                    {% if data_type == 'turmas' %}<th>Apelido</th>{% endif %}
+                    {% if data_type == 'users' %}<th>Permissão</th>{% endif %}
+                    <th class="text-end" style="width: 320px;">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                {% for row in rows %}
+                {% for item in data %}
                     <tr>
-                        {% for cell in row.data %}
-                            <td>{{ cell }}</td>
-                        {% endfor %}
+                        {# Exibição dos dados de cada item #}
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.nome if 'nome' in item else item.username }}</td>
+                        {% if data_type == 'turmas' %}<td>{{ item.apelido }}</td>{% endif %}
+                        {% if data_type == 'users' %}<td><span class="tag divisao">{{ item.role }}</span></td>{% endif %}
 
-                        {% if data_key != 'matriz' and session.user_role in ['Full', 'Supervisor'] %}
-                        <td>
-                            <div class="action-buttons">
-                                <a href="{{ url_for(data_key + '_edit', item_id=row.id) }}" class="btn-action edit" title="Editar">
-                                    <i class="fas fa-pencil-alt"></i>
+                        {# CORREÇÃO FINAL: Bloco de ações explícito para cada entidade #}
+                        <td class="text-end">
+                            {% if data_type == 'professores' %}
+                                <a href="{{ url_for('main.professor_edit', prof_id=item.id) }}" class="btn btn-sm btn-outline-secondary" title="Editar Nome">Editar</a>
+                                <a href="{{ url_for('main.professor_disponibilidade', prof_id=item.id) }}" class="btn btn-sm btn-outline-primary" title="Editar Disponibilidade">Disponibilidade</a>
+                                <form action="{{ url_for('main.professor_delete', prof_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja deletar o professor {{ item.nome }}?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Deletar"><i class="fas fa-trash"></i></button>
+                                </form>
+                            {% elif data_type in ['turmas', 'disciplinas', 'salas', 'users'] %}
+                                {# A rota de edição/deleção precisa do ID correto. Ex: user_id, turma_id etc. #}
+                                {# Uma forma genérica que funciona se a variável na rota for `item_id` #}
+                                <a href="{{ url_for('main.' + data_type[:-1] + '_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i> Editar
                                 </a>
-                                {% if data_key == 'professores' %}
-                                    <a href="{{ url_for('professor_disponibilidade', prof_id=row.id) }}" class="btn-action availability" title="Disponibilidade">
-                                        <i class="fas fa-clock"></i>
-                                    </a>
-                                {% endif %}
-                                <form method="post" action="{{ url_for(data_key + '_delete', item_id=row.id) }}" onsubmit="return confirm('Tem certeza que deseja excluir este item? Esta ação é irreversível.');" style="display:inline;">
-                                    <button type="submit" class="btn-action delete" title="Excluir">
-                                        <i class="fas fa-trash-alt"></i>
+                                <form action="{{ url_for('main.' + data_type[:-1] + '_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja deletar este item?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Deletar">
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
-                            </div>
+                            {% endif %}
                         </td>
-                        {% endif %}
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="100%" style="text-align: center; padding: 2rem;">
-                            Nenhum item encontrado.
+                        <td colspan="100%" class="text-center" style="padding: 2rem;">
+                            Nenhum item cadastrado.
                         </td>
                     </tr>
                 {% endfor %}
@@ -75,57 +88,37 @@
 </div>
 {% endblock %}
 
-{# ======================================================= #}
-{# |       ADICIONE O BLOCO DE CÓDIGO ABAIXO           | #}
-{# ======================================================= #}
-
 {% block scripts %}
+{# NOVO: Este bloco adiciona a funcionalidade de busca na tabela. #}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // 1. Pega os elementos HTML: o campo de busca e a tabela.
         const searchInput = document.getElementById('searchInput');
         const dataTable = document.getElementById('dataTable');
+
+        // Garante que o código só execute se os elementos existirem na página.
+        if (!searchInput || !dataTable) return;
+
         const tableRows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
 
+        // 2. Adiciona um "ouvinte" que dispara uma ação toda vez que o usuário digita algo.
         searchInput.addEventListener('input', function() {
             const searchTerm = searchInput.value.toLowerCase();
 
+            // 3. Itera sobre cada linha da tabela.
             for (let i = 0; i < tableRows.length; i++) {
                 const row = tableRows[i];
                 const rowText = row.textContent.toLowerCase();
                 
+                // 4. Se o texto da linha contém o termo buscado, mostra a linha.
                 if (rowText.includes(searchTerm)) {
-                    row.style.display = ''; // Mostra a linha
+                    row.style.display = ''; 
+                // 5. Senão, esconde a linha.
                 } else {
-                    row.style.display = 'none'; // Esconde a linha
+                    row.style.display = 'none';
                 }
             }
         });
     });
 </script>
-<style>
-    .action-buttons {
-        display: flex;
-        gap: 0.5rem;
-    }
-    .btn-action {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 36px;
-        height: 36px;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.2s;
-        color: white;
-    }
-    .btn-action.edit { background-color: var(--cor-aviso); }
-    .btn-action.edit:hover { background-color: #c88c1c; }
-    
-    .btn-action.availability { background-color: var(--cor-info); }
-    .btn-action.availability:hover { background-color: #1a6a8a; }
-
-    .btn-action.delete { background-color: var(--cor-erro); }
-    .btn-action.delete:hover { background-color: #b72b2b; }
-</style>
 {% endblock %}

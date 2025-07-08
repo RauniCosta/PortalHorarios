@@ -1,4 +1,3 @@
-# portal/scheduler_engine.py
 
 from constraint import Problem, AllDifferentConstraint
 from datetime import datetime, timedelta

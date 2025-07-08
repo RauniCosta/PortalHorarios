@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
     
+    {# Ícones do FontAwesome e nosso CSS principal #}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ url_for('static', filename='admin_style.css') }}">
 </head>
@@ -19,50 +20,59 @@
         </div>
 
         <nav class="sidebar-nav">
-            <a href="{{ url_for('admin_dashboard') }}" class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}">
+            {# --- CORREÇÕES APLICADAS AQUI --- #}
+            {# Cada url_for e request.endpoint agora usa o prefixo do blueprint 'main.' ou 'auth.' #}
+            
+            <a href="{{ url_for('main.dashboard') }}" class="{% if request.endpoint == 'main.dashboard' %}active{% endif %}">
                 <i class="fas fa-home fa-fw"></i>
                 <span>Dashboard</span>
             </a>
             <hr>
-            <a href="{{ url_for('admin_alocacao') }}" class="{% if request.endpoint == 'admin_alocacao' %}active{% endif %}">
+            <a href="{{ url_for('main.admin_alocacao') }}" class="{% if request.endpoint == 'main.admin_alocacao' %}active{% endif %}">
                 <i class="fas fa-calendar-check fa-fw"></i>
                 <span>Alocar Horários</span>
             </a>
-            <a href="{{ url_for('admin_reposicao') }}" class="{% if request.endpoint == 'admin_reposicao' %}active{% endif %}">
+            {# Assumindo que a rota de reposição também está no blueprint 'main' #}
+            <a href="{{ url_for('main.admin_reposicao') }}" class="{% if request.endpoint == 'main.admin_reposicao' %}active{% endif %}">
                 <i class="fas fa-calendar-plus fa-fw"></i>
                 <span>Reposições</span>
             </a>
             <hr>
-            <a href="{{ url_for('admin_view_data', data_key='turmas') }}" class="{% if request.endpoint == 'admin_view_data' and request.view_args.get('data_key') == 'turmas' %}active{% endif %}">
+            {# Os links agora apontam para as novas rotas de listagem específicas #}
+            <a href="{{ url_for('main.turmas_list') }}" class="{% if request.endpoint == 'main.turmas_list' %}active{% endif %}">
                 <i class="fas fa-users fa-fw"></i>
                 <span>Turmas</span>
             </a>
-            <a href="{{ url_for('admin_view_data', data_key='professores') }}" class="{% if request.endpoint == 'admin_view_data' and request.view_args.get('data_key') == 'professores' %}active{% endif %}">
+            <a href="{{ url_for('main.professores_list') }}" class="{% if request.endpoint == 'main.professores_list' %}active{% endif %}">
                 <i class="fas fa-chalkboard-teacher fa-fw"></i>
                 <span>Professores</span>
             </a>
-            <a href="{{ url_for('admin_view_data', data_key='disciplinas') }}" class="{% if request.endpoint == 'admin_view_data' and request.view_args.get('data_key') == 'disciplinas' %}active{% endif %}">
+            <a href="{{ url_for('main.disciplinas_list') }}" class="{% if request.endpoint == 'main.disciplinas_list' %}active{% endif %}">
                 <i class="fas fa-book fa-fw"></i>
                 <span>Disciplinas</span>
             </a>
-             <a href="{{ url_for('admin_salas') }}" class="{% if request.endpoint == 'admin_salas' %}active{% endif %}">
+             <a href="{{ url_for('main.salas_list') }}" class="{% if request.endpoint == 'main.salas_list' %}active{% endif %}">
                 <i class="fas fa-igloo fa-fw"></i>
                 <span>Salas</span>
             </a>
-            <a href="{{ url_for('admin_view_matriz') }}" class="{% if request.endpoint == 'admin_view_matriz' %}active{% endif %}">
+            {# Rota da matriz curricular, que ainda vamos criar, mas já deixamos o link preparado #}
+            {# <a href="{{ url_for('main.matriz_curricular_list') }}" class="{% if request.endpoint == 'main.matriz_curricular_list' %}active{% endif %}">
                 <i class="fas fa-sitemap fa-fw"></i>
                 <span>Matriz Curricular</span>
-            </a>
-            {% if session.user_role == 'Full' %}
+            </a> #}
+            
+            {# A verificação de 'role' agora usa a chave correta da sessão #}
+            {% if session.role == 'Full' %}
                 <hr>
-                <a href="{{ url_for('admin_users_list') }}" class="{% if request.endpoint == 'admin_users_list' %}active{% endif %}">
+                <a href="{{ url_for('main.users_list') }}" class="{% if request.endpoint == 'main.users_list' %}active{% endif %}">
                     <i class="fas fa-user-shield fa-fw"></i>
                     <span>Usuários</span>
                 </a>
             {% endif %}
         </nav>
         <div class="sidebar-footer">
-            <a href="{{ url_for('admin_logout') }}">
+            {# A rota de logout está no blueprint 'auth' #}
+            <a href="{{ url_for('auth.logout') }}">
                 <i class="fas fa-sign-out-alt fa-fw"></i>
                 <span>Sair ({{ session.username }})</span>
             </a>

@@ -39,7 +39,7 @@
                 </ul>
             {% endif %}
         {% endwith %}
-        <form method="POST" action="{{ url_for('admin_login') }}">
+        <form method="POST" action="{{ url_for('auth.login') }}">
             {# Campo oculto para redirecionar após o login bem-sucedido #}
             <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
             
