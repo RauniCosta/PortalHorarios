@@ -1,53 +1,43 @@
 {% extends "admin_layout.html" %}
 
 {% block title %}{{ title }}{% endblock %}
-{% block page_title %}{{ title }}{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-user-plus fa-fw"></i> {{ title }}
+{% endblock %}
 
 {% block content %}
-<div class="card">
-    <div class="card-header">
-        <h4>{{ title }}</h4>
-    </div>
-    <div class="card-body">
-        <form method="POST" action="{{ form_action }}">
-            <div class="form-group">
-                <label for="username">Nome de Usuário:</label>
-                <input type="text" class="form-control" id="username" name="username" value="{{ user_data.username or '' }}" required>
-            </div>
+<div class="card" style="max-width: 700px; margin: auto;">
+    <form method="POST">
+        <div class="form-group">
+            <label for="username">Nome de Usuário</label>
+            {# CORREÇÃO: Usamos a variável 'user' e verificamos se ela existe #}
+            <input type="text" class="form-control" id="username" name="username" value="{{ user.username if user else '' }}" required>
+        </div>
 
-            <div class="form-group">
-                <label for="password">Senha:</label>
-                {# Adiciona minlength para validação do navegador e um placeholder #}
-                <input type="password" class="form-control" id="password" name="password" 
-                    placeholder="Mínimo de 8 caracteres" 
-                    minlength="8" 
-                    {% if not user_data.id %}required{% endif %}>
-                {% if user_data.id %}
-                <small class="form-text text-muted">Deixe em branco para não alterar a senha atual.</small>
-                {% else %}
-                <small class="form-text text-muted">A senha deve ter no mínimo 8 caracteres.</small>
-                {% endif %}
-            </div>
+        <div class="form-group">
+            <label for="password">Senha</label>
+            {# Adicionamos um placeholder e removemos o 'required' para a edição #}
+            <input type="password" class="form-control" id="password" name="password" 
+                   placeholder="{% if action == 'edit' %}Deixe em branco para não alterar{% else %}Digite a senha{% endif %}"
+                   {% if action == 'add' %}required{% endif %}>
+        </div>
 
-            <div class="form-group">
-                <label for="password_confirm">Confirmar Senha:</label>
-                <input type="password" class="form-control" id="password_confirm" name="password_confirm" 
-                    minlength="8" 
-                    {% if not user_data.id %}required{% endif %}>
-            </div>
-
-            <div class="form-group">
-                <label for="role">Papel (Role):</label>
-                <select class="form-control" id="role" name="role" required>
-                    {% for r in roles %}
-                        <option value="{{ r }}" {% if user_data.role == r %}selected{% endif %}>{{ r }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="{{ url_for('admin_users_list') }}" class="btn btn-secondary">Cancelar</a>
-        </form>
-    </div>
+        <div class="form-group">
+            <label for="role">Permissão (Role)</label>
+            <select id="role" name="role" class="form-control">
+                {# CORREÇÃO: Lógica para selecionar a role correta na edição #}
+                <option value="User" {% if user and user.role == 'User' %}selected{% endif %}>Usuário Padrão</option>
+                <option value="Supervisor" {% if user and user.role == 'Supervisor' %}selected{% endif %}>Supervisor</option>
+                <option value="Full" {% if user and user.role == 'Full' %}selected{% endif %}>Administrador Completo</option>
+            </select>
+        </div>
+        
+        <hr>
+        <div class="form-actions">
+            <a href="{{ url_for('main.users_list') }}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Salvar</button>
+        </div>
+    </form>
 </div>
 {% endblock %}

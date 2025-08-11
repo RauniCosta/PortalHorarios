@@ -1,10 +1,14 @@
 # app.py
+from flask import Flask
 import os
 from waitress import serve
 from portal import create_app
+from commands import create_admin_command
 
 # Cria a instância da aplicação
 app = create_app()
+# Registra o comando na interface de linha de comando (CLI) do Flask
+app.cli.add_command(create_admin_command)
 
 if __name__ == '__main__':
     # Verifica a variável de ambiente FLASK_ENV

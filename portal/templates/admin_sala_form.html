@@ -1,34 +1,23 @@
 {% extends "admin_layout.html" %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}Gerenciar Sala{% endblock %}
+{% block page_title %}Gerenciar Sala{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">{{ title }}</h3>
-                </div>
-                <div class="card-body">
-                    <form method="POST">
-                        <div class="mb-3">
-                            <label for="id" class="form-label">ID da Sala (Ex: S01, LABINFO)</label>
-                            <input type="text" class="form-control" id="id" name="id" value="{{ sala.id if sala else '' }}" {% if action == 'edit' %}readonly{% endif %} required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">Nome/Descrição da Sala (Ex: Sala 01, Laboratório de Informática)</label>
-                            <input type="text" class="form-control" id="nome" name="nome" value="{{ sala.nome if sala else '' }}" required>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ url_for('main.salas_list') }}" class="btn btn-secondary me-2">Cancelar</a>
-                            <button type="submit" class="btn btn-primary">Salvar</button>
-                        </div>
-                    </form>
-                </div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ title }}</h5>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome da Sala</label>
+                <input type="text" id="nome" name="nome" value="{{ sala.nome if sala else '' }}" class="form-control" required>
             </div>
-        </div>
+            
+            <div class="mt-4 text-end">
+                <a href="{{ url_for('main.salas_list') }}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}

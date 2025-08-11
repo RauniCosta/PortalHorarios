@@ -1,0 +1,74 @@
+/* Responsável por variáveis, componentes e estilos de páginas específicas */
+
+:root {
+    --cor-principal: #0d6efd;
+    --cor-borda: #dee2e6;
+    --raio-borda: 6px;
+    --cor-texto-principal: #2c3e50;
+    --sombra-card: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--cor-texto-principal);
+}
+
+/* COMPONENTES */
+.card {
+    background: #ffffff;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table th, .table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-borda);
+}
+.table-hover tbody tr:hover {
+    background-color: #f1f3f5;
+}
+.form-group { margin-bottom: 1rem; }
+.form-control { width: 100%; padding: 0.5rem; border: 1px solid var(--cor-borda); border-radius: 4px; }
+
+/* LAYOUT DAS PÁGINAS DE ALOCAÇÃO / REPOSIÇÃO */
+.allocation-layout {
+    display: flex;
+    gap: 1.5rem;
+    height: 100%;
+}
+.control-panel {
+    width: 420px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+.grid-panel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.scrollable-content {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+/* ESTILOS DA GRADE DE HORÁRIOS */
+.table-responsive { overflow: auto; height: 100%; }
+.table-responsive table { width: 100%; table-layout: auto; }
+.horario-cell { min-width: 150px; vertical-align: top; cursor: pointer; }
+.horario-cell:hover { background-color: #e7f5ff; }
+.table th:first-child { width: 1%; white-space: nowrap; }
+
+.aula-bloco {
+    background-color: #d0ebff;
+    border-left: 3px solid #1c7ed6;
+    padding: 8px; margin-bottom: 5px; border-radius: 4px;
+    font-size: 0.85rem; position: relative; word-break: break-word;
+}

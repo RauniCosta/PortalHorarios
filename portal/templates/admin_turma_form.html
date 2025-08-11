@@ -1,53 +1,48 @@
 {% extends "admin_layout.html" %}
 
 {% block title %}{{ title }}{% endblock %}
-{% block page_title %}<i class="fas fa-users"></i> {{ title }}{% endblock %}
 
 {% block content %}
-<div class="card" style="max-width: 800px; margin: auto;">
-    <form method="post" action="{{ form_action }}">
-        <div class="form-grid-2">
-            <div class="form-group form-span-2">
-                <label for="nome_completo">Nome Completo</label>
-                <input type="text" id="nome_completo" name="nome_completo" value="{{ item.nome_completo if item else '' }}" required>
-            </div>
+<div class="container mt-4">
+    <div class="card" style="max-width: 800px; margin: auto;">
+        <div class="card-header"><h3 class="card-title">{{ title }}</h3></div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="apelido">Apelido (ID)</label>
+                    <input type="text" class="form-control" id="apelido" name="apelido" value="{{ turma.apelido if turma else '' }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="nome">Nome Completo da Turma</label>
+                    <input type="text" class="form-control" id="nome" name="nome" value="{{ turma.nome if turma else '' }}" required>
+                </div>
 
-            <div class="form-group">
-                <label for="apelido">Apelido</label>
-                <input type="text" id="apelido" name="apelido" value="{{ item.apelido if item else '' }}" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="local">Local / Filial</label>
-                <input type="text" id="local" name="local" value="{{ item.local if item else '' }}" placeholder="Ex: Unidade Centro" required>
-            </div>
-
-            <div class="form-group">
-                <label for="periodo">Período</label>
-                <select id="periodo" name="periodo" required>
-                    <option value="" disabled {% if not item %}selected{% endif %}>Selecione...</option>
-                    <option value="1" {% if item and item.periodo == '1' %}selected{% endif %}>Manhã</option>
-                    <option value="2" {% if item and item.periodo == '2' %}selected{% endif %}>Tarde</option>
-                    <option value="3" {% if item and item.periodo == '3' %}selected{% endif %}>Noturno</option>
-                    <option value="4" {% if item and item.periodo == '4' %}selected{% endif %}>Integral</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="categoria">Categoria</label>
-                <select id="categoria" name="categoria" required>
-                    <option value="" disabled {% if not item %}selected{% endif %}>Selecione...</option>
-                    {% for cat in categorias %}
-                        <option value="{{ cat }}" {% if item and item.categoria == cat %}selected{% endif %}>{{ cat }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" name="categoria" class="form-control" required>
+                        <option value="">-- Selecione a Categoria --</option>
+                        {% for cat in categorias_curso %}
+                            <option value="{{ cat }}" {% if turma and turma.categoria == cat %}selected{% endif %}>{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="periodo">Período</label>
+                    <select id="periodo" name="periodo" class="form-control" required>
+                        <option value="">-- Selecione o Período --</option>
+                        <option value="Manhã" {% if turma and turma.periodo == 'Manhã' %}selected{% endif %}>Manhã</option>
+                        <option value="Tarde" {% if turma and turma.periodo == 'Tarde' %}selected{% endif %}>Tarde</option>
+                        <option value="Noturno" {% if turma and turma.periodo == 'Noturno' %}selected{% endif %}>Noturno</option>
+                        <option value="Integral" {% if turma and turma.periodo == 'Integral' %}selected{% endif %}>Integral</option>
+                    </select>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-end">
+                    <a href="{{ url_for('main.turmas_list') }}" class="btn btn-secondary me-2">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
         </div>
-
-        <div class="form-actions" style="border-top: 1px solid var(--cor-borda); margin-top: 2rem; padding-top: 1.5rem;">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Salvar</button>
-            <a href="{{ cancel_url }}" class="btn" style="background-color: #A0AEC0; color: white;">Cancelar</a>
-        </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

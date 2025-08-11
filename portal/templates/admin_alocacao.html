@@ -1,9 +1,9 @@
 {% extends "admin_layout.html" %}
 
-{% block title %}Alocação de Horários{% endblock %}
+{% block title %}Alocação Manual de Horários{% endblock %}
 
 {% block page_title %}
-    <i class="fas fa-calendar-check fa-fw"></i> Alocação de Horários
+    <i class="fas fa-calendar-check fa-fw"></i> Alocação Manual de Horários
 {% endblock %}
 
 {% block content %}
@@ -26,7 +26,7 @@
         <div id="matriz_panel" class="hidden">
             <div class="form-group">
                 <label for="matrizSearchInput"><strong>Passo 2:</strong> Selecione uma aula para alocar</label>
-                <input type="search" id="matrizSearchInput" class="search-input" placeholder="Buscar por disciplina ou professor...">
+                <input type="search" id="matrizSearchInput" class="form-control" placeholder="Buscar por disciplina ou professor...">
             </div>
             <div id="matriz_list_container">
                 <div class="loader-container" id="matriz_loader">
@@ -70,7 +70,7 @@
 {% block scripts %}
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    // --- 1. Elementos da UI ---
+    // --- 1. Mapeamento dos Elementos da UI ---
     const turmaSelect = document.getElementById("turma_select");
     const matrizPanel = document.getElementById("matriz_panel");
     const matrizList = document.getElementById("matriz_list");
@@ -85,12 +85,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const noSalasMessage = document.getElementById("no_salas_message");
     const cancelSalaSelectionBtn = document.getElementById("cancel_sala_selection");
 
-    // --- 2. Estado da Aplicação ---
+    // --- 2. Variáveis de Estado da Página ---
     let matrizDaTurma = [];
     let horariosAlocados = {};
     let gradeDaTurma = {};
-    let activeMatrizItem = null;
-    let activeCell = null;
+    let activeMatrizItem = null; // Guarda a aula (da matriz) que o usuário selecionou
+    let activeCell = null; // Guarda a célula (dia/horário) que o usuário clicou na grade
 
     // --- Funções Auxiliares ---
     const showLoader = (loader) => { loader.style.display = "flex"; };
@@ -100,16 +100,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // --- Lógica de Eventos ---
 
-    // Evento principal: quando o usuário seleciona uma turma no dropdown
+    // Evento principal: é disparado quando o usuário seleciona uma turma
     turmaSelect.addEventListener("change", function () {
         const turmaId = this.value;
-        matrizSearchInput.value = "";
-        activeMatrizItem = null;
-
         if (turmaId) {
             matrizPanel.classList.remove("hidden");
-            carregarDadosDaTurma(turmaId);
+            carregarDadosDaTurma(turmaId); // Chama a função que busca os dados no backend
         } else {
+            // Reseta a UI se nenhuma turma for selecionada
             matrizPanel.classList.add("hidden");
             horarioGrid.innerHTML = '<div class="grid-placeholder"><p><i class="fas fa-arrow-left"></i> Selecione uma turma para começar.</p></div>';
             horarioTitle.innerHTML = `<i class="fas fa-th"></i> Grade de Horários`;
@@ -231,38 +229,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // --- Funções de API (Comunicação com Backend) ---
 
+    // Função que busca os dados da turma na nossa API e atualiza a página
     async function carregarDadosDaTurma(turmaId) {
         showLoader(matrizLoader);
         showLoader(gridLoader);
         horarioTitle.innerHTML = `<i class="fas fa-th"></i> Horário: ${turmaSelect.options[turmaSelect.selectedIndex].text}`;
 
         try {
-            // A API que criamos anteriormente para buscar os dados de uma turma específica
             const response = await fetch(`/admin/api/dados_alocacao/${turmaId}`);
+            const data = await response.json(); // Pega o JSON mesmo se for erro
+
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error( errorData.error || 'Falha ao carregar dados da turma.' );
+                // Se a resposta não for OK, lança um erro com a mensagem do backend
+                throw new Error(data.error || 'Falha ao carregar dados da turma.');
             }
-            const data = await response.json();
-            
-            // Atualiza o estado da nossa página com os dados recebidos
+
             matrizDaTurma = data.matriz_turma;
             horariosAlocados = data.horarios_alocados || {};
             gradeDaTurma = data.horarios_grade;
 
-            // Chama as funções para desenhar a matriz e a grade na tela
             renderizarMatriz();
             renderizarGrade();
         } catch (error) {
-            horarioGrid.innerHTML = `<div class="grid-placeholder" style="color: var(--cor-erro);"><p>${error.message}</p></div>`;
-            matrizList.innerHTML = `<p class="info-message" style="color: var(--cor-erro);">${error.message}</p>`;
+            // Exibe a mensagem de erro clara no lugar da grade
+            horarioGrid.innerHTML = `<div class="grid-placeholder" style="color: var(--cor-erro);"><p><strong>Erro:</strong> ${error.message}</p></div>`;
+            matrizList.innerHTML = ""; // Limpa a lista da matriz também
             console.error(error);
         } finally {
             hideLoader(matrizLoader);
             hideLoader(gridLoader);
         }
     }
-
     async function alocarAula(sala) {
         hideModal();
         showLoader(gridLoader);
@@ -345,6 +342,50 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Função que desenha a grade de horários na tela
+    function renderizarGrade() {
+        horarioGrid.innerHTML = "";
+        if (!gradeDaTurma || Object.keys(gradeDaTurma).length === 0) {
+            horarioGrid.innerHTML = '<div class="info-message"><p>Grade de horários não definida para esta turma.</p></div>';
+            return;
+        }
+
+        const table = document.createElement("table");
+        table.className = "table table-bordered text-center";
+        const dias = ["segunda-feira", "terca-feira", "quarta-feira", "quinta-feira", "sexta-feira"];
+        
+        const thead = `<thead><tr><th>Horário</th>${dias.map(d => `<th>${d.split('-')[0].charAt(0).toUpperCase() + d.split('-')[0].slice(1)}</th>`).join("")}</tr></thead>`;
+        table.innerHTML = thead;
+
+        const tbody = document.createElement("tbody");
+        Object.entries(gradeDaTurma).forEach(([horario, apelido]) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `<th>${apelido}<br><small>${horario}</small></th>`;
+
+            dias.forEach((diaKey) => {
+                const cell = document.createElement("td");
+                if (String(apelido).toUpperCase() === "INTERVALO" || String(apelido).toUpperCase() === "ALMOÇO") {
+                    cell.className = "intervalo-cell";
+                } else {
+                    cell.className = "horario-cell"; // Célula clicável
+                    cell.dataset.dia = diaKey;
+                    cell.dataset.horario = horario;
+
+                    const aulasNesteSlot = horariosAlocados[diaKey]?.[horario] || [];
+                    aulasNesteSlot.forEach((aula) => {
+                        cell.innerHTML += `<div class="aula-bloco"> ... </div>`; // Exibe a aula já alocada
+                    });
+                    cell.addEventListener("click", () => handleCellClick(cell));
+                }
+                row.appendChild(cell);
+            });
+            tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+        horarioGrid.appendChild(table);
+        // Lógica para adicionar evento de clique nos botões de remover, etc.
+    }
+    
     function handleCellClick(cell) {
         if (!activeMatrizItem) {
             alert("Por favor, selecione uma aula na lista da esquerda primeiro.");

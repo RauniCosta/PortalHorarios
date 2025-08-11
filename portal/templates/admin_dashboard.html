@@ -64,7 +64,7 @@
              data-gerar-url="{{ url_for('main.gerar_horario_automatico') }}"
              data-status-url-base="{{ url_for('main.verificar_status_geracao', task_id='__TASK_ID__') }}"
              data-sugestoes-url="{{ url_for('main.listar_sugestoes') }}"
-             data-disponibilidade-url-base="{{ url_for('main.professor_disponibilidade', prof_id='__PROF_ID__') }}"
+             data-disponibilidade-url-base="{{ url_for('main.professor_disponibilidade', item_id='__PROF_ID__') }}"
              style="margin-top: 1rem;">
 
             <button id="btn-iniciar-geracao" class="btn btn-primary">
@@ -106,21 +106,19 @@
 {% block scripts %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Encontra o container principal e lê os URLs que injetamos com o Jinja2
     const geradorContainer = document.getElementById('gerador-horarios-container');
-    if (!geradorContainer) return; // Se o container não existir, não faz nada
+    if (!geradorContainer) return;
 
     const btnIniciar = document.getElementById('btn-iniciar-geracao');
     const statusDiv = document.getElementById('gerador-status');
     let intervalId = null;
 
-    // URLs lidos dos data attributes
+    // Lendo as URLs dos data-attributes, como já havíamos feito
     const validarUrl = geradorContainer.dataset.validarUrl;
     const gerarUrl = geradorContainer.dataset.gerarUrl;
     const statusUrlBase = geradorContainer.dataset.statusUrlBase;
     const sugestoesUrl = geradorContainer.dataset.sugestoesUrl;
-    const disponibilidadeUrlBase = geradorContainer.dataset.disponibilidadeUrlBase;
-
+    const disponibilidadeUrlBase = geradorContainer.dataset.disponibilidadeUrlBase; // URL base para disponibilidade
 
     btnIniciar.addEventListener('click', function() {
         if (confirm('Iniciar verificação e geração de sugestão de horário?')) {
@@ -198,17 +196,22 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Erro ao verificar status:', err);
         });
     }
-
+    
     function mostrarRelatorioDeConflitos(conflitos) {
         let rowsHtml = conflitos.map(conflito => {
-            // CORREÇÃO: Constrói a URL dinâmica para cada professor
+            // CORREÇÃO: Usamos a URL base e substituímos o placeholder pelo ID real do professor
             const linkDisponibilidade = disponibilidadeUrlBase.replace('__PROF_ID__', conflito.id);
+            
             return `
                 <tr>
                     <td>${conflito.nome}</td>
                     <td class="text-center"><strong>${conflito.aulas_atribuidas}</strong></td>
                     <td class="text-center"><strong>${conflito.horarios_disponiveis}</strong></td>
-                    <td><a href="${linkDisponibilidade}" class="btn btn-sm btn-secondary" target="_blank">Corrigir Disponibilidade</a></td>
+                    <td>
+                        <a href="${linkDisponibilidade}" class="btn btn-sm btn-secondary" target="_blank">
+                            <i class="fas fa-edit"></i> Corrigir Disponibilidade
+                        </a>
+                    </td>
                 </tr>
             `;
         }).join('');
@@ -216,9 +219,9 @@ document.addEventListener('DOMContentLoaded', function() {
         statusDiv.innerHTML = `
             <div class="alert alert-danger">
                 <h4><i class="fas fa-exclamation-triangle"></i> Conflitos de Dados Encontrados!</h4>
-                <p>A geração não pode continuar. Corrija os problemas abaixo e tente novamente.</p>
+                <p>A geração não pode continuar. Corrija a disponibilidade dos professores abaixo e tente novamente.</p>
             </div>
-            <table class="table table-bordered">
+            <table class="table table-bordered" style="background: white;">
                 <thead class="thead-dark"><tr><th>Professor</th><th>Aulas Atribuídas</th><th>Horários Disponíveis</th><th>Ação</th></tr></thead>
                 <tbody>${rowsHtml}</tbody>
             </table>
@@ -226,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btnIniciar.disabled = false;
         btnIniciar.innerHTML = '<i class="fas fa-redo"></i> Validar Novamente';
     }
-    
+
     function mostrarErro(mensagem) {
         statusDiv.innerHTML = `<div class="alert alert-danger"><h4>Erro!</h4><p>${mensagem}</p></div>`;
         btnIniciar.disabled = false;

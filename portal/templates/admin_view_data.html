@@ -3,7 +3,7 @@
 {% block title %}Gerenciar {{ title }}{% endblock %}
 
 {% block page_title %}
-    {# Ícones dinâmicos baseados no tipo de dado, mantendo a lógica que já funciona #}
+    {# Ícones dinâmicos #}
     {% if data_type == 'turmas' %}<i class="fas fa-users fa-fw"></i>
     {% elif data_type == 'professores' %}<i class="fas fa-chalkboard-teacher fa-fw"></i>
     {% elif data_type == 'disciplinas' %}<i class="fas fa-book fa-fw"></i>
@@ -14,19 +14,15 @@
 {% endblock %}
 
 {% block header_actions %}
-    {# CORREÇÃO FINAL: Bloco explícito que gera o link de "Adicionar" correto para cada entidade #}
-    {% if session.role in ['Full', 'Supervisor'] %}
-        {% if data_type == 'turmas' %}
-            <a href="{{ url_for('main.turma_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Nova Turma</a>
-        {% elif data_type == 'professores' %}
-            <a href="{{ url_for('main.professor_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Novo Professor</a>
-        {% elif data_type == 'disciplinas' %}
-            <a href="{{ url_for('main.disciplina_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Nova Disciplina</a>
-        {% elif data_type == 'salas' %}
-            <a href="{{ url_for('main.sala_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Nova Sala</a>
-        {% elif data_type == 'users' and session.role == 'Full' %}
-            <a href="{{ url_for('main.user_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Novo Usuário</a>
-        {% endif %}
+    {# Botão de Adicionar Novo, agora com links explícitos e corretos #}
+    {% set add_routes = {
+        'turmas': 'main.turma_add', 'professores': 'main.professor_add',
+        'disciplinas': 'main.disciplina_add', 'salas': 'main.sala_add', 'users': 'main.user_add'
+    } %}
+    {% if data_type in add_routes %}
+        <a href="{{ url_for(add_routes[data_type]) }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Adicionar Novo
+        </a>
     {% endif %}
 {% endblock %}
 
@@ -36,7 +32,6 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    {# Cabeçalhos da tabela adaptados para cada tipo de dado #}
                     <th>ID</th>
                     <th>Nome</th>
                     {% if data_type == 'turmas' %}<th>Apelido</th>{% endif %}
@@ -47,78 +42,43 @@
             <tbody>
                 {% for item in data %}
                     <tr>
-                        {# Exibição dos dados de cada item #}
                         <td>{{ item.id }}</td>
-                        <td>{{ item.nome if 'nome' in item else item.username }}</td>
+                        <td>{{ item.nome if 'nome' in item.__dict__ else item.username }}</td>
                         {% if data_type == 'turmas' %}<td>{{ item.apelido }}</td>{% endif %}
                         {% if data_type == 'users' %}<td><span class="tag divisao">{{ item.role }}</span></td>{% endif %}
 
-                        {# CORREÇÃO FINAL: Bloco de ações explícito para cada entidade #}
+                        {# Bloco de Ações explícito e à prova de erros #}
                         <td class="text-end">
                             {% if data_type == 'professores' %}
-                                <a href="{{ url_for('main.professor_edit', prof_id=item.id) }}" class="btn btn-sm btn-outline-secondary" title="Editar Nome">Editar</a>
-                                <a href="{{ url_for('main.professor_disponibilidade', prof_id=item.id) }}" class="btn btn-sm btn-outline-primary" title="Editar Disponibilidade">Disponibilidade</a>
-                                <form action="{{ url_for('main.professor_delete', prof_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja deletar o professor {{ item.nome }}?');">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Deletar"><i class="fas fa-trash"></i></button>
-                                </form>
-                            {% elif data_type in ['turmas', 'disciplinas', 'salas', 'users'] %}
-                                {# A rota de edição/deleção precisa do ID correto. Ex: user_id, turma_id etc. #}
-                                {# Uma forma genérica que funciona se a variável na rota for `item_id` #}
-                                <a href="{{ url_for('main.' + data_type[:-1] + '_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary" title="Editar">
+                                <a href="{{ url_for('main.professor_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary" title="Editar">
                                     <i class="fas fa-pencil-alt"></i> Editar
                                 </a>
-                                <form action="{{ url_for('main.' + data_type[:-1] + '_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja deletar este item?');">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Deletar">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                <a href="{{ url_for('main.professor_disponibilidade', item_id=item.id) }}" class="btn btn-sm btn-outline-secondary" title="Disponibilidade">
+                                    <i class="fas fa-calendar-check"></i> Disponibilidade
+                                </a>
+                                <form action="{{ url_for('main.professor_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja deletar o professor {{ item.nome }}?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Deletar"><i class="fas fa-trash"></i></button>
                                 </form>
+                            {% elif data_type == 'turmas' %}
+                                <a href="{{ url_for('main.turma_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                <form action="{{ url_for('main.turma_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza?');"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
+                            {% elif data_type == 'disciplinas' %}
+                                <a href="{{ url_for('main.disciplina_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                <form action="{{ url_for('main.disciplina_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza?');"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
+                            {% elif data_type == 'salas' %}
+                                <a href="{{ url_for('main.sala_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                <form action="{{ url_for('main.sala_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza?');"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
+                            {% elif data_type == 'users' %}
+                                <a href="{{ url_for('main.user_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                                <form action="{{ url_for('main.user_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza?');"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
                             {% endif %}
                         </td>
                     </tr>
                 {% else %}
-                    <tr>
-                        <td colspan="100%" class="text-center" style="padding: 2rem;">
-                            Nenhum item cadastrado.
-                        </td>
-                    </tr>
+                    <tr><td colspan="100%" class="text-center p-4">Nenhum item cadastrado.</td></tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
-{# NOVO: Este bloco adiciona a funcionalidade de busca na tabela. #}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 1. Pega os elementos HTML: o campo de busca e a tabela.
-        const searchInput = document.getElementById('searchInput');
-        const dataTable = document.getElementById('dataTable');
-
-        // Garante que o código só execute se os elementos existirem na página.
-        if (!searchInput || !dataTable) return;
-
-        const tableRows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-        // 2. Adiciona um "ouvinte" que dispara uma ação toda vez que o usuário digita algo.
-        searchInput.addEventListener('input', function() {
-            const searchTerm = searchInput.value.toLowerCase();
-
-            // 3. Itera sobre cada linha da tabela.
-            for (let i = 0; i < tableRows.length; i++) {
-                const row = tableRows[i];
-                const rowText = row.textContent.toLowerCase();
-                
-                // 4. Se o texto da linha contém o termo buscado, mostra a linha.
-                if (rowText.includes(searchTerm)) {
-                    row.style.display = ''; 
-                // 5. Senão, esconde a linha.
-                } else {
-                    row.style.display = 'none';
-                }
-            }
-        });
-    });
-</script>
 {% endblock %}

@@ -1,0 +1,51 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Gerenciar Matriz Curricular{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-sitemap fa-fw"></i> Matriz Curricular (Quadro de Aulas)
+{% endblock %}
+
+{% block header_actions %}
+    <a href="{{ url_for('main.matriz_curricular_add') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Adicionar Atribuição
+    </a>
+{% endblock %}
+
+{% block content %}
+    <p class="lead">Aqui você gerencia a demanda de aulas semanais para cada turma. Esta é a base que o motor de alocação utilizará.</p>
+
+    {% for turma in turmas %}
+        <div class="card">
+            <h4 class="card-title">{{ turma.nome }}</h4>
+            {% if turma.quadro_aulas %}
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th>Disciplina</th>
+                            <th>Professor Padrão</th>
+                            <th class="text-center">Aulas por Semana</th>
+                            <th class="text-end">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for qa in turma.quadro_aulas %}
+                        <tr>
+                            <td>{{ qa.disciplina.nome }} ({{ qa.disciplina.id }})</td>
+                            <td>{{ qa.professor.nome }}</td>
+                            <td class="text-center">{{ qa.aulas_semanais }}</td>
+                            <td class="text-end">
+                                <form action="{{ url_for('main.matriz_curricular_delete', item_id=qa.id) }}" method="POST" onsubmit="return confirm('Tem certeza?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Remover"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="text-muted">Nenhuma aula atribuída para esta turma ainda.</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}
