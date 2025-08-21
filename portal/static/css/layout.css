@@ -1,54 +1,198 @@
-/* portal/static/css/layout.css */
+/* ==========================================================================
+   ARQUIVO: layout.css
+   DESCRIÇÃO: Define o layout principal, cores e a barra de navegação superior.
+   ========================================================================== */
 
-.layout-wrapper {
-    display: flex;
-    height: 100vh;
+/* Importa a fonte 'Poppins' do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- 1. VARIÁVEIS DE DESIGN (Paleta de Cores e Estilos Globais) --- */
+:root {
+    --cor-principal: #6C5FFC;          /* Roxo/azul principal para botões e links */
+    --cor-principal-hover: #5a4ff4;   /* Tom mais escuro para efeito hover */
+    --cor-fundo: #F0F2F5;             /* Cinza bem claro para o fundo da página */
+    --cor-fundo-card: #FFFFFF;        /* Branco para os cards e painéis */
+    --cor-texto-escuro: #344054;      /* Cor principal para textos */
+    --cor-texto-cinza: #667085;       /* Cinza para textos secundários */
+    --cor-borda: #E4E7EC;             /* Cor suave para bordas */
+    --cor-erro: #D92D20;              /* Vermelho para mensagens de erro */
+    --cor-sucesso: #039855;           /* Verde para mensagens de sucesso */
+    
+    --altura-navbar: 70px;            /* Altura fixa para a barra de navegação */
+    --raio-borda: 8px;                /* Raio de arredondamento padrão */
+    --sombra-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
-.sidebar {
-    width: 250px;
-    background-color: #212529; /* Cor escura para a sidebar */
-    color: #ecf0f1;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-}
-.sidebar-header { padding: 1.5rem 1rem; text-align: center; border-bottom: 1px solid #34495e; }
-.sidebar-nav { flex-grow: 1; overflow-y: auto; }
-.sidebar-nav a {
-    display: flex;
-    align-items: center;
-    padding: 0.8rem 1.5rem;
-    color: #ecf0f1;
-    text-decoration: none;
-    transition: background-color 0.2s;
-}
-.sidebar-nav a:hover { background-color: #34495e; }
-.sidebar-nav a .fa-fw { margin-right: 10px; }
-.sidebar-footer { padding: 1rem; border-top: 1px solid #34495e; }
-
-.main-content-area {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+/* --- 2. RESET BÁSICO E ESTILOS GLOBAIS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.main-header {
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-escuro);
+    line-height: 1.6;
+
+    /* === CORREÇÃO APLICADA AQUI === */
+    /* Adiciona um espaçamento no topo do corpo da página, com a mesma altura da navbar. */
+    /* Isso "empurra" todo o conteúdo para baixo, evitando que ele fique atrás do menu. */
+    padding-top: var(--altura-navbar); 
+}
+
+/* --- 3. BARRA DE NAVEGAÇÃO SUPERIOR --- */
+.top-navbar {
+    background-color: var(--cor-fundo-card);
+    border-bottom: 1px solid var(--cor-borda);
+    padding: 0 2rem; /* Espaçamento lateral */
+    position: fixed; /* Fixa o menu no topo da tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Garante que o menu fique na frente de outros elementos */
+    height: var(--altura-navbar); /* Usa a variável de altura */
+}
+
+.navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1.5rem;
-    background: #ffffff;
-    border-bottom: 1px solid #dee2e6;
-    height: 65px;
-    flex-shrink: 0;
+    height: 100%;
+    max-width: 1400px; /* Largura máxima para o conteúdo do menu */
+    margin: 0 auto; /* Centraliza o conteúdo do menu */
 }
-.page-title { margin: 0; font-size: 1.5rem; color: #2c3e50; }
 
-.page-content {
-    flex-grow: 1;
-    padding: 1.5rem;
-    overflow-y: auto;
-    background-color: #f8f9fa;
+.navbar-brand a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cor-principal);
+    text-decoration: none;
+}
+
+.navbar-collapse {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.navbar-nav a {
+    color: var(--cor-texto-cinza);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.navbar-nav a:hover,
+.navbar-nav .nav-item-dropdown:hover > a {
+    color: var(--cor-principal);
+}
+
+/* --- 4. MENU DROPDOWN --- */
+.nav-item-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none; /* Escondido por padrão */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--cor-fundo-card);
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+    list-style: none;
+    padding: 0.5rem 0;
+    min-width: 200px;
+    z-index: 1100;
+}
+
+/* Mostra o dropdown quando o mouse passa por cima do item pai */
+.nav-item-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    border-bottom: none;
+    white-space: nowrap; /* Impede que o texto quebre em duas linhas */
+}
+.dropdown-menu a:hover {
+    background-color: #f7f6ff; /* Roxo bem claro */
+}
+
+/* --- 5. LAYOUT DO CONTEÚDO PRINCIPAL --- */
+.main-container {
+    max-width: 1400px; /* Largura máxima para o conteúdo */
+    margin: 2rem auto; /* Centraliza o container na tela */
+    padding: 0 2rem;   /* Espaçamento lateral */
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.content-wrapper {
+    background-color: var(--cor-fundo-card);
+    padding: 2rem;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+}
+
+/* --- 6. RESPONSIVIDADE (PARA TELAS MENORES) --- */
+.navbar-toggler {
+    display: none; /* Escondido em telas grandes */
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--cor-texto-escuro);
+}
+
+/* Media query para telas com 992px de largura ou menos */
+@media (max-width: 992px) {
+    .navbar-toggler { display: block; } /* Mostra o botão hamburger */
+    
+    /* Esconde o menu e o prepara para aparecer verticalmente */
+    .navbar-collapse {
+        display: none;
+        position: absolute;
+        top: var(--altura-navbar);
+        left: 0;
+        width: 100%;
+        background-color: var(--cor-fundo-card);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+        border-bottom: 1px solid var(--cor-borda);
+    }
+    .navbar-collapse.show { display: flex; } /* Mostra o menu quando clicado */
+    
+    .navbar-nav, .navbar-user { flex-direction: column; width: 100%; gap: 0; }
+    .navbar-nav a { border: none; padding: 0.75rem 1rem; }
+    .dropdown-menu { position: static; box-shadow: none; border-top: 1px solid var(--cor-borda); }
+}
+
+@media (max-width: 768px) {
+    .main-container, .top-navbar { padding: 0 1rem; }
+    .page-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }

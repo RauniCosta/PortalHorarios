@@ -1,232 +1,98 @@
 {% extends "admin_layout.html" %}
 
-{% block title %}Reposição aos Sábados{% endblock %}
-{% block page_title %}<i class="fas fa-calendar-plus fa-fw"></i> Alocação de Reposições aos Sábados{% endblock %}
+{% block title %}Alocação de Reposições{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-calendar-plus fa-fw"></i> Alocação de Reposições
+{% endblock %}
+
+{% block header_actions %}
+    <a href="{{ url_for('main.sabados_letivos_list') }}" class="btn btn-secondary">
+        <i class="fas fa-cog"></i> Gerenciar Sábados
+    </a>
+{% endblock %}
 
 {% block content %}
-<div class="scheduler-container">
-    <div class="scheduler-controls card">
-        <div id="management_panel">
-            <h4><i class="fas fa-cog"></i> Gerenciar Sábados Letivos</h4>
-            <form id="add-sabado-form" action="{{ url_for('main.reposicao_add_sabado') }}" method="POST">
-                <div class="form-group">
-                    <label for="sabado_id_input">Data do Sábado:</label>
-                    <input type="date" id="sabado_id_input" name="sabado_id" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="descricao">Descrição:</label>
-                    <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Ex: Reposição Feriado" required>
-                </div>
-                <h5>Grade de Horários Customizada</h5>
-                <div id="horarios-dinamicos-container">
-                    </div>
-                <button type="button" id="add-horario-btn" class="btn btn-sm btn-secondary">+ Adicionar Horário</button>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Criar Sábado Letivo</button>
-                </div>
-            </form>
-            <hr>
-            <form id="delete-sabado-form" method="POST" onsubmit="return confirm('Tem certeza que deseja remover este sábado letivo e todas as suas alocações?');" class="hidden">
-                <button type="submit" class="btn btn-danger btn-sm">Remover Sábado Selecionado</button>
-            </form>
-        </div>
-
-        <hr>
-
-        <div id="allocation_panel">
-            <h4><i class="fas fa-tools"></i> Ferramentas de Alocação</h4>
-            <div class="form-group">
-                <label><strong>Passo 1:</strong> Selecione o Sábado Letivo</label>
+<div class="scheduler-layout">
+    <div class="card">
+        <h4><i class="fas fa-tasks fa-fw"></i> Controle de Alocação</h4>
+        
+        <div class="form-group">
+            <label for="sabado_select"><strong>Passo 1:</strong> Selecione o Sábado Letivo</label>
+            <div class="custom-select-wrapper">
                 <select id="sabado_select" class="form-control">
-                    <option value="">-- Selecione uma data --</option>
-                    {% for sabado in sabados_letivos %}
+                    <option value="">-- Selecione um sábado --</option>
+                    {% for sabado in sabados %}
                         <option value="{{ sabado.id }}">{{ sabado.id }} - {{ sabado.descricao }}</option>
                     {% endfor %}
                 </select>
             </div>
-            <div class="form-group">
-                <label><strong>Passo 2:</strong> Selecione a Turma</label>
-                <select id="turma_select_reposicao" class="form-control" disabled>
-                    <option value="">-- Primeiro, selecione um sábado --</option>
+        </div>
+
+        <div class="form-group">
+            <label for="turma_select"><strong>Passo 2:</strong> Selecione uma Turma</label>
+            <div class="custom-select-wrapper">
+                <select id="turma_select" class="form-control" disabled>
+                    <option value="">-- Selecione uma turma --</option>
                     {% for turma in turmas %}
                         <option value="{{ turma.id }}">{{ turma.nome }}</option>
                     {% endfor %}
                 </select>
             </div>
-            <div id="matriz_list_container_reposicao" class="hidden">
-                 <label><strong>Passo 3:</strong> Selecione uma aula para alocar</label>
-                 <div id="matriz_list_reposicao" class="matriz-list"></div>
+        </div>
+
+        <div id="matriz_resumo_panel" class="hidden">
+             <label><strong>Resumo de Aulas da Turma:</strong></label>
+             <div id="matriz_list_container">
+                <div class="loader-container" id="matriz_loader"></div>
+                <div id="matriz_list" class="matriz-list"></div>
             </div>
         </div>
     </div>
-    
+
     <div class="scheduler-grid-container card">
-        <h4 id="horario_title_reposicao"><i class="fas fa-th fa-fw"></i> Grade de Horários da Reposição</h4>
-        <div id="horario_grid_container_reposicao">
-            <div class="loader-container" id="grid_loader_reposicao">
-                <div class="loader"></div>
+        <h4 id="horario_title"><i class="fas fa-th fa-fw"></i> Grade de Horários do Sábado</h4>
+        <p class="instrucao-texto hidden" id="instrucao_passo3"><strong>Passo 3:</strong> Clique em um horário vago na grade para alocar.</p>
+        <div id="horario_grid_container">
+            <div id="horario_grid">
+                <div class="grid-placeholder">
+                    <p><i class="fas fa-arrow-left"></i> Selecione um sábado e uma turma.</p>
+                </div>
             </div>
-            <div id="horario_grid_reposicao">
-                <div class="grid-placeholder"><p>Selecione um sábado e uma turma para começar.</p></div>
-            </div>
+            <div class="loader-container" id="grid_loader"></div>
         </div>
     </div>
 </div>
 
-<div id="sala_modal_reposicao" class="modal-overlay hidden">
+<div id="disciplina_modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <h4>Escolha uma disciplina para repor</h4>
+        <p id="disciplina_modal_info"></p>
+        <input type="search" id="disciplinaSearchInput" class="form-control" placeholder="Buscar disciplina...">
+        <div id="disciplinas_list_modal_container">
+            <div id="disciplinas_list_modal"></div>
+        </div>
+        <div class="form-actions">
+            <button id="cancel_disciplina_selection" class="btn btn-secondary">Cancelar</button>
+        </div>
     </div>
+</div>
+
+<div id="sala_modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <h4>Escolha uma sala livre</h4>
+        <p id="sala_modal_info"></p>
+        <div id="salas_list_modal_container">
+            <div id="salas_list_modal"></div>
+        </div>
+        <div class="form-actions">
+            <button id="cancel_sala_selection" class="btn btn-secondary">Cancelar</button>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
+
 {% block scripts %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    // ========================================================================
-    // 1. MAPEAMENTO DE ELEMENTOS E ESTADO
-    // ========================================================================
-    const sabadoSelect = document.getElementById('sabado_select');
-    const turmaSelect = document.getElementById('turma_select_reposicao');
-    const matrizContainer = document.getElementById('matriz_list_container_reposicao');
-    const matrizList = document.getElementById('matriz_list_reposicao');
-    const gridContainer = document.getElementById('horario_grid_reposicao');
-    const gridLoader = document.getElementById('grid_loader_reposicao');
-    const addHorarioBtn = document.getElementById('add-horario-btn');
-    const horariosContainer = document.getElementById('horarios-dinamicos-container');
-    const deleteForm = document.getElementById('delete-sabado-form');
-
-    let activeMatrizItem = null;
-    let activeCell = null;
-
-    // ========================================================================
-    // 2. OUVINTES DE EVENTOS (EVENT LISTENERS)
-    // ========================================================================
-
-    // Lógica para o formulário de criação de sábado
-    addHorarioBtn.addEventListener('click', function() {
-        const div = document.createElement('div');
-        div.className = 'form-row';
-        div.innerHTML = `
-            <input type="text" name="apelido[]" placeholder="Apelido (Ex: 1ª Aula)" required>
-            <input type="time" name="inicio[]" required>
-            <input type="time" name="fim[]" required>
-        `;
-        horariosContainer.appendChild(div);
-    });
-
-    // Evento principal: quando o usuário seleciona um sábado ou uma turma
-    sabadoSelect.addEventListener('change', handleSelectionChange);
-    turmaSelect.addEventListener('change', handleSelectionChange);
-
-    function handleSelectionChange() {
-        const sabadoId = sabadoSelect.value;
-        const turmaId = turmaSelect.value;
-
-        // Gerencia a visibilidade do formulário de deleção
-        if (deleteForm) {
-            if (sabadoId) {
-                deleteForm.action = `/admin/reposicao/delete/${sabadoId}`;
-                deleteForm.classList.remove('hidden');
-            } else {
-                deleteForm.classList.add('hidden');
-            }
-        }
-        
-        // Habilita o menu de turma apenas se um sábado for selecionado
-        turmaSelect.disabled = !sabadoId;
-
-        // Se ambos estiverem selecionados, busca os dados
-        if (sabadoId && turmaId) {
-            matrizContainer.classList.remove('hidden');
-            carregarDadosParaReposicao(sabadoId, turmaId);
-        } else {
-            // Limpa a tela se alguma seleção for desfeita
-            matrizContainer.classList.add('hidden');
-            gridContainer.innerHTML = '<div class="grid-placeholder"><p>Selecione um sábado e uma turma.</p></div>';
-        }
-    }
-
-    // ========================================================================
-    // 3. FUNÇÕES DE API (Comunicação com o Backend)
-    // ========================================================================
-
-    async function carregarDadosParaReposicao(sabadoId, turmaId) {
-        showLoader(gridLoader);
-        try {
-            const url = `/admin/api/dados_reposicao/${sabadoId}/${turmaId}`;
-            const response = await fetch(url);
-            if (!response.ok) throw new Error((await response.json()).error || 'Falha ao carregar dados.');
-            const data = await response.json();
-
-            // Renderiza a matriz e a grade com os dados recebidos
-            renderizarMatriz(data.matriz);
-            renderizarGrade(data.grade_horarios, data.alocacoes);
-
-        } catch (error) {
-            gridContainer.innerHTML = `<div class="grid-placeholder error">${error.message}</div>`;
-            console.error("Erro:", error);
-        } finally {
-            hideLoader(gridLoader);
-        }
-    }
-    
-    // (As outras funções de API como alocar, remover, buscar salas, etc., seriam chamadas
-    // a partir dos eventos de clique na matriz e na grade, que são adicionados
-    // pelas funções de renderização abaixo)
-
-    // ========================================================================
-    // 4. FUNÇÕES DE RENDERIZAÇÃO (Desenham a UI)
-    // ========================================================================
-
-    function renderizarMatriz(matriz) {
-        matrizList.innerHTML = '';
-        if (!matriz || matriz.length === 0) {
-            matrizList.innerHTML = '<p class="info-message">Matriz curricular não encontrada para esta turma.</p>';
-            return;
-        }
-        // Lógica para criar os divs da matriz (similar à da alocação principal)
-        matriz.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'matriz-item';
-            div.textContent = `${item.disciplina} - ${item.professor}`;
-            matrizList.appendChild(div);
-        });
-    }
-
-    function renderizarGrade(grade, alocacoes) {
-        gridContainer.innerHTML = '';
-        if (!grade || Object.keys(grade).length === 0) {
-            gridContainer.innerHTML = '<div class="info-message">Grade de horários não definida para este sábado.</div>';
-            return;
-        }
-
-        const table = document.createElement('table');
-        table.className = 'table table-bordered text-center';
-        // A grade de sábado tem apenas uma coluna de dia ('Sábado')
-        const thead = `<thead><tr><th>Horário</th><th>Sábado</th></tr></thead>`;
-        table.innerHTML = thead;
-        
-        const tbody = document.createElement('tbody');
-        Object.entries(grade).forEach(([horario, apelido]) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `<th>${apelido}<br><small>${horario}</small></th>`;
-            
-            const cell = document.createElement('td');
-            cell.className = 'horario-cell';
-            // Lógica para preencher com aulas já alocadas
-            const aulasNesteSlot = alocacoes[horario] || [];
-            aulasNesteSlot.forEach(aula => {
-                cell.innerHTML += `<div class="aula-bloco">${aula.disciplina} (${aula.sala})</div>`;
-            });
-
-            row.appendChild(cell);
-            tbody.appendChild(row);
-        });
-        table.appendChild(tbody);
-        gridContainer.appendChild(table);
-    }
-    
-    // Funções auxiliares
-    function showLoader(loader) { if(loader) loader.style.display = "flex"; }
-    function hideLoader(loader) { if(loader) loader.style.display = "none"; }
-});
-</script>
+<script src="{{ url_for('static', filename='js/admin_reposicao.js') }}"></script>
 {% endblock %}

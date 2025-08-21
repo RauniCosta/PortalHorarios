@@ -1,0 +1,105 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-sitemap fa-fw"></i> {{ title }}
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Reutilizando os mesmos estilos da página de gerenciamento de horários */
+    .manager-container { display: flex; gap: 1.5rem; }
+    .manager-sidebar { flex: 0 0 280px; }
+    .manager-content { flex: 1; }
+</style>
+
+<div class="manager-container">
+    
+    {# --- COLUNA DA ESQUERDA: MENU DE OPÇÕES --- #}
+    <div class="card manager-sidebar">
+        <h4 class="card-header">Gerenciar</h4>
+        <div class="list-group list-group-flush">
+            {# Estes links serão usados pelo JavaScript para carregar o conteúdo #}
+            <a href="#" class="list-group-item list-group-item-action" data-target="categorias">
+                <i class="fas fa-layer-group fa-fw me-2"></i>Categorias de Curso
+            </a>
+            <a href="#" class="list-group-item list-group-item-action" data-target="periodos">
+                <i class="fas fa-sun fa-fw me-2"></i>Períodos
+            </a>
+            <a href="#" class="list-group-item list-group-item-action" data-target="grades">
+                <i class="fas fa-tasks fa-fw me-2"></i>Grades de Horário
+            </a>
+        </div>
+    </div>
+
+    {# --- COLUNA DA DIREITA: CONTEÚDO DINÂMICO --- #}
+    <div class="manager-content" id="manager-content-area">
+        <div class="card">
+            <div class="card-body text-center text-muted" style="padding: 4rem;">
+                <i class="fas fa-arrow-left fa-2x mb-3"></i>
+                <h4>Selecione um item ao lado para começar a configurar a estrutura da escola.</h4>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleciona a área onde o conteúdo será carregado
+        const contentArea = document.getElementById('manager-content-area');
+        // Seleciona todos os links de navegação da barra lateral
+        const navLinks = document.querySelectorAll('.manager-sidebar .list-group-item-action');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Impede que o link navegue para outra página
+
+                // Pega o alvo do link (ex: 'categorias', 'periodos')
+                const target = this.dataset.target;
+                if (!target) return;
+
+                // Monta a URL da API que será chamada
+                const url = `/api/estrutura/${target}`;
+
+                // Mostra um feedback de carregamento para o usuário
+                contentArea.innerHTML = `
+                    <div class="card">
+                        <div class="card-body text-center" style="padding: 4rem;">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Carregando...</span>
+                            </div>
+                            <p class="mt-2 text-muted">Carregando dados...</p>
+                        </div>
+                    </div>`;
+                
+                // Remove a classe 'active' de todos os links e adiciona ao que foi clicado
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                // Faz a requisição para a nossa API
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('A resposta da rede não foi bem-sucedida.');
+                        }
+                        return response.text(); // Pega a resposta como texto (HTML)
+                    })
+                    .then(html => {
+                        // Coloca o HTML recebido da API dentro da área de conteúdo
+                        contentArea.innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar dados:', error);
+                        contentArea.innerHTML = `
+                            <div class="alert alert-danger">
+                                <strong>Erro!</strong> Não foi possível carregar o conteúdo. Verifique o console para mais detalhes.
+                            </div>`;
+                    });
+            });
+        });
+    });
+</script>
+{% endblock %}

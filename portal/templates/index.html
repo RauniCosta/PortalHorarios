@@ -1,310 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Painel de Horários - CPS</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-    <body>
-        <header class="main-header">
-            <div class="header-content">
-                <div class="header-left">
-                    <img src="{{ url_for('static', filename='images/logo_cps.png') }}" alt="Logo Centro Paula Souza" class="header-logo">
-                    <h1 id="main-title">Painel de Horários</h1>
-                </div>
-                <div class="header-right">
-                    <a href="{{ url_for('auth.login') }}" class="auth-login-link">
-                        <i class="fas fa-lock"></i> Área Administrativa
-                    </a>
-                </div>
-            </div>
-        </header>
-
-        <div class="container">
-            <div class="info-header">
-                <h2 id="current-day-period">Carregando...</h2>
-                <h3 id="current-time"></h3>
-            </div>
-            <div id="horario-table-container">
-                <p class="no-data-message">Carregando horários, por favor aguarde...</p>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horário das Salas</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/display_style.css') }}"
+    />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-logo">
+        <img
+          src="{{ url_for('static', filename='images/logo_cps.png') }}"
+          alt="Logo da Escola"
+        />
+      </div>
+      <div class="header-info">
+        <h1 id="page-title">Horário de Aulas</h1>
+      </div>
+      <div class="header-right-panel">
+        <div class="header-clock">
+          <div id="current-day-period"></div>
+          <div id="current-time"></div>
         </div>
+        <div class="header-login">
+          <a href="{{ url_for('auth.login') }}" class="admin-login-link">
+            <i class="fas fa-user-shield"></i>
+            <span>Login Admin</span>
+          </a>
+        </div>
+      </div>
+    </header>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                // Elementos da UI
-                const mainTitle = document.getElementById('main-title');
-                const tableContainer = document.getElementById('horario-table-container');
-                const currentTimeDisplay = document.getElementById('current-time');
-                const currentDayPeriodDisplay = document.getElementById('current-day-period');
+    <div id="grid-container" class="grid-container"></div>
 
-                // Constantes e Mapeamentos
-                const GRADE_HORARIOS_FIXOS_POR_CATEGORIA = JSON.parse('{{ grade_horarios_fixos_por_categoria | tojson | safe }}');
-                const PERIODO_MAP_FROM_ID = { "1": "Manhã", "2": "Tarde", "3": "Noturno", "4": "Integral" };
-                const TURMAS_POR_PAGINA = 8; // A constante original era 8, mas você pode ajustar para 6 se preferir.
-                const TEMPO_PAGINACAO = 15000;
+    <script>
+      // --- DADOS VINDOS DO BACKEND ---
+      const paginasPorPeriodo = {{ paginas_por_periodo|tojson }};
+      const horariosAlocados = {{ horarios_alocados|tojson }};
+      const gradeHorarios = {{ grade_horarios|tojson }};
+      const TEMPO_PAGINACAO = 15000; // 15 segundos
 
-                // Variáveis de Estado
-                let dadosGlobais = {};
-                let serverInfo = {};
-                let pageCycleInterval = null;
+      // --- ELEMENTOS DA PÁGINA ---
+      const gridContainer = document.getElementById('grid-container');
+      // --- CORREÇÃO APLICADA AQUI ---
+      // A variável pageTitle agora é definida corretamente, capturando o elemento h1.
+      const pageTitle = document.getElementById('page-title');
 
-                async function fetchServerState() {
-                    try {
-                        const [horariosRes, serverInfoRes] = await Promise.all([
-                            const dadosInjetados = {{ dados_override|tojson|safe if dados_override else 'null' }};
+      // --- ESTADO DA APLICAÇÃO ---
+      let periodoAtual = null;
+      let paginasDoPeriodoAtual = [];
+      let paginaAtualIndex = 0;
+      let carrosselIntervalo = null;
 
-                            if (dadosInjetados) {
-                                // Se o backend injetou os dados, use-os diretamente
-                                processarDados(dadosInjetados);
-                            } else {
-                                // Senão, busca via API como antes
-                                fetch('/api/horarios')
-                                    .then(response => response.json())
-                                    .then(data => processarDados(data))
-                                    .catch(error => console.error('Erro ao carregar dados dos horários:', error));
-                            }
-                            
-                            fetch('/api/server_info')
-                        ]);
-                        if (!horariosRes.ok || !serverInfoRes.ok) throw new Error('Falha de comunicação com o servidor.');
-                        dadosGlobais = await horariosRes.json();
-                        serverInfo = await serverInfoRes.json();
-                        return true;
-                    } catch (error) {
-                        console.error("Não foi possível carregar os dados:", error);
-                        tableContainer.innerHTML = `<p class="error-message">${error.message}</p>`;
-                        return false;
-                    }
-                }
-                
-                function renderCurrentPage(paginas, disciplinaMap, pageIndex, horariosColunas, horariosDoPeriodoCompleto, alocacoesSource, diaKey) {
-                    const turmasVisiveis = paginas[pageIndex] || [];
-                    
-                    let tableHTML = '<table><thead><tr><th class="turma-header">Turma</th>';
-                    horariosColunas.forEach(h => {
-                        const apelido = horariosDoPeriodoCompleto[h] || 'Aula';
-                        tableHTML += `<th>${h.replace(' - ', '<br>')}`;
-                        if (apelido.toUpperCase() === 'INTERVALO' || apelido.toUpperCase() === 'ALMOÇO') {
-                            tableHTML += `<br><span class="intervalo-label">${apelido.toUpperCase()}</span>`;
-                        } else {
-                            tableHTML += `<br><span class="horario-apelido">${apelido}</span>`;
-                        }
-                        tableHTML += `</th>`;
-                    });
-                    tableHTML += '</tr></thead><tbody>';
-                    const headersText = [];
-                    horariosColunas.forEach(h => {
-                        const apelido = horariosDoPeriodoCompleto[h] || 'Aula';
-                        let label = h;
-                        if (apelido.toUpperCase() !== 'INTERVALO' && apelido.toUpperCase() !== 'ALMOÇO') {
-                            label += ` (${apelido})`;
-                        } else {
-                            label = apelido.toUpperCase();
-                        }
-                        headersText.push(label);
-                    });
+      // --- FUNÇÃO PARA RENDERIZAR UMA PÁGINA ---
+      function renderizarPagina(index) {
+          if (paginasDoPeriodoAtual.length === 0) {
+              gridContainer.innerHTML = `<h2 class="periodo-title">Nenhuma turma com aulas alocadas para ${periodoAtual}.</h2>`;
+              pageTitle.innerText = "Horário de Aulas";
+              return;
+          }
 
+          const pagina = paginasDoPeriodoAtual[index];
+          pageTitle.innerText = `${pagina.titulo} - ${periodoAtual}`;
 
-                    turmasVisiveis.forEach(turma => {
-                        tableHTML += `<tr><td class="turma-cell">${turma.apelido}</td>`;
-                        
-                        horariosColunas.forEach((horario_chave, index) => { // << Adicionado 'index'
-                            const headerLabel = headersText[index]; // Pega o texto do cabeçalho correspondente
-                            
-                            if (["INTERVALO", "Almoço"].includes(horariosDoPeriodoCompleto[horario_chave])) {
-                                // Adiciona data-label mesmo para o intervalo para manter a estrutura
-                                tableHTML += `<td class="intervalo-cell" data-label="Intervalo"></td>`;
-                            } else {
-                                const aulasNesteSlot = diaKey 
-                                    ? (alocacoesSource[turma.apelido]?.[diaKey]?.[horario_chave] || [])
-                                    : (alocacoesSource[turma.apelido]?.[horario_chave] || []);
+          const isTecnico = pagina.titulo.includes('Curso Técnico');
+          const categoria = isTecnico ? 'Curso Técnico' : 'Ensino Médio';
+          const horariosDaPagina = gradeHorarios[categoria]?.[periodoAtual] || {};
 
-                                // << ALTERAÇÃO: Adicionado o atributo data-label
-                                tableHTML += `<td data-label="${headerLabel}">`; 
+          let tableHTML = `<table class="horario-table">`;
+          tableHTML += `<thead><tr><th style="width: 120px;">Turma</th>`;
+          for (const horario in horariosDaPagina) {
+              if (horariosDaPagina[horario].toUpperCase() !== 'INTERVALO') {
+                  tableHTML += `<th>${horariosDaPagina[horario]}<br><small>${horario}</small></th>`;
+              }
+          }
+          tableHTML += `</tr></thead>`;
 
-                                if (aulasNesteSlot.length > 0) {
-                                    aulasNesteSlot.forEach(aula_info => {
-                                        const sigla = disciplinaMap[aula_info.disciplina] || '???';
-                                        tableHTML += `<div class="aula-info">
-                                                        <span class="sala">${aula_info.sala || ''}</span>
-                                                        <span class="sigla">${sigla}</span>
-                                                        <span class="professor">${aula_info.professor || 'N/A'}</span>
-                                                    </div>`;
-                                    });
-                                } else {
-                                    tableHTML += '<span class="aula-vaga">Aula Vaga</span>';
-                                }
-                                tableHTML += '</td>';
-                            }
-                        });
-                        tableHTML += '</tr>';
-                    });
+          tableHTML += `<tbody>`;
+          pagina.turmas.forEach(turma => {
+              tableHTML += `<tr><td class="turma-header-cell">${turma.apelido}</td>`;
+              const diaSemana = ['domingo', 'segunda-feira', 'terca-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sabado'][new Date().getDay()];
+              for (const horario in horariosDaPagina) {
+                  if (horariosDaPagina[horario].toUpperCase() !== 'INTERVALO') {
+                      const aulas = horariosAlocados[turma.id]?.[diaSemana]?.[horario];
+                      tableHTML += `<td class="aula-cell">`;
+                      if (aulas && aulas.length > 0) {
+                          const salasTexto = aulas.map(a => a.sala).join(' / ');
+                          const disciplinasTexto = aulas.map(a => a.disciplina).join(' / ');
+                          tableHTML += `<div class="aula-content"><div class="aula-sala">${salasTexto}</div><div class="aula-disciplina">${disciplinasTexto}</div></div>`;
+                      }
+                      tableHTML += `</td>`;
+                  }
+              }
+              tableHTML += `</tr>`;
+          });
+          tableHTML += `</tbody></table>`;
+          gridContainer.innerHTML = tableHTML;
+      }
 
-                    turmasVisiveis.forEach(turma => {
-                        tableHTML += `<tr><td class="turma-cell">${turma.apelido}</td>`;
-                        horariosColunas.forEach(horario_chave => {
-                            if (["INTERVALO", "Almoço"].includes(horariosDoPeriodoCompleto[horario_chave])) {
-                                tableHTML += `<td class="intervalo-cell"></td>`;
-                            } else {
-                                const aulasNesteSlot = diaKey 
-                                    ? (alocacoesSource[turma.apelido]?.[diaKey]?.[horario_chave] || [])
-                                    : (alocacoesSource[turma.apelido]?.[horario_chave] || []);
+      // --- FUNÇÃO PRINCIPAL QUE CONTROLA O FLUXO ---
+      function atualizarDisplay() {
+          const now = new Date();
+          const hora = now.getHours();
+          let novoPeriodo;
 
-                                tableHTML += '<td>';
-                                if (aulasNesteSlot.length > 0) {
-                                    aulasNesteSlot.forEach(aula_info => {
-                                        const sigla = disciplinaMap[aula_info.disciplina] || '???';
-                                        tableHTML += `<div class="aula-info">
-                                                        <span class="sala">${aula_info.sala || ''}</span>
-                                                        <span class="sigla">${sigla}</span>
-                                                        <span class="professor">${aula_info.professor || 'N/A'}</span>
-                                                    </div>`;
-                                    });
-                                } else {
-                                    tableHTML += '<span class="aula-vaga">Aula Vaga</span>';
-                                }
-                                tableHTML += '</td>';
-                            }
-                        });
-                        tableHTML += '</tr>';
-                    });
-                    tableHTML += '</tbody></table>';
-                    tableContainer.innerHTML = tableHTML;
-                }
+          if (hora < 12) novoPeriodo = 'Manhã';
+          else if (hora < 18) novoPeriodo = 'Tarde';
+          else novoPeriodo = 'Noite';
 
-                function setupDisplay() {
-                    if (pageCycleInterval) clearInterval(pageCycleInterval);
+          if (novoPeriodo !== periodoAtual) {
+              periodoAtual = novoPeriodo;
+              paginasDoPeriodoAtual = paginasPorPeriodo[periodoAtual] || [];
+              paginaAtualIndex = 0;
 
-                    currentDayPeriodDisplay.textContent = serverInfo.dia_display || "Carregando...";
-                    currentTimeDisplay.textContent = `Horário do Servidor: ${serverInfo.hora || "Carregando..."}`;
-                    
-                    const { turmas, disciplinas } = dadosGlobais;
-                    const disciplinaParaSiglaMap = Object.fromEntries((disciplinas || []).map(d => [d.componente, d.sigla]));
+              if (carrosselIntervalo) clearInterval(carrosselIntervalo);
 
-                    if (serverInfo.is_reposicao) {
-                        mainTitle.textContent = `Painel de Horários | ${serverInfo.reposicao_info.descricao}`;
-                        
-                        const alocacoesSabado = serverInfo.reposicao_info.horarios_alocados || {};
-                        const turmasComAulas = Object.keys(alocacoesSabado);
-                        
-                        if (turmasComAulas.length === 0) {
-                            tableContainer.innerHTML = `<p class="no-data-message">Nenhuma aula de reposição alocada para hoje.</p>`;
-                            return;
-                        }
+              renderizarPagina(0);
 
-                        const turmasDoSabado = turmas.filter(t => turmasComAulas.includes(t.apelido));
-                        const paginasDeTurmas = [];
-                        for (let i = 0; i < turmasDoSabado.length; i += TURMAS_POR_PAGINA) {
-                            paginasDeTurmas.push(turmasDoSabado.slice(i, i + TURMAS_POR_PAGINA));
-                        }
+              if (paginasDoPeriodoAtual.length > 1) {
+                  carrosselIntervalo = setInterval(() => {
+                      paginaAtualIndex = (paginaAtualIndex + 1) % paginasDoPeriodoAtual.length;
+                      renderizarPagina(paginaAtualIndex);
+                  }, TEMPO_PAGINACAO);
+              }
+          }
+      }
 
-                        const horariosDoSabado = serverInfo.reposicao_info.grade_horarios;
-                        const horariosColunas = Object.keys(horariosDoSabado);
+      // --- INICIALIZAÇÃO E RELÓGIOS ---
+      atualizarDisplay();
+      setInterval(atualizarDisplay, 60000);
 
-                        let currentPage = 0;
-                        renderCurrentPage(paginasDeTurmas, disciplinaParaSiglaMap, currentPage, horariosColunas, horariosDoSabado, alocacoesSabado, null);
+      function updateClock() {
+          const now = new Date();
+          const dayOfWeek = now.toLocaleDateString('pt-BR', { weekday: 'long' });
+          const time = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+          const hour = now.getHours();
+          let periodText = 'Manhã';
+          if (hour >= 12 && hour < 18) { periodText = 'Tarde'; }
+          else if (hour >= 18) { periodText = 'Noite'; }
 
-                        if (paginasDeTurmas.length > 1) {
-                            pageCycleInterval = setInterval(() => {
-                                currentPage = (currentPage + 1) % paginasDeTurmas.length;
-                                renderCurrentPage(paginasDeTurmas, disciplinaParaSiglaMap, currentPage, horariosColunas, horariosDoSabado, alocacoesSabado, null);
-                            }, TEMPO_PAGINACAO);
-                        }
-                    } 
-                    else {
-                        const { periodo_atual, dia_key } = serverInfo;
-                        mainTitle.textContent = `Painel de Horários | Período da ${periodo_atual || 'Manhã'}`;
-
-                        if (periodo_atual === "Fora do Horário" || ['domingo', 'sabado'].includes(dia_key)) {
-                            tableContainer.innerHTML = `<p class="no-data-message">Não há aulas em andamento neste momento.</p>`;
-                            return;
-                        }
-
-                        const turmasDoPeriodo = (turmas || []).filter(turma => {
-                            const periodoDaTurma = PERIODO_MAP_FROM_ID[turma.periodo];
-                            if (periodo_atual === "Manhã") return periodoDaTurma === "Manhã" || periodoDaTurma === "Integral";
-                            if (periodo_atual === "Tarde") return periodoDaTurma === "Tarde" || periodoDaTurma === "Integral";
-                            return periodoDaTurma === periodo_atual;
-                        });
-                        
-                        const turmasComAulasHoje = turmasDoPeriodo.filter(turma => {
-                            const alocacoesDaTurma = dadosGlobais.horarios_alocados[turma.apelido];
-                            return alocacoesDaTurma && alocacoesDaTurma[dia_key] && Object.keys(alocacoesDaTurma[dia_key]).length > 0;
-                        });
-
-                        if (turmasComAulasHoje.length === 0) {
-                            tableContainer.innerHTML = `<p class="no-data-message">Nenhuma aula alocada para as turmas deste período hoje.</p>`;
-                            return;
-                        }
-                        
-                        // ***** LÓGICA DE AGRUPAMENTO E PAGINAÇÃO RESTAURADA *****
-                        const turmasPorAno = { '1': [], '2': [], '3': [], 'Outros': [] };
-                        turmasComAulasHoje.forEach(turma => {
-                            const match = turma.nome_completo.match(/^[123]º/);
-                            const ano = match ? match[0][0] : 'Outros';
-                            turmasPorAno[ano].push(turma);
-                        });
-
-                        for(const ano in turmasPorAno) {
-                            turmasPorAno[ano].sort((a, b) => a.apelido.localeCompare(b.apelido, 'pt-BR'));
-                        }
-
-                        let paginasDeTurmas = [];
-                        ['1', '2', '3', 'Outros'].forEach(ano => {
-                            const turmasDoAno = turmasPorAno[ano];
-                            for (let i = 0; i < turmasDoAno.length; i += TURMAS_POR_PAGINA) {
-                                paginasDeTurmas.push(turmasDoAno.slice(i, i + TURMAS_POR_PAGINA));
-                            }
-                        });
-                        // ***** FIM DA LÓGICA RESTAURADA *****
-                        
-                        const categoriaExemplo = turmasComAulasHoje[0]?.categoria || "Ensino Médio";
-                        const horariosDoPeriodoCompleto = GRADE_HORARIOS_FIXOS_POR_CATEGORIA[categoriaExemplo]?.[periodo_atual];
-                        if (!horariosDoPeriodoCompleto) {
-                            tableContainer.innerHTML = `<p class="no-data-message">Grade de horários não encontrada para este período.</p>`;
-                            return;
-                        }
-                        const horariosColunas = Object.keys(horariosDoPeriodoCompleto);
-
-                        let currentPage = 0;
-                        renderCurrentPage(paginasDeTurmas, disciplinaParaSiglaMap, currentPage, horariosColunas, horariosDoPeriodoCompleto, dadosGlobais.horarios_alocados, dia_key);
-
-                        if (paginasDeTurmas.length > 1) {
-                            pageCycleInterval = setInterval(() => {
-                                currentPage = (currentPage + 1) % paginasDeTurmas.length;
-                                renderCurrentPage(paginasDeTurmas, disciplinaParaSiglaMap, currentPage, horariosColunas, horariosDoPeriodoCompleto, dadosGlobais.horarios_alocados, dia_key);
-                            }, TEMPO_PAGINACAO);
-                        }
-                    }
-                }
-
-                async function start() {
-                    const success = await fetchServerState();
-                    if (success) {
-                        setupDisplay();
-                        setInterval(async () => {
-                            const oldPeriod = serverInfo.periodo_atual;
-                            const oldIsReposicao = serverInfo.is_reposicao;
-                            
-                            await fetchServerState();
-
-                            if (serverInfo.periodo_atual !== oldPeriod || serverInfo.is_reposicao !== oldIsReposicao) {
-                                setupDisplay();
-                            } else {
-                                currentTimeDisplay.textContent = `Horário do Servidor: ${serverInfo.hora || "Carregando..."}`;
-                            }
-                        }, 60000);
-                    }
-                }
-                
-                start();
-            });
-            </script>
-    </body>
+          document.getElementById('current-day-period').innerText = `${dayOfWeek.split('-')[0]}, ${periodText}`;
+          document.getElementById('current-time').innerText = time;
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+    </script>
+  </body>
 </html>

@@ -1,48 +1,62 @@
 {% extends "admin_layout.html" %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}
+    {{ 'Editar Turma' if item else 'Adicionar Turma' }}
+{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-users fa-fw"></i> 
+    {{ 'Editar Turma: ' + item.nome if item else 'Adicionar Nova Turma' }}
+{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="card" style="max-width: 800px; margin: auto;">
-        <div class="card-header"><h3 class="card-title">{{ title }}</h3></div>
-        <div class="card-body">
-            <form method="POST">
-                <div class="form-group">
-                    <label for="apelido">Apelido (ID)</label>
-                    <input type="text" class="form-control" id="apelido" name="apelido" value="{{ turma.apelido if turma else '' }}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="nome">Nome Completo da Turma</label>
-                    <input type="text" class="form-control" id="nome" name="nome" value="{{ turma.nome if turma else '' }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="categoria">Categoria</label>
-                    <select id="categoria" name="categoria" class="form-control" required>
-                        <option value="">-- Selecione a Categoria --</option>
-                        {% for cat in categorias_curso %}
-                            <option value="{{ cat }}" {% if turma and turma.categoria == cat %}selected{% endif %}>{{ cat }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="periodo">Período</label>
-                    <select id="periodo" name="periodo" class="form-control" required>
-                        <option value="">-- Selecione o Período --</option>
-                        <option value="Manhã" {% if turma and turma.periodo == 'Manhã' %}selected{% endif %}>Manhã</option>
-                        <option value="Tarde" {% if turma and turma.periodo == 'Tarde' %}selected{% endif %}>Tarde</option>
-                        <option value="Noturno" {% if turma and turma.periodo == 'Noturno' %}selected{% endif %}>Noturno</option>
-                        <option value="Integral" {% if turma and turma.periodo == 'Integral' %}selected{% endif %}>Integral</option>
-                    </select>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-end">
-                    <a href="{{ url_for('main.turmas_list') }}" class="btn btn-secondary me-2">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                </div>
-            </form>
+<div class="card" style="max-width: 700px; margin: auto;">
+    <form method="POST">
+        <div class="form-group">
+            <label for="nome">Nome Completo da Turma</label>
+            <input type="text" id="nome" name="nome" class="form-control" 
+                   value="{{ item.nome if item else '' }}" required>
         </div>
-    </div>
+
+        <div class="form-group">
+            <label for="apelido">Apelido da Turma (Ex: 3A, 1B)</label>
+            <input type="text" id="apelido" name="apelido" class="form-control"
+                   value="{{ item.apelido if item else '' }}" required
+                   placeholder="Apelido que aparecerá na grade">
+        </div>
+
+        <div class="form-group">
+            <label for="categoria">Categoria</label>
+            <select id="categoria" name="categoria" class="form-control" required>
+                <option value="">-- Selecione --</option>
+                {# Itera sobre as categorias definidas no config da aplicação #}
+                {% for cat in config.CATEGORIAS_CURSO %}
+                    <option value="{{ cat }}" {% if item and item.categoria == cat %}selected{% endif %}>{{ cat }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="periodo">Período</label>
+            <select id="periodo" name="periodo" class="form-control" required>
+                <option value="">-- Selecione --</option>
+                {# Itera sobre o mapa de períodos (PERIODO_MAP) que está no config #}
+                {% for num, nome in config.PERIODO_MAP.items() %}
+                    {# O valor enviado pelo formulário será o NOME (ex: "Manhã") #}
+                    {# A opção é marcada como 'selected' se o período salvo no banco (item.periodo) for igual ao NÚMERO do mapa #}
+                    <option value="{{ nome }}" {% if item and item.periodo == num %}selected{% endif %}>
+                        {{ nome }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('main.turmas_list') }}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Salvar
+            </button>
+        </div>
+    </form>
 </div>
 {% endblock %}

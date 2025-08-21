@@ -1,0 +1,102 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Gerenciar Sábados Letivos{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-cog fa-fw"></i> Gerenciar Sábados Letivos
+{% endblock %}
+
+{% block content %}
+<div class="scheduler-layout">
+    
+    <div>
+        <div class="card">
+            <h4><i class="fas fa-plus-circle"></i> Adicionar Novo Sábado Letivo</h4>
+            <form action="{{ url_for('main.reposicao_add') }}" method="POST">
+                <div class="form-group">
+                    <label for="sabado_id_input">Data do Sábado:</label>
+                    <input type="date" id="sabado_id_input" name="id" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Ex: Reposição Feriado de Corpus Christi" required>
+                </div>
+                
+                <h5>Grade de Horários para este Sábado</h5>
+                <div id="horarios-dinamicos-container">
+                    </div>
+                <button type="button" id="add-horario-btn" class="btn btn-secondary">
+                    <i class="fas fa-plus"></i> Adicionar Horário
+                </button>
+                
+                <div class="form-actions" style="margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary">Salvar Sábado</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h4><i class="fas fa-file-import"></i> Importar Calendário Escolar</h4>
+            <p>Envie o arquivo PDF do calendário para pré-cadastrar os sábados letivos automaticamente.</p>
+            <form action="{{ url_for('main.importar_calendario_pdf') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="pdf_file">Arquivo PDF do Calendário:</label>
+                    <input type="file" id="pdf_file" name="pdf_file" class="form-control" accept=".pdf" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Enviar e Processar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <h4><i class="fas fa-list-ul"></i> Sábados Cadastrados</h4>
+        {% if sabados %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sabado in sabados %}
+                    <tr>
+                        <td>{{ sabado.id }}</td>
+                        <td>{{ sabado.descricao }}</td>
+                        <td class="text-end">
+                            <form action="{{ url_for('main.reposicao_delete_sabado', sabado_id=sabado.id) }}" method="POST" onsubmit="return confirm('Tem certeza?');">
+                                <button type="submit" class="btn btn-sm btn-danger" title="Remover"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p style="color: var(--cor-texto-cinza);">Nenhum sábado letivo cadastrado.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Script simples para adicionar campos de horário dinamicamente
+    document.getElementById('add-horario-btn').addEventListener('click', function() {
+        const container = document.getElementById('horarios-dinamicos-container');
+        const div = document.createElement('div');
+        div.className = 'form-group d-flex gap-2';
+        div.innerHTML = `
+            <input type="text" name="apelido[]" class="form-control" placeholder="Apelido (Ex: 1ª Aula)" required>
+            <input type="time" name="inicio[]" class="form-control" required>
+            <input type="time" name="fim[]" class="form-control" required>
+        `;
+        container.appendChild(div);
+    });
+</script>
+{% endblock %}

@@ -1,6 +1,7 @@
 {% extends "admin_layout.html" %}
 
 {% block title %}Disponibilidade de {{ professor.nome }}{% endblock %}
+
 {% block page_title %}
     <i class="fas fa-user-clock"></i> Disponibilidade de: <strong>{{ professor.nome }}</strong>
 {% endblock %}
@@ -8,55 +9,48 @@
 {% block content %}
 <div class="card">
     <p class="lead">
-        Defina o status de cada horário para o professor. Isso será usado pelo motor de geração automática de horários.
-        <br>
-        - <strong>Disponível:</strong> O professor pode ser alocado neste horário.
-        <br>
-        - <strong>Indisponível:</strong> Bloqueia o horário para qualquer alocação.
-        <br>
-        - <strong>Compromisso Externo:</strong> Indica um trabalho em outra instituição, forçando um intervalo de descanso após este bloco.
+        Clique em um horário para alternar seu status. As alterações são salvas apenas ao clicar no botão "Salvar".
     </p>
-    <hr>
-    <form method="post" action="{{ url_for('professor_disponibilidade', prof_id=professor.id) }}">
-        <div class="table-container">
-            <table class="table table-bordered text-center">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Horário</th>
-                        {% for dia in dias %}
-                            <th>{{ dia.split('-')[0]|capitalize }}</th>
-                        {% endfor %}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for horario in horarios %}
-                        <tr>
-                            <td>{{ horario }}</td>
-                            {% for dia in dias %}
-                                <td>
-                                    {# Lógica para obter o status atual ou o padrão 'disponivel' #}
-                                    {% set status_atual = professor.disponibilidade.get(dia, {}).get(horario, 'disponivel') %}
-                                    
-                                    {# O 'name' do select é a chave para o backend identificar o dia e o horário #}
-                                    <select name="{{ dia }}|{{ horario }}" class="form-control form-control-sm">
-                                        <option value="disponivel" {% if status_atual == 'disponivel' %}selected{% endif %}>Disponível</option>
-                                        <option value="indisponivel" {% if status_atual == 'indisponivel' %}selected{% endif %}>Indisponível</option>
-                                        <option value="externo" {% if status_atual == 'externo' %}selected{% endif %}>Compromisso Externo</option>
-                                    </select>
-                                </td>
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    <div class="disponibilidade-legend">
+        <span class="legend-item status-disponivel">Disponível</span>
+        <span class="legend-item status-indisponivel">Indisponível</span>
+        <span class="legend-item status-externo">Compromisso Externo</span>
+    </div>
+    
+    <div class="disponibilidade-grid-wrapper">
+        <div id="disponibilidade-grid" data-professor-id="{{ professor.id }}">
+            <div class="grid-header">Horário</div>
+            {% for dia in dias %}
+                <div class="grid-header">{{ dia.split('-')[0]|capitalize }}</div>
+            {% endfor %}
 
-        <div class="form-actions mt-4">
-            <button type="submit" class="button-primary">
-                <i class="fas fa-save"></i> Salvar Disponibilidade
-            </button>
-            <a href="{{ url_for('admin_view_data', data_key='professores') }}" class="button-secondary">Cancelar</a>
+            {% for horario in horarios %}
+                <div class="grid-time-label">{{ horario }}</div>
+                {% for dia in dias %}
+                    {# A expressão '(professor.disponibilidade or {})' garante que, se a disponibilidade for 'None', #}
+                    {# usaremos um dicionário vazio '{}' no lugar, evitando erros. #}
+                    {% set status_atual = (professor.disponibilidade or {}).get(dia, {}).get(horario, 'disponivel') %}
+                    
+                    <div class="grid-cell status-{{ status_atual }}" 
+                         data-dia="{{ dia }}" 
+                         data-horario="{{ horario }}"
+                         data-status="{{ status_atual }}">
+                        {{ {'disponivel': 'Disponível', 'indisponivel': 'Indisponível', 'externo': 'Externo'}[status_atual] }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
         </div>
-    </form>
+    </div>
+
+    <div class="form-actions mt-4">
+        <button id="save-disponibilidade-btn" type="button" class="btn btn-primary">
+            <i class="fas fa-save"></i> Salvar Disponibilidade
+        </button>
+        <a href="{{ url_for('main.professores_list') }}" class="btn btn-secondary">Voltar</a>
+    </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/admin_disponibilidade.js') }}"></script>
 {% endblock %}

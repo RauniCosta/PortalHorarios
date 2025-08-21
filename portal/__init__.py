@@ -25,32 +25,34 @@
 
 import os
 from flask import Flask
-from .config import Config      # Importa a classe de configuração
-from .models import db          # Importa o objeto db dos nossos modelos
+from .config import Config
+from .models import db
 
-def create_app():
+def create_app(test_config=None):  # <-- MUDANÇA AQUI
     """
     Função Application Factory. Cria e configura a instância da aplicação Flask.
     """
     app = Flask(__name__, instance_relative_config=True)
 
-    # 1. Carrega a configuração a partir do nosso arquivo/classe de configuração.
-    app.config.from_object(Config)
+    # Carrega a configuração. Se uma config de teste for passada, ela tem prioridade.
+    if test_config is None:
+        # Carrega a configuração normal a partir da classe Config
+        app.config.from_object(Config)
+    else:
+        # Carrega a configuração de teste passada para a função
+        app.config.from_mapping(test_config)
 
-    # 2. Inicializa as extensões do Flask (neste caso, o banco de dados).
+    # O resto da função continua exatamente igual...
     db.init_app(app)
 
-    # 3. Importa e registra os Blueprints (nossos conjuntos de rotas).
     from . import auth
     app.register_blueprint(auth.bp)
 
     from . import routes
     app.register_blueprint(routes.bp)
     
-    # Torna o endpoint 'index' disponível como 'main.index' para consistência.
     app.add_url_rule('/', endpoint='index')
 
-    # 4. Tenta criar a pasta da instância, se não existir.
     try:
         os.makedirs(app.instance_path)
     except OSError:

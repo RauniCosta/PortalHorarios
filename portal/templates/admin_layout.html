@@ -1,74 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Painel Administrativo{% endblock %} - Portal de Horários</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
     <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_style.css') }}">
 
-    {# Bloco para estilos específicos de cada página, se necessário no futuro #}
     {% block page_styles %}{% endblock %}
 </head>
 <body>
-    <div  class="layout-wrapper" id="layoutWrapper">
-        <aside class="sidebar">
-            <div class="sidebar-header"><h3>PortalHorários</h3></div>           
-            <nav class="sidebar-nav">
-                <a href="{{ url_for('main.dashboard') }}"><i class="fas fa-home fa-fw"></i> Dashboard</a>
-                <hr>
-                <a href="{{ url_for('main.matriz_curricular_list') }}"><i class="fas fa-sitemap fa-fw"></i> Matriz Curricular</a>
-                <a href="{{ url_for('main.admin_alocacao') }}"><i class="fas fa-calendar-check fa-fw"></i> Alocação Semanal</a>
-                <a href="{{ url_for('main.admin_reposicao') }}"><i class="fas fa-calendar-plus fa-fw"></i> Reposições</a>
-                <hr>
-                <a href="{{ url_for('main.professores_list') }}"><i class="fas fa-chalkboard-teacher fa-fw"></i> Professores</a>
-                <a href="{{ url_for('main.turmas_list') }}"><i class="fas fa-users fa-fw"></i> Turmas</a>
-                <a href="{{ url_for('main.disciplinas_list') }}"><i class="fas fa-book fa-fw"></i> Disciplinas</a>
-                <a href="{{ url_for('main.salas_list') }}"><i class="fas fa-door-open fa-fw"></i> Salas</a>
-                {% if session.role == 'Full' %}
-                    <hr>
-                    <a href="{{ url_for('main.users_list') }}"><i class="fas fa-user-shield fa-fw"></i> Usuários</a>
-                {% endif %}
-            </nav>
-            <div class="sidebar-footer">
-                <a href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt fa-fw"></i> Sair ({{ session.username }})</a>
-            </div>
-        </aside>
 
-        <div class="main-content-area">
-            <header class="main-header">
-                <button id="sidebarToggle" class="sidebar-toggle-btn" title="Alternar Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <h1 class="page-title">{% block page_title %}{% endblock %}</h1>
-                <div class="header-actions">
-                    {% block header_actions %}{% endblock %}
-                </div>
-            </header>
-            <main class="page-content">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="alert alert-{{ category }}">{{ message }}</div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                {% block content %}{% endblock %}
-            </main>
+    <nav class="top-navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <a href="{{ url_for('main.dashboard') }}">PortalHorários</a>
+            </div>
+            
+            <button class="navbar-toggler" id="navbarToggler" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="navbar-collapse" id="navbarCollapse">
+                
+                <ul class="navbar-nav">
+                    <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('main.admin_alocacao') }}">Alocação</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="dropdown-toggle">Cadastros <i class="fas fa-caret-down fa-xs"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('main.turmas_list') }}">Turmas</a></li>
+                            <li><a href="{{ url_for('main.professores_list') }}">Professores</a></li>
+                            <li><a href="{{ url_for('main.disciplinas_list') }}">Disciplinas</a></li>
+                            <li><a href="{{ url_for('main.salas_list') }}">Salas</a></li>
+                            <li><a href="{{ url_for('main.gerenciar_horarios') }}">Gerenciar Horários</a></li>
+                            <li><a href="{{ url_for('main.admin_estrutura') }}">Estrutura Escolar</a></li>
+                            <li><a href="{{ url_for('main.matriz_curricular_list') }}">Matriz Curricular</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="dropdown-toggle">Ferramentas <i class="fas fa-caret-down fa-xs"></i></a>
+                        <ul class="dropdown-menu">
+                             <li><a href="{{ url_for('main.admin_reposicao') }}">Reposições</a></li>
+                             {% if session.role == 'Full' %}
+                                <li><a href="{{ url_for('main.users_list') }}">Usuários</a></li>
+                                
+                             {% endif %}
+                        </ul>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav navbar-user">
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="dropdown-toggle"><i class="fas fa-user-circle"></i> {{ session.username }}</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('auth.logout') }}">Sair <i class="fas fa-sign-out-alt"></i></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1 class="page-title">
+                {% block page_title %}{% endblock %}
+            </h1>
+            <div class="header-actions">
+                {% block header_actions %}{% endblock %}
+            </div>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="content-wrapper">
+             {% block content %}{% endblock %}
+        </div>
+    </main>
+    
     <script>
+        // Script simples para fazer o menu "hamburger" funcionar em telas mobile
         document.addEventListener('DOMContentLoaded', () => {
-            const toggleBtn = document.getElementById('sidebarToggle');
-            const layoutWrapper = document.getElementById('layoutWrapper');
-            if (toggleBtn && layoutWrapper) {
-                toggleBtn.addEventListener('click', () => {
-                    layoutWrapper.classList.toggle('sidebar-collapsed');
+            const toggler = document.getElementById('navbarToggler');
+            const collapseMenu = document.getElementById('navbarCollapse');
+            if (toggler && collapseMenu) {
+                toggler.addEventListener('click', () => {
+                    collapseMenu.classList.toggle('show');
                 });
             }
         });
     </script>
+    
     {% block scripts %}{% endblock %}
 </body>
 </html>

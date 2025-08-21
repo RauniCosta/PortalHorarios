@@ -1,0 +1,128 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-calendar-alt fa-fw"></i> {{ title }}
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Estilos para a nossa nova página de duas colunas */
+    .manager-container {
+        display: flex;
+        gap: 1.5rem; /* Espaçamento entre as colunas */
+    }
+
+    .turmas-sidebar {
+        flex: 0 0 280px; /* Largura fixa para a barra lateral de turmas */
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        padding: 1rem;
+    }
+
+    .turmas-sidebar h4 {
+        margin-top: 0;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .turmas-list a {
+        display: block;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        color: var(--cor-texto-principal);
+        border-radius: 6px;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .turmas-list a:hover, .turmas-list a.active {
+        background-color: var(--cor-primaria-clara);
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .horario-content {
+        flex: 1; /* Ocupa o resto do espaço */
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+    }
+</style>
+
+<div class="manager-container">
+    
+    {# --- COLUNA DA ESQUERDA: LISTA DE TURMAS --- #}
+    <div class="turmas-sidebar">
+        <h4>Turmas</h4>
+        <div class="list-group turmas-list">
+            {% for turma in turmas %}
+                {# Cada turma é um link. O 'data-turma-id' será usado pelo JavaScript #}
+                <a href="#" data-turma-id="{{ turma.id }}">
+                    {{ turma.nome }}
+                </a>
+            {% else %}
+                <p class="text-muted">Nenhuma turma cadastrada.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    {# --- COLUNA DA DIREITA: CONTEÚDO DO HORÁRIO --- #}
+    <div class="horario-content" id="horario-content-area">
+        <div class="text-center text-muted">
+            <i class="fas fa-arrow-left fa-2x mb-3"></i>
+            <h4>Selecione uma turma ao lado para visualizar ou editar seu horário.</h4>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const turmasLinks = document.querySelectorAll('.turmas-list a');
+        const contentArea = document.getElementById('horario-content-area');
+
+        turmasLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Impede que o link navegue
+
+                // Remove a classe 'active' de todos os links e adiciona ao clicado
+                turmasLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                const turmaId = this.dataset.turmaId;
+                const url = `/api/horario/turma/${turmaId}`;
+
+                // Mostra um feedback de carregamento
+                contentArea.innerHTML = '<div class="text-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><p class="mt-2">Carregando horário...</p></div>';
+
+                // Faz a requisição para a nossa API
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro ao carregar os dados.');
+                        }
+                        return response.text(); // Pega a resposta como HTML
+                    })
+                    .then(html => {
+                        // Coloca o HTML recebido dentro da área de conteúdo
+                        contentArea.innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                        contentArea.innerHTML = '<div class="text-center text-danger"><p>Não foi possível carregar o horário. Tente novamente.</p></div>';
+                    });
+            });
+        });
+    });
+</script>
+{% endblock %}

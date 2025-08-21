@@ -1,51 +1,104 @@
-{% extends "admin_layout.html" %}
-
-{% block title %}Gerenciar Matriz Curricular{% endblock %}
-
-{% block page_title %}
-    <i class="fas fa-sitemap fa-fw"></i> Matriz Curricular (Quadro de Aulas)
-{% endblock %}
-
-{% block header_actions %}
-    <a href="{{ url_for('main.matriz_curricular_add') }}" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Adicionar Atribuição
-    </a>
-{% endblock %}
-
-{% block content %}
-    <p class="lead">Aqui você gerencia a demanda de aulas semanais para cada turma. Esta é a base que o motor de alocação utilizará.</p>
-
+{% extends "admin_layout.html" %} {% block title %}Gerenciar Matriz Curricular{%
+endblock %} {% block page_title %} <i class="fas fa-sitemap fa-fw"></i> Matriz
+Curricular (Quadro de Aulas) {% endblock %} {% block header_actions %}
+<div class="form-group mb-0" style="min-width: 250px">
+  <label for="turmaFilter" class="sr-only">Filtrar por Turma</label>
+  <select id="turmaFilter" class="form-control">
+    <option value="all">-- Mostrar Todas as Turmas --</option>
     {% for turma in turmas %}
-        <div class="card">
-            <h4 class="card-title">{{ turma.nome }}</h4>
-            {% if turma.quadro_aulas %}
-                <table class="table table-sm table-hover">
-                    <thead>
-                        <tr>
-                            <th>Disciplina</th>
-                            <th>Professor Padrão</th>
-                            <th class="text-center">Aulas por Semana</th>
-                            <th class="text-end">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for qa in turma.quadro_aulas %}
-                        <tr>
-                            <td>{{ qa.disciplina.nome }} ({{ qa.disciplina.id }})</td>
-                            <td>{{ qa.professor.nome }}</td>
-                            <td class="text-center">{{ qa.aulas_semanais }}</td>
-                            <td class="text-end">
-                                <form action="{{ url_for('main.matriz_curricular_delete', item_id=qa.id) }}" method="POST" onsubmit="return confirm('Tem certeza?');">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Remover"><i class="fas fa-trash"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p class="text-muted">Nenhuma aula atribuída para esta turma ainda.</p>
-            {% endif %}
-        </div>
+    <option value="{{ turma.apelido }}">{{ turma.nome }}</option>
     {% endfor %}
+  </select>
+</div>
+{% endblock %} {% block content %}
+<div id="matriz-container">
+  {# Itera sobre as turmas para criar um card para cada uma #} {% for turma in
+  turmas %}
+  <div class="card matriz-turma-card" data-turma-apelido="{{ turma.apelido }}">
+    <h4>Turma: {{ turma.nome }} ({{ turma.apelido }})</h4>
+    <table class="table table-hover mt-3">
+      <thead>
+        <tr>
+          <th>Disciplina (Sigla)</th>
+          <th>Professor (Apelido)</th>
+          <th>Aulas Semanais</th>
+          <th>Origem</th>
+        </tr>
+      </thead>
+      <tbody>
+        {# Itera sobre as aulas da matriz para a turma atual #} {% for item in
+        turma.quadro_aulas %}
+        <tr>
+          <td>{{ item.disciplina.nome }} ({{ item.disciplina.sigla }})</td>
+          <td>{{ item.professor.apelido }}</td>
+          <td>{{ item.aulas_semanais }}</td>
+          <td>{{ item.origem }}</td>
+          <td class="text-end">
+            <a
+              href="{{ url_for('main.matriz_curricular_edit', item_id=item.id) }}"
+              class="btn btn-sm btn-outline-primary"
+              title="Editar"
+            >
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+
+            {# Botão de deletar existente #}
+            <form
+              action="{{ url_for('main.matriz_curricular_delete', item_id=item.id) }}"
+              method="POST"
+              onsubmit="return confirm('Tem certeza?');"
+              style="display: inline"
+            >
+              <button
+                type="submit"
+                class="btn btn-sm btn-outline-danger"
+                title="Remover"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="4" class="text-center text-muted">
+            Nenhuma aula atribuída a esta turma.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  // JAVASCRIPT PARA O FILTRO DE TURMAS
+  document.addEventListener("DOMContentLoaded", function () {
+    const turmaFilter = document.getElementById("turmaFilter");
+    const matrizContainer = document.getElementById("matriz-container");
+
+    if (turmaFilter && matrizContainer) {
+      turmaFilter.addEventListener("change", function () {
+        const selectedApelido = this.value;
+
+        // Itera sobre todos os cards de turma
+        matrizContainer
+          .querySelectorAll(".matriz-turma-card")
+          .forEach((card) => {
+            // Se a opção for "Mostrar Todas" ou se o apelido do card corresponder ao selecionado, mostra o card.
+            if (
+              selectedApelido === "all" ||
+              card.dataset.turmaApelido === selectedApelido
+            ) {
+              card.style.display = "block";
+            } else {
+              // Caso contrário, esconde o card.
+              card.style.display = "none";
+            }
+          });
+      });
+    }
+  });
+</script>
 {% endblock %}

@@ -4,6 +4,9 @@ import os
 from waitress import serve
 from portal import create_app
 from commands import create_admin_command
+from dotenv import load_dotenv  # <-- Adicione esta linha
+
+load_dotenv()  # <-- E esta linha para carregar o arquivo .env
 
 # Cria a instância da aplicação
 app = create_app()

@@ -3,7 +3,7 @@
 import os
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'uma-chave-secreta-muito-segura')
+    SECRET_KEY = os.environ.get('SECRET_KEY', '4YMRMiM7FuCRP6c1VbnogHnh4d4BZCfPWHQ3prp4iT6QJUOXRE')
     
     DB_USER = os.environ.get('DB_USER', 'postgres')
     DB_PASSWORD = os.environ.get('DB_PASSWORD', 'Etec.ind25*') # <-- ATENÇÃO AQUI!
@@ -11,7 +11,12 @@ class Config:
     DB_PORT = os.environ.get('DB_PORT', '5432')
     DB_NAME = os.environ.get('DB_NAME', 'portalhorarios_db')
     
-    SQLALCHEMY_DATABASE_URI = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+    # Monta a URI do banco de dados a partir das variáveis
+    SQLALCHEMY_DATABASE_URI = (
+        f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+    )
+    
+    # Configuração padrão do SQLAlchemy
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     GRADE_HORARIOS_FIXOS_POR_CATEGORIA = {

@@ -1,409 +1,100 @@
-{% extends "admin_layout.html" %}
-
-{% block title %}Alocação Manual de Horários{% endblock %}
-
-{% block page_title %}
-    <i class="fas fa-calendar-check fa-fw"></i> Alocação Manual de Horários
-{% endblock %}
-
-{% block content %}
+{% extends "admin_layout.html" %} {% block title %}Alocação Manual de Horários{%
+endblock %} {% block page_title %}
+<i class="fas fa-calendar-check fa-fw"></i> Alocação Manual de Horários {%
+endblock %} {% block content %}
 <div class="scheduler-layout">
-    <div class="card">
-        <h4><i class="fas fa-tasks fa-fw"></i> Controle de Alocação</h4>
-
-        <div class="form-group">
-            <label for="turma_select"><strong>Passo 1:</strong> Selecione uma Turma</label>
-            <div class="custom-select-wrapper">
-                <select id="turma_select" class="form-control">
-                    <option value="">-- Selecione uma turma --</option>
-                    {% for turma in turmas %}
-                        <option value="{{ turma.id }}">{{ turma.nome }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-
-        <div id="matriz_panel" class="hidden">
-            <div class="form-group">
-                <label for="matrizSearchInput"><strong>Passo 2:</strong> Selecione uma aula para alocar</label>
-                <input type="search" id="matrizSearchInput" class="form-control" placeholder="Buscar por disciplina ou professor...">
-            </div>
-            <div id="matriz_list_container">
-                <div class="loader-container" id="matriz_loader">
-                    <div class="loader"></div>
-                </div>
-                <div id="matriz_list" class="matriz-list"></div>
-            </div>
-        </div>
+  <div class="card">
+    <h4><i class="fas fa-tasks fa-fw"></i> Controle de Alocação</h4>
+    <div class="form-group">
+      <label for="turma_select"
+        ><strong>Passo 1:</strong> Selecione uma Turma</label
+      >
+      <div class="custom-select-wrapper">
+        <select id="turma_select" class="form-control">
+          <option value="">-- Selecione uma turma --</option>
+          {% for turma in turmas %}
+          <option value="{{ turma.id }}">{{ turma.nome }}</option>
+          {% endfor %}
+        </select>
+      </div>
     </div>
-
-    <div class="scheduler-grid-container card">
-        <h4 id="horario_title"><i class="fas fa-th fa-fw"></i> Grade de Horários</h4>
-        <div id="horario_grid_container">
-            <div id="horario_grid">
-                <div class="grid-placeholder">
-                    <p><i class="fas fa-arrow-left" style="margin-right: 10px;"></i>Selecione uma turma para começar.</p>
-                </div>
-            </div>
-            <div class="loader-container" id="grid_loader">
-                <div class="loader"></div>
-            </div>
+    <div id="matriz_resumo_panel" class="hidden">
+      <label><strong>Resumo de Aulas:</strong></label>
+      <div id="matriz_list_container">
+        <div class="loader-container" id="matriz_loader">
+          <div class="loader"></div>
         </div>
+        <div id="matriz_list" class="matriz-list"></div>
+      </div>
     </div>
+  </div>
+
+  <div class="scheduler-grid-container card">
+    <h4 id="horario_title">
+      <i class="fas fa-th fa-fw"></i> Grade de Horários
+    </h4>
+    <p class="instrucao-texto hidden" id="instrucao_passo2">
+      <strong>Passo 2:</strong> Clique em um horário vago na grade para iniciar
+      a alocação.
+    </p>
+    <div id="horario_grid_container">
+      <div id="horario_grid">
+        <div class="grid-placeholder">
+          <p>
+            <i class="fas fa-arrow-left"></i> Selecione uma turma para começar.
+          </p>
+        </div>
+      </div>
+      <div class="loader-container" id="grid_loader">
+        <div class="loader"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="disciplina_modal" class="modal-overlay hidden">
+  <div class="modal-content">
+    <h4><strong>Passo 2:</strong> Escolha uma disciplina</h4>
+    <p id="disciplina_modal_info"></p>
+    <input
+      type="search"
+      id="disciplinaSearchInput"
+      class="form-control"
+      placeholder="Buscar disciplina..."
+      style="margin-bottom: 1rem"
+    />
+    <div id="disciplinas_list_modal_container">
+      <div id="disciplinas_list_modal"></div>
+      <p id="no_disciplinas_message" class="info-message hidden">
+        Nenhuma disciplina pendente para alocação.
+      </p>
+    </div>
+    <div class="form-actions">
+      <button id="cancel_disciplina_selection" class="btn btn-secondary">
+        Cancelar
+      </button>
+    </div>
+  </div>
 </div>
 
 <div id="sala_modal" class="modal-overlay hidden">
-    <div class="modal-content">
-        <h4><strong>Passo 3:</strong> Escolha uma sala livre</h4>
-        <p id="sala_modal_info"></p>
-        <div id="salas_list_modal_container">
-            <div id="salas_list_modal"></div>
-            <p id="no_salas_message" class="info-message hidden" style="margin-top: 15px;">Nenhuma sala livre para este horário.</p>
-        </div>
-        <div style="margin-top: 20px; text-align: right;">
-            <button id="cancel_sala_selection" class="btn btn-secondary">Cancelar</button>
-        </div>
+  <div class="modal-content">
+    <h4><strong>Passo 3:</strong> Escolha uma sala livre</h4>
+    <p id="sala_modal_info"></p>
+    <div id="salas_list_modal_container">
+      <div id="salas_list_modal"></div>
+      <p id="no_salas_message" class="info-message hidden">
+        Nenhuma sala livre para este horário.
+      </p>
     </div>
+    <div class="form-actions">
+      <button id="cancel_sala_selection" class="btn btn-secondary">
+        Cancelar
+      </button>
+    </div>
+  </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // --- 1. Mapeamento dos Elementos da UI ---
-    const turmaSelect = document.getElementById("turma_select");
-    const matrizPanel = document.getElementById("matriz_panel");
-    const matrizList = document.getElementById("matriz_list");
-    const matrizSearchInput = document.getElementById("matrizSearchInput");
-    const horarioGrid = document.getElementById("horario_grid");
-    const horarioTitle = document.getElementById("horario_title");
-    const matrizLoader = document.getElementById("matriz_loader");
-    const gridLoader = document.getElementById("grid_loader");
-    const salaModal = document.getElementById("sala_modal");
-    const salaModalInfo = document.getElementById("sala_modal_info");
-    const salasListModal = document.getElementById("salas_list_modal");
-    const noSalasMessage = document.getElementById("no_salas_message");
-    const cancelSalaSelectionBtn = document.getElementById("cancel_sala_selection");
-
-    // --- 2. Variáveis de Estado da Página ---
-    let matrizDaTurma = [];
-    let horariosAlocados = {};
-    let gradeDaTurma = {};
-    let activeMatrizItem = null; // Guarda a aula (da matriz) que o usuário selecionou
-    let activeCell = null; // Guarda a célula (dia/horário) que o usuário clicou na grade
-
-    // --- Funções Auxiliares ---
-    const showLoader = (loader) => { loader.style.display = "flex"; };
-    const hideLoader = (loader) => { loader.style.display = "none"; };
-    const showModal = () => salaModal.classList.remove("hidden");
-    const hideModal = () => salaModal.classList.add("hidden");
-
-    // --- Lógica de Eventos ---
-
-    // Evento principal: é disparado quando o usuário seleciona uma turma
-    turmaSelect.addEventListener("change", function () {
-        const turmaId = this.value;
-        if (turmaId) {
-            matrizPanel.classList.remove("hidden");
-            carregarDadosDaTurma(turmaId); // Chama a função que busca os dados no backend
-        } else {
-            // Reseta a UI se nenhuma turma for selecionada
-            matrizPanel.classList.add("hidden");
-            horarioGrid.innerHTML = '<div class="grid-placeholder"><p><i class="fas fa-arrow-left"></i> Selecione uma turma para começar.</p></div>';
-            horarioTitle.innerHTML = `<i class="fas fa-th"></i> Grade de Horários`;
-        }
-    });
-
-    // Evento de busca na lista de aulas
-    matrizSearchInput.addEventListener("input", function () {
-        const searchTerm = this.value.toLowerCase();
-        document.querySelectorAll(".matriz-item").forEach((item) => {
-            const isVisible = item.textContent.toLowerCase().includes(searchTerm);
-            item.style.display = isVisible ? "flex" : "none";
-        });
-    });
-    
-    // --- Funções de Renderização na Tela ---
-
-    function renderizarMatriz() {
-        matrizList.innerHTML = "";
-        if (matrizDaTurma.length === 0) {
-            matrizList.innerHTML = '<p class="info-message">Nenhuma disciplina na matriz para esta turma.</p>';
-            return;
-        }
-
-        matrizDaTurma.forEach((item) => {
-            const div = document.createElement("div");
-            div.className = "matriz-item";
-            div.dataset.matrizId = item.matriz_id;
-
-            const aulasRestantes = item.aulas_necessarias - item.alocadas;
-            if (aulasRestantes <= 0) {
-                div.style.opacity = "0.6";
-                div.style.cursor = "not-allowed";
-            }
-
-            const progresso = item.aulas_necessarias > 0 ? (item.alocadas / item.aulas_necessarias) * 100 : 0;
-            const sigla = item.disciplina.length > 20 ? (item.sigla || item.disciplina.substring(0, 10) + "...") : item.disciplina;
-
-            div.innerHTML = `
-                <div class="matriz-item-header">
-                    <strong>${sigla}</strong>
-                    <div class="tags">
-                        ${item.origem && item.origem.includes("Divisão") ? `<span class="tag divisao">${item.origem.replace("Divisão-", "")}</span>` : ""}
-                    </div>
-                </div>
-                <p class="matriz-item-subheader">${item.professor}</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar"><div class="progress-bar-fill" style="width: ${progresso}%;"></div></div>
-                    <span class="progress-bar-label">${item.alocadas}/${item.aulas_necessarias}</span>
-                </div>`;
-
-            if (aulasRestantes > 0) {
-                div.addEventListener("click", () => {
-                    document.querySelector(".matriz-item.selected")?.classList.remove("selected");
-                    div.classList.add("selected");
-                    activeMatrizItem = item;
-                });
-            }
-            matrizList.appendChild(div);
-        });
-    }
-
-    function renderizarGrade() {
-        horarioGrid.innerHTML = "";
-        if (!gradeDaTurma || Object.keys(gradeDaTurma).length === 0) {
-            horarioGrid.innerHTML = '<div class="info-message"><p>Grade de horários não definida para esta categoria/período de turma.</p></div>';
-            return;
-        }
-
-        const table = document.createElement("table");
-        table.className = "table table-bordered text-center";
-        const dias = ["segunda-feira", "terca-feira", "quarta-feira", "quinta-feira", "sexta-feira"];
-        
-        // Cabeçalho
-        const thead = `<thead><tr><th>Horário</th>${dias.map(d => `<th>${d.split('-')[0].charAt(0).toUpperCase() + d.split('-')[0].slice(1)}</th>`).join("")}</tr></thead>`;
-        table.innerHTML = thead;
-
-        // Corpo
-        const tbody = document.createElement("tbody");
-        Object.entries(gradeDaTurma).forEach(([horario, apelido]) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `<th>${apelido}<br><small>${horario}</small></th>`;
-
-            dias.forEach((diaKey) => {
-                const cell = document.createElement("td");
-                if (String(apelido).toUpperCase() === "INTERVALO" || String(apelido).toUpperCase() === "ALMOÇO") {
-                    cell.className = "intervalo-cell";
-                } else {
-                    cell.className = "horario-cell";
-                    cell.dataset.dia = diaKey;
-                    cell.dataset.horario = horario;
-
-                    const aulasNesteSlot = horariosAlocados[diaKey]?.[horario] || [];
-                    aulasNesteSlot.forEach((aula) => {
-                        cell.innerHTML += `
-                            <div class="aula-bloco" style="border-left-color: #6C5FFC;">
-                                <strong>${aula.disciplina}</strong>
-                                <small>${aula.professor}</small>
-                                <small style="color: var(--cor-principal); font-weight: 500;">Sala: ${aula.sala}</small>
-                                <button class="remover-btn" data-matriz-id="${aula.matriz_id}" title="Remover aula"><i class="fas fa-times"></i></button>
-                            </div>`;
-                    });
-                    cell.addEventListener("click", () => handleCellClick(cell));
-                }
-                row.appendChild(cell);
-            });
-            tbody.appendChild(row);
-        });
-        table.appendChild(tbody);
-        horarioGrid.appendChild(table);
-
-        horarioGrid.querySelectorAll(".remover-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                removerAula(e.target.closest(".horario-cell"), btn.dataset.matrizId);
-            });
-        });
-    }
-
-    // --- Funções de API (Comunicação com Backend) ---
-
-    // Função que busca os dados da turma na nossa API e atualiza a página
-    async function carregarDadosDaTurma(turmaId) {
-        showLoader(matrizLoader);
-        showLoader(gridLoader);
-        horarioTitle.innerHTML = `<i class="fas fa-th"></i> Horário: ${turmaSelect.options[turmaSelect.selectedIndex].text}`;
-
-        try {
-            const response = await fetch(`/admin/api/dados_alocacao/${turmaId}`);
-            const data = await response.json(); // Pega o JSON mesmo se for erro
-
-            if (!response.ok) {
-                // Se a resposta não for OK, lança um erro com a mensagem do backend
-                throw new Error(data.error || 'Falha ao carregar dados da turma.');
-            }
-
-            matrizDaTurma = data.matriz_turma;
-            horariosAlocados = data.horarios_alocados || {};
-            gradeDaTurma = data.horarios_grade;
-
-            renderizarMatriz();
-            renderizarGrade();
-        } catch (error) {
-            // Exibe a mensagem de erro clara no lugar da grade
-            horarioGrid.innerHTML = `<div class="grid-placeholder" style="color: var(--cor-erro);"><p><strong>Erro:</strong> ${error.message}</p></div>`;
-            matrizList.innerHTML = ""; // Limpa a lista da matriz também
-            console.error(error);
-        } finally {
-            hideLoader(matrizLoader);
-            hideLoader(gridLoader);
-        }
-    }
-    async function alocarAula(sala) {
-        hideModal();
-        showLoader(gridLoader);
-        try {
-            const response = await fetch("{{ url_for('main.admin_api_alocar') }}", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    turma_id: turmaSelect.value,
-                    dia: activeCell.dataset.dia,
-                    horario: activeCell.dataset.horario,
-                    sala: sala,
-                    matriz_id: activeMatrizItem.matriz_id,
-                }),
-            });
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.message || "Erro desconhecido.");
-
-            // Recarrega os dados para atualizar a UI
-            await carregarDadosDaTurma(turmaSelect.value);
-        } catch (error) {
-            alert(`Erro ao alocar: ${error.message}`);
-            hideLoader(gridLoader); // Esconde o loader em caso de erro
-        } finally {
-            activeMatrizItem = null; 
-            document.querySelector(".matriz-item.selected")?.classList.remove("selected");
-        }
-    }
-
-    async function removerAula(cell, matrizId) {
-        if (!confirm('Tem certeza que deseja remover esta aula?')) return;
-        showLoader(gridLoader);
-        try {
-            const response = await fetch("{{ url_for('main.admin_api_remover') }}", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    turma_id: turmaSelect.value,
-                    dia: cell.dataset.dia,
-                    horario: cell.dataset.horario,
-                    matriz_id: parseInt(matrizId),
-                }),
-            });
-            const data = await response.json();
-            if (data.status !== "success") throw new Error(data.message);
-            
-            await carregarDadosDaTurma(turmaSelect.value);
-        } catch (error) {
-            alert(`Erro ao remover: ${error.message}`);
-            hideLoader(gridLoader);
-        }
-    }
-
-    async function renderizarSalasNoModal(dia, horario) {
-        salasListModal.innerHTML = '<div class="loader-small"></div>';
-        noSalasMessage.classList.add("hidden");
-        try {
-            const response = await fetch("{{ url_for('main.available_rooms') }}", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ dia, horario }),
-            });
-            const data = await response.json();
-            if (!response.ok) throw new Error('Falha ao buscar salas.');
-
-            salasListModal.innerHTML = "";
-            if (data.available_rooms.length === 0) {
-                noSalasMessage.classList.remove("hidden");
-            } else {
-                data.available_rooms.forEach((sala) => {
-                    const button = document.createElement("button");
-                    button.className = "sala-item";
-                    button.textContent = sala;
-                    button.addEventListener("click", () => alocarAula(sala));
-                    salasListModal.appendChild(button);
-                });
-            }
-        } catch (error) {
-            salasListModal.innerHTML = `<p class="info-message" style="color: var(--cor-erro);">${error.message}</p>`;
-        }
-    }
-
-    // Função que desenha a grade de horários na tela
-    function renderizarGrade() {
-        horarioGrid.innerHTML = "";
-        if (!gradeDaTurma || Object.keys(gradeDaTurma).length === 0) {
-            horarioGrid.innerHTML = '<div class="info-message"><p>Grade de horários não definida para esta turma.</p></div>';
-            return;
-        }
-
-        const table = document.createElement("table");
-        table.className = "table table-bordered text-center";
-        const dias = ["segunda-feira", "terca-feira", "quarta-feira", "quinta-feira", "sexta-feira"];
-        
-        const thead = `<thead><tr><th>Horário</th>${dias.map(d => `<th>${d.split('-')[0].charAt(0).toUpperCase() + d.split('-')[0].slice(1)}</th>`).join("")}</tr></thead>`;
-        table.innerHTML = thead;
-
-        const tbody = document.createElement("tbody");
-        Object.entries(gradeDaTurma).forEach(([horario, apelido]) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `<th>${apelido}<br><small>${horario}</small></th>`;
-
-            dias.forEach((diaKey) => {
-                const cell = document.createElement("td");
-                if (String(apelido).toUpperCase() === "INTERVALO" || String(apelido).toUpperCase() === "ALMOÇO") {
-                    cell.className = "intervalo-cell";
-                } else {
-                    cell.className = "horario-cell"; // Célula clicável
-                    cell.dataset.dia = diaKey;
-                    cell.dataset.horario = horario;
-
-                    const aulasNesteSlot = horariosAlocados[diaKey]?.[horario] || [];
-                    aulasNesteSlot.forEach((aula) => {
-                        cell.innerHTML += `<div class="aula-bloco"> ... </div>`; // Exibe a aula já alocada
-                    });
-                    cell.addEventListener("click", () => handleCellClick(cell));
-                }
-                row.appendChild(cell);
-            });
-            tbody.appendChild(row);
-        });
-        table.appendChild(tbody);
-        horarioGrid.appendChild(table);
-        // Lógica para adicionar evento de clique nos botões de remover, etc.
-    }
-    
-    function handleCellClick(cell) {
-        if (!activeMatrizItem) {
-            alert("Por favor, selecione uma aula na lista da esquerda primeiro.");
-            matrizPanel.classList.add('highlight-pulse');
-            setTimeout(() => matrizPanel.classList.remove('highlight-pulse'), 600);
-            return;
-        }
-        activeCell = cell;
-
-        salaModalInfo.innerHTML = `Alocando <strong>${activeMatrizItem.disciplina}</strong> para <strong>${cell.dataset.dia.replace("-feira", "")} às ${cell.dataset.horario}</strong>.`;
-        renderizarSalasNoModal(cell.dataset.dia, cell.dataset.horario);
-        showModal();
-    }
-
-    // --- Manipuladores do Modal ---
-    cancelSalaSelectionBtn.addEventListener("click", hideModal);
-    salaModal.addEventListener("click", (e) => { if (e.target === salaModal) hideModal(); });
-});
-</script>
-
+{% endblock %} {% block scripts %} {# A lógica foi movida para o arquivo JS
+externo #}
+<script src="{{ url_for('static', filename='js/admin_alocacao.js') }}"></script>
 {% endblock %}

@@ -1,0 +1,69 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-calendar-alt fa-fw"></i> {{ title }}
+{% endblock %}
+
+{% block content %}
+
+{# --- Card para as Aulas a Alocar (Demanda) --- #}
+<div class="card mb-4">
+    <h4 class="card-header">Aulas a Alocar (Demanda da Matriz)</h4>
+    <div class="card-body">
+        <ul class="list-group">
+            {% for aula in demanda_aulas %}
+                <li class="list-group-item">
+                    <strong>{{ aula.disciplina.nome }}</strong> ({{ aula.professor.apelido }}) - 
+                    <span class="badge bg-secondary">{{ aula.aulas_semanais }}</span> aulas por semana
+                </li>
+            {% else %}
+                <li class="list-group-item">Nenhuma demanda encontrada na matriz para esta turma.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{# --- Card Principal com a Grade de Horários --- #}
+<div class="card">
+    <h4 class="card-header">Grade de Horários</h4>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Horário</th>
+                    {% for dia in ['SEG', 'TER', 'QUA', 'QUI', 'SEX'] %}
+                        <th scope="col">{{ dia }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {# --- AQUI PRECISAMOS DOS SLOTS DE HORÁRIO --- #}
+                {# Por enquanto, vamos deixar um placeholder. O próximo passo será carregar os horários dinamicamente #}
+                {% for i in range(1, 7) %} {# Ex: Loop de 1 a 6 para 6 aulas #}
+                <tr>
+                    <th scope="row"> {{ i }}º Horário</th>
+                    {% for dia in ['SEG', 'TER', 'QUA', 'QUI', 'SEX'] %}
+                        {% set slot_id = dia + '-' + i|string %}
+                        <td>
+                            {% if slot_id in grade_alocada %}
+                                {# Se a aula estiver alocada, exibe as informações #}
+                                <div class="p-2">
+                                    <strong>{{ grade_alocada[slot_id].quadro_aula.disciplina.sigla }}</strong><br>
+                                    <small class="text-muted">{{ grade_alocada[slot_id].quadro_aula.professor.apelido }}</small>
+                                </div>
+                            {% else %}
+                                {# Se estiver vazio, por enquanto não faz nada #}
+                                <div class="p-4"></div>
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

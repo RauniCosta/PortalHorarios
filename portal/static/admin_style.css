@@ -1,698 +1,342 @@
-/* static/admin_style.css - v2.0 - Baseado nas referências visuais */
+/* ==========================================================================
+   ARQUIVO: admin_style.css
+   DESCRIÇÃO: Define estilos para componentes específicos do painel admin.
+   ========================================================================== */
 
-/* 1. SISTEMA DE DESIGN (VARIÁVEIS) */
-:root {
-    --cor-fundo: #F7F8FC;
-    --cor-fundo-card: #FFFFFF;
-    --cor-principal: #6C5FFC; /* Um roxo/azul inspirado nas referências */
-    --cor-principal-hover: #5a4fd6;
-    --cor-sidebar: #FFFFFF;
-    --cor-texto-escuro: #2D3748;
-    --cor-texto-cinza: #718096;
-    --cor-borda: #E2E8F0;
-    --cor-sucesso: #38A169;
-    --cor-erro: #E53E3E;
-    --cor-aviso: #D69E2E;
-
-    --fonte-principal: 'Roboto', sans-serif;
-    --sombra-padrao: 0px 4px 12px rgba(0, 0, 0, 0.05);
-    --raio-borda: 8px;
-    --largura-sidebar: 260px;
-}
-
-/* 2. RESET BÁSICO E ESTILOS GLOBAIS */
-* { box-sizing: border-box; }
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--fonte-principal);
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto-escuro);
-}
-h1, h2, h3, h4, h5, h6 { margin-top: 0; }
-
-/* 3. LAYOUT PRINCIPAL (SIDEBAR + CONTEÚDO) */
-body {
-    display: flex;
-}
-
-.sidebar {
-    width: var(--largura-sidebar);
-    height: 100vh;
-    background-color: var(--cor-sidebar);
-    border-right: 1px solid var(--cor-borda);
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem 1rem;
-    transition: transform 0.3s ease-in-out;
-}
-
-.sidebar-header {
-    margin-bottom: 2rem;
-    padding: 0 0.5rem;
-}
-.sidebar-header h2 {
-    font-size: 1.5rem;
-    color: var(--cor-principal);
-}
-
-.sidebar-nav a {
-    display: flex;
-    align-items: center;
-    padding: 0.8rem 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: var(--raio-borda);
-    color: var(--cor-texto-cinza);
-    font-weight: 500;
-}
-.sidebar-nav a:hover, .sidebar-nav a.active {
-    background-color: var(--cor-principal);
-    color: white;
-}
-.sidebar-nav a i {
-    width: 20px;
-    margin-right: 1rem;
-    text-align: center;
-}
-
-.sidebar-footer {
-    margin-top: auto;
-}
-
-.main-wrapper {
-    flex-grow: 1;
-    margin-left: var(--largura-sidebar);
-    padding: 2rem;
-    transition: margin-left 0.3s ease-in-out;
-}
-
-.main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-.main-header h1 {
-    font-size: 1.75rem;
-}
-.header-actions {
-    display: flex;
-    gap: 1rem;
-}
-
-.menu-toggle {
-    display: none; /* Oculto em desktop */
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-/* 4. COMPONENTES */
+/* --- 1. COMPONENTES GERAIS (Botões, Forms, Tabelas) --- */
 .card {
-    background-color: var(--cor-fundo-card);
-    border-radius: var(--raio-borda);
+    background: #fff;
     padding: 1.5rem;
-    box-shadow: var(--sombra-padrao);
+    border-radius: var(--raio-borda);
+    border: 1px solid var(--cor-borda);
+    box-shadow: var(--sombra-card);
     margin-bottom: 1.5rem;
 }
 
 .btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.65rem 1.25rem;
     border: none;
     border-radius: var(--raio-borda);
     font-weight: 500;
     cursor: pointer;
+    text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     transition: all 0.2s ease;
 }
-.btn-primary {
-    background-color: var(--cor-principal);
-    color: white;
-}
-.btn-primary:hover {
-    background-color: var(--cor-principal-hover);
-    transform: translateY(-2px);
+.btn-primary { background-color: var(--cor-principal); color: #fff; }
+.btn-primary:hover { background-color: var(--cor-principal-hover); }
+.btn-secondary { background-color: #f2f4f7; color: var(--cor-texto-escuro); border: 1px solid #d0d5dd; }
+.btn-secondary:hover { background-color: #e4e7ec; }
+.btn-danger { background-color: var(--cor-erro); color: #fff; }
+
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.form-control {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border: 1px solid #d0d5dd;
+    border-radius: var(--raio-borda);
 }
 
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--cor-borda); text-align: left; }
+.table thead th { background-color: #f8f9fa; }
+.table-hover tbody tr:hover { background-color: #f7f6ff; }
+
+
+/* --- 2. ESTILOS PARA O DASHBOARD --- */
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
 }
 .dashboard-card {
-    background-color: var(--cor-fundo-card);
+    display: block;
     padding: 1.5rem;
     border-radius: var(--raio-borda);
-    box-shadow: var(--sombra-padrao);
+    border: 1px solid var(--cor-borda);
+    transition: all 0.2s ease;
     text-decoration: none;
     color: var(--cor-texto-escuro);
-    transition: transform 0.2s, box-shadow 0.2s;
 }
-.dashboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-}
-.dashboard-card i {
-    font-size: 1.5rem;
-    padding: 0.8rem;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    color: var(--cor-principal);
-    background-color: #F0EEFF;
-}
-.dashboard-card h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-.dashboard-card p { font-size: 0.9rem; color: var(--cor-texto-cinza); margin: 0; }
+.dashboard-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.dashboard-card i { color: var(--cor-principal); font-size: 1.5rem; margin-bottom: 1rem; }
+.dashboard-card h4 { margin-bottom: 0.5rem; font-size: 1.1rem; }
 
-/* 5. RESPONSIVIDADE */
-@media (max-width: 992px) {
-    .sidebar {
-        transform: translateX(calc(-1 * var(--largura-sidebar)));
-        z-index: 1001;
-        box-shadow: var(--sombra-padrao);
-    }
-    .sidebar.open {
-        transform: translateX(0);
-    }
-    .main-wrapper {
-        margin-left: 0;
-    }
-    .main-header h1 {
-        font-size: 1.25rem;
-    }
-    .menu-toggle {
-        display: block;
-    }
-}
 
-/* ==========================================================================
-   6. ESTILOS ESPECÍFICOS PARA TELAS DE ALOCAÇÃO
-   ========================================================================== */
+/* --- 3. ESTILOS PARA A PÁGINA DE ALOCAÇÃO --- */
 .scheduler-layout {
     display: grid;
-    grid-template-columns: 400px 1fr; /* Coluna de controle fixa e grade flexível */
+    grid-template-columns: 380px 1fr;
     gap: 1.5rem;
-    align-items: flex-start;
 }
-
-.matriz-list {
-    max-height: 65vh;
-    overflow-y: auto;
-    padding-right: 0.5rem;
-    margin-top: 1rem;
-}
-
-.matriz-item {
-    background-color: var(--cor-fundo);
-    border: 1px solid var(--cor-borda);
-    border-radius: var(--raio-borda);
-    padding: 1rem;
-    margin-bottom: 0.75rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.matriz-item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--sombra-padrao);
-    border-left: 3px solid var(--cor-principal);
-}
-
-.matriz-item.selected {
-    border-color: var(--cor-principal);
-    background-color: #F0EEFF; /* Fundo suave roxo */
-    box-shadow: var(--sombra-padrao);
-    border-left: 3px solid var(--cor-principal);
-}
-
-.matriz-item-header {
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
-
-.matriz-item-subheader {
-    font-size: 0.85rem;
-    color: var(--cor-texto-cinza);
-    margin-bottom: 0.75rem;
-}
-
-.matriz-item-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-}
-
-.tag {
-    padding: 0.25rem 0.6rem;
-    border-radius: 12px;
-    font-weight: 500;
-    font-size: 0.75rem;
-}
-
-.tag.bloco {
-    background-color: #E6F6F4;
-    color: #2D9585;
-}
-
-.tag.divisao {
-    background-color: #FEF3E6;
-    color: #D69E2E;
-}
-
-.horario-cell {
-    border: 1px dashed var(--cor-borda);
-    transition: background-color 0.2s;
-}
-
-.horario-cell:hover {
-    background-color: #F0EEFF;
-}
-
-.aula-bloco {
-    background: white;
-    padding: 0.5rem;
-    border-radius: var(--raio-borda);
-    border-left: 3px solid var(--cor-sucesso);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    margin-bottom: 0.5rem;
-    position: relative;
-}
-.aula-bloco small { display: block; font-size: 0.8rem; color: var(--cor-texto-cinza); }
-
-/* Responsividade para a tela de alocação */
-@media (max-width: 1200px) {
-    .scheduler-layout {
-        grid-template-columns: 1fr; /* Coluna única em telas menores */
-    }
-}
-/* static/admin_style.css */
+#matriz_resumo_panel.hidden, #instrucao_passo2.hidden { display: none; }
+#horario_grid_container { position: relative; }
+.grid-placeholder { text-align: center; padding-top: 5rem; color: var(--cor-texto-cinza); }
 
 /* ==========================================================================
-   7. ESTILOS PARA COMPONENTES MODAIS
-   ========================================================================== */
+/* --- 4. MODAIS (POP-UPS) - VERSÃO MELHORADA --- */
+
+/* Estilo geral para o fundo escuro do modal */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(45, 55, 72, 0.75); /* Fundo escuro semi-transparente */
+    background-color: rgba(45, 55, 72, 0.75);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2000;
     opacity: 1;
     transition: opacity 0.3s ease;
+    z-index: 2000;
 }
-
 .modal-overlay.hidden {
-    opacity: 0;
-    pointer-events: none; /* Impede cliques quando estiver oculto */
+    display: none;
 }
 
+/* Container branco do conteúdo do modal */
 .modal-content {
-    background: var(--cor-fundo-card);
+    background: #fff;
     padding: 2rem;
     border-radius: var(--raio-borda);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     width: 90%;
-    max-width: 500px;
-    transform: scale(1);
-    transition: transform 0.3s ease;
+    max-width: 700px; /* Aumenta a largura máxima para comportar as colunas */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
 }
-
-.modal-overlay.hidden .modal-content {
-    transform: scale(0.9);
-}
-
 .modal-content h4 {
-    margin-bottom: 1rem;
-    color: var(--cor-texto-escuro);
+    margin-bottom: 0.5rem;
+}
+.modal-content p {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--cor-texto-cinza);
 }
 
-#salas_list_modal {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    justify-content: center;
-    margin-top: 1.5rem;
-    max-height: 200px;
-    overflow-y: auto;
+/* --- Container da lista de disciplinas (com barra de rolagem) --- */
+#disciplinas_list_modal_container {
+    max-height: 50vh; /* Altura máxima para a lista */
+    overflow-y: auto;   /* Adiciona a barra de rolagem vertical quando necessário */
+    padding: 0.25rem;
+    margin: 0 -0.25rem;
 }
 
-.sala-item {
-    border: 1px solid var(--cor-principal);
-    color: var(--cor-principal);
-    background-color: transparent;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.sala-item:hover {
-    background-color: var(--cor-principal);
-    color: white;
-}
-
-/* static/admin_style.css */
-
-/* ==========================================================================
-   6. ESTILOS ESPECÍFICOS PARA TELAS DE ALOCAÇÃO (continuação)
-   ========================================================================== */
-
-/* Layout da tela de alocação */
-.scheduler-layout {
+/* --- Grid para organizar as disciplinas em colunas --- */
+#disciplinas_list_modal {
     display: grid;
-    grid-template-columns: 380px 1fr; /* Coluna de controle mais larga */
-    gap: 1.5rem;
-    align-items: flex-start;
+    /* Cria 2 colunas de tamanho igual */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0.75rem; /* Espaçamento entre os cards */
 }
 
-/* Lista de aulas para alocar */
-.matriz-list {
-    max-height: 70vh;
-    overflow-y: auto;
-    padding-right: 0.5rem;
-}
-
-/* Card de cada aula/disciplina */
-.matriz-item {
-    background-color: var(--cor-fundo-card);
-    border: 1px solid var(--cor-borda);
-    border-left: 4px solid var(--cor-borda); /* Borda inicial cinza */
-    border-radius: var(--raio-borda);
-    padding: 1rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-.matriz-item:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--sombra-padrao);
-    border-left-color: var(--cor-principal);
-}
-.matriz-item.selected {
-    border-color: var(--cor-principal);
-    background-color: #F0EEFF;
-}
-
-.matriz-item-header {
+/* --- Card individual para cada disciplina --- */
+.disciplina-item {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column; /* Empilha o nome e o professor */
+    align-items: flex-start; /* Alinha o texto à esquerda */
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    cursor: pointer;
+    background: none;
+    text-align: left;
+    transition: all 0.2s ease;
+    border-left: 4px solid var(--cor-borda); /* Borda lateral para estilo */
 }
-.matriz-item-header strong {
+
+.disciplina-item:hover {
+    border-color: var(--cor-principal);
+    background-color: #f7f6ff; /* Roxo bem claro */
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-card);
+}
+
+.disciplina-item strong {
     font-size: 1rem;
     color: var(--cor-texto-escuro);
-}
-.matriz-item-header .tags {
-    display: flex;
-    gap: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
-.tag {
-    padding: 0.2rem 0.6rem;
-    border-radius: 12px;
-    font-weight: 500;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-}
-.tag.bloco { background-color: #E6F6F4; color: #2D9585; }
-.tag.divisao { background-color: #FEF3E6; color: #D69E2E; }
-
-.matriz-item-subheader {
-    font-size: 0.9rem;
-    color: var(--cor-texto-cinza);
-    margin: 0.25rem 0 1rem 0;
-}
-
-/* Barra de Progresso */
-.progress-bar-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-.progress-bar {
-    flex-grow: 1;
-    height: 8px;
-    background-color: #E2E8F0;
-    border-radius: 4px;
-    overflow: hidden;
-}
-.progress-bar-fill {
-    height: 100%;
-    background-color: var(--cor-principal);
-    width: 0%; /* Será definido via JS */
-    border-radius: 4px;
-    transition: width 0.4s ease;
-}
-.progress-bar-label {
-    font-size: 0.85rem;
-    font-weight: 500;
+.disciplina-item small {
+    font-size: 0.8rem;
     color: var(--cor-texto-cinza);
 }
 
-
-/* Bloco de aula dentro da grade */
-.aula-bloco {
-    padding: 0.75rem;
-    border-left-width: 4px;
-    text-align: left;
-}
-.aula-bloco .remover-btn { /* Ajuste do botão de remover */
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-.aula-bloco:hover .remover-btn {
-    opacity: 1;
+/* Botão de Cancelar */
+.modal-content .form-actions {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--cor-borda);
+    text-align: right;
 }
 
-/* Responsividade */
-@media (max-width: 1200px) {
-    .scheduler-layout {
+/* Ajuste para telas menores (coluna única no pop-up) */
+@media (max-width: 768px) {
+    #disciplinas_list_modal {
         grid-template-columns: 1fr;
     }
 }
 
-/* static/admin_style.css */
+/* --- Container da lista de salas (com barra de rolagem) --- */
+#salas_list_modal_container {
+    max-height: 50vh; /* Altura máxima para a lista */
+    overflow-y: auto;   /* Adiciona a barra de rolagem vertical quando necessário */
+    padding: 0.25rem;
+    margin: 0 -0.25rem;
+}
+
+/* --- Grid para organizar as salas em colunas --- */
+#salas_list_modal {
+    display: grid;
+    /* Cria 3 colunas, ideal para nomes curtos como os das salas */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 0.75rem; /* Espaçamento entre os cards */
+}
+
+/* --- Card individual para cada sala --- */
+.sala-item {
+    display: flex;
+    justify-content: center; /* Centraliza o nome da sala */
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    cursor: pointer;
+    background: none;
+    text-align: center;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--cor-texto-escuro);
+    border-left: 4px solid var(--cor-borda);
+}
+
+.sala-item:hover {
+    border-color: var(--cor-sucesso); /* Usaremos verde para salas */
+    background-color: #f6fff9; /* Verde bem claro */
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-card);
+}
+
+/* Ajuste para telas menores (2 colunas no pop-up de salas) */
+@media (max-width: 768px) {
+    #salas_list_modal {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --- 5. MELHORIA NO GRID DE ALOCAÇÃO --- */
+
+.scheduler-layout .table {
+    border-collapse: separate; /* Necessário para que a borda externa funcione com o raio */
+    border-spacing: 0;
+    border: 1px solid #D0D5DD; /* Borda externa da tabela */
+    border-radius: var(--raio-borda);
+    overflow: hidden; /* Garante que o conteúdo respeite a borda arredondada */
+}
+
+.scheduler-layout .table th,
+.scheduler-layout .table td {
+    border: none; /* Remove as bordas individuais padrão */
+    border-bottom: 1px solid #D0D5DD; /* Borda inferior para separar as linhas */
+    border-left: 1px solid #D0D5DD;   /* Borda esquerda para separar as colunas */
+    text-align: center;
+    vertical-align: top;
+    padding: 0.5rem;
+}
+
+.scheduler-layout .table th {
+    background-color: #f9fafb;
+    font-weight: 500;
+}
+
+/* Remove a borda desnecessária na primeira coluna */
+.scheduler-layout .table td:first-child,
+.scheduler-layout .table th:first-child {
+    border-left: none;
+}
 
 /* ==========================================================================
-   8. AJUSTES FINOS DE LAYOUT (POLIMENTO)
+   GRADE DE DISPONIBILIDADE INTERATIVA
    ========================================================================== */
 
-/* Garante que o container principal ocupe toda a altura */
-.main-wrapper, .page-content {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    height: 100%;
+.disponibilidade-grid-wrapper {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    padding: 1rem;
 }
 
-/* Faz o layout da agenda esticar para preencher o espaço */
-.scheduler-layout {
+#disponibilidade-grid {
     display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 1.5rem;
-    align-items: stretch; /* Faz os itens do grid esticarem verticalmente */
-    flex-grow: 1;
+    grid-template-columns: auto repeat(5, 1fr); 
+    gap: 5px;
+    min-width: 800px;
 }
 
-.scheduler-layout > .card {
-    display: flex;
-    flex-direction: column; /* Permite que o conteúdo interno cresça */
+.grid-header, .grid-time-label {
+    font-weight: 500;
+    padding: 0.75rem;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 4px;
 }
 
-/* Faz o container da grade e da lista de aulas crescerem */
-#horario_grid_container, #matriz_list_container {
-    flex-grow: 1;
-    position: relative; /* Necessário para os loaders internos */
+.grid-cell {
+    padding: 1rem 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.2s;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid transparent;
 }
 
-/* CORREÇÃO PARA O DROPDOWN (SELECT) */
-.form-group.dropdown-fix {
-    /* Permite que o conteúdo do dropdown "vaze" para fora do card */
-    overflow: visible;
-    /* Garante que ele fique por cima de outros elementos */
+.grid-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     z-index: 10;
 }
 
-/* Garante que a lista da matriz não sobreponha o dropdown */
-#matriz_panel {
-    z-index: 5;
-    position: relative;
+/* Cores dos Status */
+.status-disponivel {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
 }
 
-/* static/admin_style.css */
+.status-indisponivel {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
 
-/* ==========================================================================
-   9. COMPONENTES DE LISTA INTERATIVA (PAINEL DE TURMAS)
-   ========================================================================== */
+.status-externo {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
 
-.interactive-list-panel {
+/* Legenda */
+.disponibilidade-legend {
     display: flex;
-    flex-direction: column;
     gap: 1rem;
-}
-
-.turma-list {
-    max-height: 75vh; /* Altura máxima da lista */
-    overflow-y: auto;
-    border: 1px solid var(--cor-borda);
-    border-radius: var(--raio-borda);
-}
-
-.turma-list-item {
-    padding: 1rem;
-    cursor: pointer;
-    border-bottom: 1px solid var(--cor-borda);
-    transition: background-color 0.2s;
-}
-
-.turma-list-item:last-child {
-    border-bottom: none;
-}
-
-.turma-list-item:hover {
-    background-color: #F7F8FC; /* Um cinza bem claro */
-}
-
-.turma-list-item.selected {
-    background-color: #F0EEFF; /* Fundo roxo suave */
-    border-right: 4px solid var(--cor-principal);
-    font-weight: 500;
-}
-
-.turma-list-item strong {
-    display: block;
-    font-size: 0.95rem;
-    color: var(--cor-texto-escuro);
-}
-
-.turma-list-item small {
-    font-size: 0.8rem;
-    color: var(--cor-texto-cinza);
-}
-
-/* static/admin_style.css */
-
-/* ==========================================================================
-   10. LAYOUT DE ALOCAÇÃO FINAL E SELECT CUSTOMIZADO
-   ========================================================================== */
-
-/* Layout Otimizado: Painel de controle mais estreito, mais espaço para a grade */
-.scheduler-layout {
-    display: grid;
-    /* Reduz a coluna da esquerda para 320px e a direita ocupa o resto */
-    grid-template-columns: 320px 1fr; 
-    gap: 1.5rem;
-    align-items: flex-start;
-}
-
-/* Novo componente <select> customizado, inspirado no artigo do Chrome Devs */
-.custom-select-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-
-.custom-select-wrapper select {
-    /* Remove a aparência padrão do sistema operacional */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    /* Garante que o texto não sobreponha nossa seta customizada */
-    padding-right: 2.5rem; 
-}
-
-/* Cria a nossa seta customizada */
-.custom-select-wrapper::after {
-    content: '▼';
-    position: absolute;
-    top: 50%;
-    right: 1rem;
-    transform: translateY(-50%);
-    font-size: 0.8rem;
-    color: var(--cor-texto-cinza);
-    pointer-events: none; /* Permite que o clique passe para o select */
-}
-
-/* Ajuste no card de aula para ser mais compacto */
-.matriz-item-header strong {
-    font-size: 0.95rem; /* Fonte um pouco menor */
-}
-.matriz-item-subheader {
-    font-size: 0.8rem; /* Fonte menor para o nome do professor */
-}
-
-/* static/admin_style.css */
-
-/* ==========================================================================
-   ESTILOS FINAIS PARA A TELA DE ALOCAÇÃO
-   ========================================================================== */
-
-/* Layout principal da página em duas colunas */
-.scheduler-layout {
-    display: grid;
-    grid-template-columns: 350px 1fr; /* Coluna de controle e coluna de conteúdo */
-    gap: 1.5rem;
-    align-items: flex-start;
-}
-
-/* Painel de lista interativa para as turmas */
-.interactive-list-panel .form-group {
-    margin-bottom: 1rem;
-}
-
-.turma-list {
-    height: 70vh; /* Altura fixa para a lista de turmas */
-    overflow-y: auto;
-    border: 1px solid var(--cor-borda);
-    border-radius: var(--raio-borda);
-}
-
-.turma-list-item {
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    border-bottom: 1px solid var(--cor-borda);
-    transition: background-color 0.2s;
-}
-.turma-list-item:last-child { border-bottom: none; }
-.turma-list-item:hover { background-color: #f8f9fa; }
-
-.turma-list-item.selected {
-    background-color: #F0EEFF; /* Cor de seleção inspirada na referência */
-    border-right: 4px solid var(--cor-principal);
-    font-weight: 500;
-}
-.turma-list-item strong { display: block; }
-.turma-list-item small { color: var(--cor-texto-cinza); }
-
-
-/* Estilos para os painéis da direita (aulas e grade) */
-#allocation-main-panel {
-    transition: opacity 0.3s;
-}
-
-#matriz_panel, #grid_panel {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.matriz-list {
-    max-height: 65vh;
-    overflow-y: auto;
-    padding-right: 0.5rem;
+    flex-wrap: wrap;
     margin-top: 1rem;
 }
 
-/* Outros estilos de .matriz-item, .progress-bar, .aula-bloco, etc., que já forneci,
-   devem ser mantidos. Este bloco acima é o essencial para o novo layout. */
+.legend-item {
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}

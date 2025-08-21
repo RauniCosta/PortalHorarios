@@ -1,0 +1,53 @@
+{# Card principal para o gerenciamento de categorias #}
+<div class="card">
+    <h4 class="card-header">
+        <i class="fas fa-layer-group fa-fw me-2"></i>Gerenciar Categorias de Curso
+    </h4>
+    <div class="card-body">
+        
+        {# --- Formulário para Adicionar Nova Categoria --- #}
+        {# Este formulário enviará os dados para uma nova rota que ainda vamos criar #}
+        <form action="#" method="POST" class="mb-4 p-3 bg-light border rounded">
+            <div class="input-group">
+                <input type="text" name="nome_categoria" class="form-control" placeholder="Nome da nova categoria (ex: Ensino Superior)" required>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus me-1"></i> Adicionar
+                </button>
+            </div>
+        </form>
+
+        {# --- Tabela com a Lista de Categorias Existentes --- #}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome da Categoria</th>
+                        <th scope="col" class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for categoria in categorias %}
+                    <tr>
+                        <td class="align-middle">{{ categoria.nome }}</td>
+                        <td class="text-end">
+                            {# Os botões de editar e deletar ainda não têm funcionalidade #}
+                            <button class="btn btn-sm btn-outline-primary" title="Editar">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" title="Remover">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="2" class="text-center text-muted py-4">
+                            Nenhuma categoria cadastrada. Use o formulário acima para começar.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

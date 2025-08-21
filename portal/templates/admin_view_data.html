@@ -3,27 +3,27 @@
 {% block title %}Gerenciar {{ title }}{% endblock %}
 
 {% block page_title %}
-    {# Ícones dinâmicos #}
-    {% if data_type == 'turmas' %}<i class="fas fa-users fa-fw"></i>
-    {% elif data_type == 'professores' %}<i class="fas fa-chalkboard-teacher fa-fw"></i>
-    {% elif data_type == 'disciplinas' %}<i class="fas fa-book fa-fw"></i>
-    {% elif data_type == 'salas' %}<i class="fas fa-igloo fa-fw"></i>
-    {% elif data_type == 'users' %}<i class="fas fa-user-shield fa-fw"></i>
-    {% endif %}
-    Gerenciar {{ title }}
+{# Ícones dinâmicos #}
+{% if data_type == 'turmas' %}<i class="fas fa-users fa-fw"></i>
+{% elif data_type == 'professores' %}<i class="fas fa-chalkboard-teacher fa-fw"></i>
+{% elif data_type == 'disciplinas' %}<i class="fas fa-book fa-fw"></i>
+{% elif data_type == 'salas' %}<i class="fas fa-igloo fa-fw"></i>
+{% elif data_type == 'users' %}<i class="fas fa-user-shield fa-fw"></i>
+{% endif %}
+Gerenciar {{ title }}
 {% endblock %}
 
 {% block header_actions %}
-    {# Botão de Adicionar Novo, agora com links explícitos e corretos #}
-    {% set add_routes = {
-        'turmas': 'main.turma_add', 'professores': 'main.professor_add',
-        'disciplinas': 'main.disciplina_add', 'salas': 'main.sala_add', 'users': 'main.user_add'
-    } %}
-    {% if data_type in add_routes %}
-        <a href="{{ url_for(add_routes[data_type]) }}" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Adicionar Novo
-        </a>
-    {% endif %}
+{# Botão de Adicionar Novo, agora com links explícitos e corretos #}
+{% set add_routes = {
+'turmas': 'main.turma_add', 'professores': 'main.professor_add',
+'disciplinas': 'main.disciplina_add', 'salas': 'main.sala_add', 'users': 'main.user_add'
+} %}
+{% if data_type in add_routes %}
+<a href="{{ url_for(add_routes[data_type]) }}" class="btn btn-primary">
+    <i class="fas fa-plus"></i> Adicionar Novo
+</a>
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -41,41 +41,60 @@
             </thead>
             <tbody>
                 {% for item in data %}
-                    <tr>
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.nome if 'nome' in item.__dict__ else item.username }}</td>
-                        {% if data_type == 'turmas' %}<td>{{ item.apelido }}</td>{% endif %}
-                        {% if data_type == 'users' %}<td><span class="tag divisao">{{ item.role }}</span></td>{% endif %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.nome if 'nome' in item.__dict__ else item.username }}</td>
+                    {% if data_type == 'turmas' %}<td>{{ item.apelido }}</td>{% endif %}
+                    {% if data_type == 'users' %}<td><span class="tag divisao">{{ item.role }}</span></td>{% endif %}
 
-                        {# Bloco de Ações explícito e à prova de erros #}
-                        <td class="text-end">
-                            {% if data_type == 'professores' %}
-                                <a href="{{ url_for('main.professor_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary" title="Editar">
-                                    <i class="fas fa-pencil-alt"></i> Editar
-                                </a>
-                                <a href="{{ url_for('main.professor_disponibilidade', item_id=item.id) }}" class="btn btn-sm btn-outline-secondary" title="Disponibilidade">
-                                    <i class="fas fa-calendar-check"></i> Disponibilidade
-                                </a>
-                                <form action="{{ url_for('main.professor_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja deletar o professor {{ item.nome }}?');">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Deletar"><i class="fas fa-trash"></i></button>
-                                </form>
-                            {% elif data_type == 'turmas' %}
-                                <a href="{{ url_for('main.turma_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
-                                <form action="{{ url_for('main.turma_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza?');"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
-                            {% elif data_type == 'disciplinas' %}
-                                <a href="{{ url_for('main.disciplina_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
-                                <form action="{{ url_for('main.disciplina_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza?');"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
-                            {% elif data_type == 'salas' %}
-                                <a href="{{ url_for('main.sala_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
-                                <form action="{{ url_for('main.sala_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza?');"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
-                            {% elif data_type == 'users' %}
-                                <a href="{{ url_for('main.user_edit', item_id=item.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
-                                <form action="{{ url_for('main.user_delete', item_id=item.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza?');"><button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
-                            {% endif %}
-                        </td>
-                    </tr>
+                    {# Bloco de Ações explícito e à prova de erros #}
+                    <td class="text-end">
+                        {% if data_type == 'professores' %}
+                        <a href="{{ url_for('main.professor_edit', item_id=item.id) }}"
+                            class="btn btn-sm btn-outline-primary" title="Editar">
+                            <i class="fas fa-pencil-alt"></i> Editar
+                        </a>
+                        <a href="{{ url_for('main.professor_disponibilidade', item_id=item.id) }}"
+                            class="btn btn-sm btn-outline-secondary" title="Disponibilidade">
+                            <i class="fas fa-calendar-check"></i> Disponibilidade
+                        </a>
+                        <form action="{{ url_for('main.professor_delete', item_id=item.id) }}" method="POST"
+                            class="d-inline"
+                            onsubmit="return confirm('Tem certeza que deseja deletar o professor {{ item.nome }}?');">
+                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Deletar"><i
+                                    class="fas fa-trash"></i></button>
+                        </form>
+                        {% elif data_type == 'turmas' %}
+                        <a href="{{ url_for('main.turma_edit', item_id=item.id) }}"
+                            class="btn btn-sm btn-outline-primary">Editar</a>
+                        <form action="{{ url_for('main.turma_delete', item_id=item.id) }}" method="POST"
+                            class="d-inline" onsubmit="return confirm('Tem certeza?');"><button type="submit"
+                                class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
+                        {% elif data_type == 'disciplinas' %}
+                        <a href="{{ url_for('main.disciplina_edit', item_id=item.id) }}"
+                            class="btn btn-sm btn-outline-primary">Editar</a>
+                        <form action="{{ url_for('main.disciplina_delete', item_id=item.id) }}" method="POST"
+                            class="d-inline" onsubmit="return confirm('Tem certeza?');"><button type="submit"
+                                class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
+                        {% elif data_type == 'salas' %}
+                        <a href="{{ url_for('main.sala_edit', item_id=item.id) }}"
+                            class="btn btn-sm btn-outline-primary">Editar</a>
+                        <form action="{{ url_for('main.sala_delete', item_id=item.id) }}" method="POST" class="d-inline"
+                            onsubmit="return confirm('Tem certeza?');"><button type="submit"
+                                class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
+                        {% elif data_type == 'users' %}
+                        <a href="{{ url_for('main.user_edit', item_id=item.id) }}"
+                            class="btn btn-sm btn-outline-primary">Editar</a>
+                        <form action="{{ url_for('main.user_delete', item_id=item.id) }}" method="POST" class="d-inline"
+                            onsubmit="return confirm('Tem certeza?');"><button type="submit"
+                                class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button></form>
+                        {% endif %}
+                    </td>
+                </tr>
                 {% else %}
-                    <tr><td colspan="100%" class="text-center p-4">Nenhum item cadastrado.</td></tr>
+                <tr>
+                    <td colspan="100%" class="text-center p-4">Nenhum item cadastrado.</td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>

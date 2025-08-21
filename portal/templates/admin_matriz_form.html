@@ -12,7 +12,11 @@
             <select id="turma_id" name="turma_id" class="form-control" required>
                 <option value="">-- Selecione a Turma --</option>
                 {% for turma in turmas %}
-                    <option value="{{ turma.id }}">{{ turma.nome }}</option>
+                {# A mágica acontece aqui: se o ID da turma no loop for igual ao ID da turma no 'item', marca como
+                'selected' #}
+                <option value="{{ turma.id }}" {% if item and item.turma_id==turma.id %}selected{% endif %}>
+                    {{ turma.nome }}
+                </option>
                 {% endfor %}
             </select>
         </div>
@@ -21,22 +25,29 @@
             <select id="disciplina_id" name="disciplina_id" class="form-control" required>
                 <option value="">-- Selecione a Disciplina --</option>
                 {% for disciplina in disciplinas %}
-                    <option value="{{ disciplina.id }}">{{ disciplina.nome }}</option>
+                <option value="{{ disciplina.id }}" {% if item and item.disciplina_id==disciplina.id %}selected{% endif
+                    %}>
+                    {{ disciplina.nome }}
+                </option>
                 {% endfor %}
             </select>
         </div>
         <div class="form-group">
-            <label for="professor_id">Professor Padrão</label>
+            <label for="professor_id">Professor</label>
             <select id="professor_id" name="professor_id" class="form-control" required>
                 <option value="">-- Selecione o Professor --</option>
                 {% for professor in professores %}
-                    <option value="{{ professor.id }}">{{ professor.nome }}</option>
+                <option value="{{ professor.id }}" {% if item and item.professor_id==professor.id %}selected{% endif %}>
+                    {{ professor.nome }}
+                </option>
                 {% endfor %}
             </select>
         </div>
         <div class="form-group">
-            <label for="aulas_semanais">Quantidade de Aulas na Semana</label>
-            <input type="number" id="aulas_semanais" name="aulas_semanais" class="form-control" min="1" required>
+            <label for="aulas_semanais">Qtde Aulas Semanais</label>
+            {# Aqui, preenchemos o atributo 'value' com o valor do 'item', se ele existir #}
+            <input type="number" id="aulas_semanais" name="aulas_semanais" class="form-control"
+                value="{{ item.aulas_semanais if item else '' }}" required>
         </div>
 
         <hr>

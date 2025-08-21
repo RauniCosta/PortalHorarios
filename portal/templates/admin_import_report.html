@@ -1,44 +1,92 @@
 {% extends "admin_layout.html" %}
 
-{% block title %}Relatório de Importação{% endblock %}
-{% block page_title %}Relatório de Importação de CSV{% endblock %}
+{% block title %}
+    {# Define o título dinamicamente, se não for passado usa um padrão #}
+    {{ title if title else "Relatório de Importação" }}
+{% endblock %}
+
+{% block page_title %}
+    <i class="fas fa-file-alt fa-fw"></i> 
+    {{ title if title else "Relatório de Importação" }}
+{% endblock %}
 
 {% block content %}
-<div class="card">
-    <h3>Resumo da Operação</h3>
-    <p><strong>Registros Processados com Sucesso:</strong> {{ summary.processed }}</p>
-    <p><strong>Linhas Ignoradas (com dados inválidos):</strong> {{ summary.skipped }}</p>
-    <a href="{{ url_for('main.dashboard') }}" class="button-secondary">Voltar para o Dashboard</a>
-</div>
 
-{% if skipped_rows %}
-<div class="card">
-    <h3>Linhas Ignoradas</h3>
-    <p>As seguintes linhas do seu arquivo CSV não foram importadas. Verifique a coluna "Motivo da Falha" para corrigir os dados.</p>
-    <div class="table-container">
-        <table>
+    {# =================================================================== #}
+    {# SEÇÃO 1: Exibida para o relatório de nomes de professores (NOVO)     #}
+    {# =================================================================== #}
+    {% if nomes_nao_encontrados %}
+    <div class="card">
+        <h4><i class="fas fa-exclamation-triangle" style="color: #F79009;"></i> Conflitos na Importação de Disponibilidade</h4>
+        <p>
+            A importação foi concluída, mas <strong>{{ nomes_nao_encontrados|length }} professores</strong> listados no arquivo CSV não foram encontrados no banco de dados.
+            Isso geralmente acontece por pequenas diferenças nos nomes (acentos, abreviações, etc.).
+        </p>
+        <p>
+            <strong>Ação Recomendada:</strong> Compare as duas listas abaixo, ajuste os nomes no seu sistema para que sejam idênticos aos do CSV e tente a importação novamente.
+        </p>
+    </div>
+
+    <div class="scheduler-layout">
+        <div class="card">
+            <h5>Nomes Não Encontrados (do arquivo CSV)</h5>
+            <ul class="list-group">
+                {% for nome in nomes_nao_encontrados %}
+                    <li class="list-group-item list-group-item-warning">{{ nome }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="card">
+            <h5>Nomes Existentes (no Banco de Dados)</h5>
+             <ul class="list-group">
+                {% for nome in nomes_no_banco %}
+                    <li class="list-group-item">{{ nome }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+
+    {# =================================================================== #}
+    {# SEÇÃO 2: Exibida para o relatório da Matriz Curricular (ANTIGO)     #}
+    {# =================================================================== #}
+    {% if summary %}
+    <div class="card">
+        <h4><i class="fas fa-check-circle" style="color: var(--cor-sucesso);"></i> Resumo da Importação</h4>
+        <p>
+            <strong>Linhas processadas com sucesso:</strong> {{ summary.processed }} <br>
+            <strong>Linhas ignoradas por erros ou dados faltantes:</strong> {{ summary.skipped }}
+        </p>
+    </div>
+
+    {% if skipped_rows %}
+    <div class="card">
+        <h5>Detalhes das Linhas Ignoradas</h5>
+        <p>As seguintes linhas do seu arquivo CSV não puderam ser processadas:</p>
+        <table class="table">
             <thead>
                 <tr>
-                    <th>Linha no CSV</th>
-                    <th>Turma Apelido</th>
-                    <th>Componente</th>
-                    <th>Professor</th>
-                    <th>Motivo da Falha</th>
+                    <th>Nº da Linha</th>
+                    <th>Motivo do Erro</th>
+                    <th>Dados da Linha</th>
                 </tr>
             </thead>
             <tbody>
-                {% for row in skipped_rows %}
-                    <tr>
-                        <td>{{ row.line_number }}</td>
-                        <td>{{ row.data['Turma Apelido'] }}</td>
-                        <td>{{ row.data['Componente'] }}</td>
-                        <td>{{ row.data['Professor Ministrando'] }}</td>
-                        <td style="color: #e74c3c;">{{ row.reason }}</td>
-                    </tr>
+                {% for row_info in skipped_rows %}
+                <tr>
+                    <td>{{ row_info.line_number }}</td>
+                    <td>{{ row_info.reason }}</td>
+                    <td><small>{{ row_info.data }}</small></td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-</div>
-{% endif %}
+    {% endif %}
+    {% endif %}
+    
+    <div class="form-actions mt-3">
+        <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary">Voltar para o Dashboard</a>
+    </div>
 {% endblock %}

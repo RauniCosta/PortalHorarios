@@ -1,34 +1,49 @@
 {% extends "admin_layout.html" %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}
+{# Define o título da página dinamicamente #}
+{% if item and item.id %}
+Editar Professor
+{% else %}
+Adicionar Professor
+{% endif %}
+{% endblock %}
 
+{% block page_title %}
+<i class="fas fa-chalkboard-teacher fa-fw"></i>
+{# Define o cabeçalho da página dinamicamente #}
+{% if item and item.id %}
+Editar Professor: <strong>{{ item.nome }}</strong>
+{% else %}
+Adicionar Novo Professor
+{% endif %}
+{% endblock %}
 {% block content %}
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">{{ title }}</h3>
-                </div>
-                <div class="card-body">
-                    <form method="POST">
-                        <div class="mb-3">
-                            <label for="id" class="form-label">ID do Professor (Ex: AB, CD)</label>
-                            <input type="text" class="form-control" id="id" name="id" value="{{ professor.id if professor else '' }}" {% if action == 'edit' %}readonly{% endif %} required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">Nome Completo</label>
-                            <input type="text" class="form-control" id="nome" name="nome" value="{{ professor.nome if professor else '' }}" required>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ url_for('main.professores_list') }}" class="btn btn-secondary me-2">Cancelar</a>
-                            <button type="submit" class="btn btn-primary">Salvar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="card">
+    <form method="POST">
+        {# O ID do professor é gerenciado pelo sistema e não deve ser editado manualmente #}
+
+        <div class="form-group">
+            <label for="nome">Nome Completo do Professor</label>
+            {# CORREÇÃO: Usa a variável 'item' para preencher o valor #}
+            <input type="text" id="nome" name="nome" class="form-control" 
+                   value="{{ item.nome if item else '' }}" required>
         </div>
-    </div>
+
+        <div class="form-group">
+            <label for="apelido">Professor Apelido (Ex: Silva, Costa)</label>
+            {# CORREÇÃO: Usa a variável 'item' para preencher o valor #}
+            <input type="text" id="apelido" name="apelido" class="form-control"
+                   value="{{ item.apelido if item else '' }}" required
+                   placeholder="Apelido que aparecerá na grade horária">
+        </div>
+
+        <div class="form-actions" style="border-top: 1px solid var(--cor-borda); margin-top: 2rem; padding-top: 1.5rem; text-align: right;">
+            <a href="{{ url_for('main.professores_list') }}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Salvar
+            </button>
+        </div>
+    </form>
 </div>
 {% endblock %}
